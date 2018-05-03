@@ -4,4 +4,6 @@ cwd=$(pwd)
 
 export GOPATH=$cwd/go
 
-echo "hellop"
+pushd $GOPATH/src/github.com/ONSdigital/dp-developer-site
+  go run main.go
+popd
