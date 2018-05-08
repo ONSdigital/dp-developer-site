@@ -1,0 +1,7 @@
+{{if .Get}}
+    <ul>
+    {{range $response := .Get.OrderedResponses}}
+        <li>{{$response.Status}}</li>
+    {{end}}
+    </ul>
+{{end}}

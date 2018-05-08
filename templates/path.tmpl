@@ -1,0 +1,10 @@
+<h1>Path: {{.Data.Path}}</h1>
+
+{{range $key, $method := .Data.Methods}}
+    <h2>{{$method.Method}}</h2>
+    {{range $_, $response := $method.OrderedResponses }}
+        <h3>{{$response.Status}}</h3>
+        <p>{{$response.Description}}</p>
+        <pre>{{$response}}</pre>
+    {{end}}
+{{end}}
