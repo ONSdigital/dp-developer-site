@@ -67,6 +67,9 @@ func main() {
 		{"dataset-api", "https://raw.githubusercontent.com/ONSdigital/dp-dataset-api/cmd-develop/swagger.yaml", nil, nil},
 		{"filter-api", "https://raw.githubusercontent.com/ONSdigital/dp-filter-api/cmd-develop/swagger.yaml", nil, nil},
 		{"code-list-api", "https://raw.githubusercontent.com/ONSdigital/dp-code-list-api/cmd-develop/swagger.yaml", nil, nil},
+		{"hierarchy-api", "https://raw.githubusercontent.com/ONSdigital/dp-hierarchy-api/cmd-develop/swagger.yaml", nil, nil},
+		{"recipe-api", "https://raw.githubusercontent.com/ONSdigital/dp-recipe-api/cmd-develop/swagger.yaml", nil, nil},
+		{"search-api", "https://raw.githubusercontent.com/ONSdigital/dp-search-api/cmd-develop/swagger.yaml", nil, nil},
 	}
 
 	if err := sources.Load(); err != nil {
@@ -103,15 +106,14 @@ func generateModel(APIs spec.APIs) site {
 		apiDir := strings.TrimSuffix(api.ID, "-api")
 
 		for key, path := range api.Spec.Paths.Paths {
-			pathDir := strings.Replace(strings.TrimPrefix(key, "/"), "/", "-", -1)
-			pathMethods := generateMethods(path)
-
 			// generateMethods() only includes public methods so checking the length
 			// so we don't add a path if none of it's methods are public
+			pathMethods := generateMethods(path)
 			if len(pathMethods) == 0 {
 				continue
 			}
 
+			pathDir := strings.Replace(strings.TrimPrefix(key, "/"), "/", "-", -1)
 			orderedPaths = append(orderedPaths, APIPath{
 				APIURL:        key,
 				SiteURL:       pathDir + "/index.html",
@@ -124,7 +126,7 @@ func generateModel(APIs spec.APIs) site {
 				Data: PathPage{
 					Spec:    api,
 					Path:    key,
-					Methods: generateMethods(path),
+					Methods: pathMethods,
 				},
 			}
 		}
@@ -148,49 +150,52 @@ func generateModel(APIs spec.APIs) site {
 }
 
 func generateMethods(path openAPI.PathItem) (methods []PathMethod) {
-	if path.Get != nil && contains(path.Get.Tags, Tags.Public) {
+	//FIXME We're checking for the lack of 'Private' or 'Private user' tag on a method at the point
+	// it'd be safer to check for 'Public' but the hierarchy API is currently missing that tag,
+	// so this fixes that until the APIs spec is updated.
+	if path.Get != nil && !contains(path.Get.Tags, Tags.Private) && !contains(path.Get.Tags, Tags.PrivateUser) {
 		methods = append(methods, PathMethod{
 			Method:           "GET",
 			OperationProps:   path.Get.OperationProps,
 			OrderedResponses: generateResponses(path.Get.Responses),
 		})
 	}
-	if path.Head != nil && contains(path.Head.Tags, Tags.Public) {
+	if path.Head != nil && !contains(path.Head.Tags, Tags.Private) && !contains(path.Head.Tags, Tags.PrivateUser) {
 		methods = append(methods, PathMethod{
 			Method:           "HEAD",
 			OperationProps:   path.Head.OperationProps,
 			OrderedResponses: generateResponses(path.Head.Responses),
 		})
 	}
-	if path.Post != nil && contains(path.Post.Tags, Tags.Public) {
+	if path.Post != nil && !contains(path.Post.Tags, Tags.Private) && !contains(path.Post.Tags, Tags.PrivateUser) {
 		methods = append(methods, PathMethod{
 			Method:           "POST",
 			OperationProps:   path.Post.OperationProps,
 			OrderedResponses: generateResponses(path.Post.Responses),
 		})
 	}
-	if path.Put != nil && contains(path.Put.Tags, Tags.Public) {
+	if path.Put != nil && !contains(path.Put.Tags, Tags.Private) && !contains(path.Put.Tags, Tags.PrivateUser) {
 		methods = append(methods, PathMethod{
 			Method:           "PUT",
 			OperationProps:   path.Put.OperationProps,
 			OrderedResponses: generateResponses(path.Put.Responses),
 		})
 	}
-	if path.Delete != nil && contains(path.Delete.Tags, Tags.Public) {
+	if path.Delete != nil && !contains(path.Delete.Tags, Tags.Private) && !contains(path.Delete.Tags, Tags.PrivateUser) {
 		methods = append(methods, PathMethod{
 			Method:           "DELETE",
 			OperationProps:   path.Delete.OperationProps,
 			OrderedResponses: generateResponses(path.Delete.Responses),
 		})
 	}
-	if path.Options != nil && contains(path.Options.Tags, Tags.Public) {
+	if path.Options != nil && !contains(path.Options.Tags, Tags.Private) && !contains(path.Options.Tags, Tags.PrivateUser) {
 		methods = append(methods, PathMethod{
 			Method:           "OPTIONS",
 			OperationProps:   path.Options.OperationProps,
 			OrderedResponses: generateResponses(path.Options.Responses),
 		})
 	}
-	if path.Patch != nil && contains(path.Patch.Tags, Tags.Public) {
+	if path.Patch != nil && !contains(path.Patch.Tags, Tags.Private) && !contains(path.Patch.Tags, Tags.PrivateUser) {
 		methods = append(methods, PathMethod{
 			Method:           "PATCH",
 			OperationProps:   path.Patch.OperationProps,
