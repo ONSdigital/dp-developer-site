@@ -142,7 +142,7 @@ func generateModel(APIs spec.APIs) site {
 				continue
 			}
 
-			pathDir := strings.Replace(strings.TrimPrefix(key, "/"), "/", "-", -1)
+			pathDir := strings.Replace(strings.TrimPrefix(strings.TrimSuffix(key, "index.html"), "/"), "/", "-", -1)
 			orderedPaths = append(orderedPaths, APIPath{
 				APIURL:        key,
 				SiteURL:       pathDir,
@@ -170,7 +170,7 @@ func generateModel(APIs spec.APIs) site {
 		siteModel[apiDir] = Page{
 			templateName: "api",
 			Title:        api.Spec.Info.Title,
-			Path:         apiDir,
+			Path:         apiDir + "/",
 			Data: APIPage{
 				Spec:         api,
 				OrderedPaths: orderedPaths,
