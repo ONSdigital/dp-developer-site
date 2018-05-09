@@ -1,10 +1,19 @@
 <h1>Path: {{.Data.Path}}</h1>
 
-{{range $key, $method := .Data.Methods}}
-    <h2>{{$method.Method}}</h2>
-    {{range $_, $response := $method.OrderedResponses }}
-        <h3>{{$response.Status}}</h3>
-        <p>{{$response.Description}}</p>
-        <pre>{{$response}}</pre>
+{{range .Data.Methods}}
+    <h2>{{.Method}}</h2>
+    <p>{{.Description}}</p>
+
+    <h3>Parameters</h3>
+    {{range .Parameters}}
+        <h4>{{.Name}}{{if .Required}} (required){{end}}</h4>
+        <p>Type: {{.In}}</p>
+        <p>{{.Description}}</p>
+    {{end}}
+    
+    <h3>Responses</h3>
+    {{range .OrderedResponses}}
+        <h4>{{.Status}}</h4>
+        <p>{{.Description}}</p>
     {{end}}
 {{end}}
