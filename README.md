@@ -15,15 +15,9 @@ To run this app you'll need [Golang](https://golang.org/) installed and setup. T
 make
 ```
 
-or
+#### Development
 
-```
-go run main.go
-```
-
-#### Development *(Not available yet)* 
-
-First run
+To watch and automatically rebuild the site on any changes to a `.go` or `.tmpl` file, run:
 ```
 make watch
 ```
@@ -34,7 +28,7 @@ Static pages, such as the introduction are in `/static`.
 
 ### Configuration
 
-There's no configuration yet, although we probably want to add confguration for the version of Sixteens used.
+There's no configuration for this application.
 
 ### Contributing
 
