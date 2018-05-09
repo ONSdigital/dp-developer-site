@@ -17,9 +17,35 @@ type site map[string]Page
 
 type Page struct {
 	Data         interface{}
-	Nav          interface{}
+	nav          *Nav
 	Title        string
+	Path         string
 	templateName string
+}
+
+// Nav dereferencing the pointer so that the template can iterate over it
+func (p Page) Nav() Nav {
+	// We use a pointer in `nav` so that we can build the nav through the loop that generates data for the templates
+	// and not have to do a second loop after we've gone through the API specs (because the nav is built from the specs)
+	return *p.nav
+}
+
+type Nav []NavItem
+
+type NavItem struct {
+	Name    string
+	SiteURL string
+}
+
+func (n NavItem) IsActive(currentPath string) bool {
+	fmt.Printf("Current path: %+v\n", currentPath)
+	fmt.Printf("SiteURL path: %+v\n", n.SiteURL)
+	return strings.HasPrefix(currentPath, n.SiteURL)
+}
+
+func (n NavItem) GetRelativePath(currentPath string) string {
+	c := strings.Count(currentPath, "/") + 1
+	return strings.Repeat("../", c) + n.SiteURL
 }
 
 type APIPage struct {
@@ -34,9 +60,10 @@ type APIPath struct {
 }
 
 type PathPage struct {
-	Spec    *spec.API
-	Path    string
-	Methods []PathMethod
+	Spec     *spec.API
+	Path     string
+	Methods  []PathMethod
+	APITitle string
 }
 
 type PathMethod struct {
@@ -68,7 +95,6 @@ func main() {
 		{"filter-api", "https://raw.githubusercontent.com/ONSdigital/dp-filter-api/cmd-develop/swagger.yaml", nil, nil},
 		{"code-list-api", "https://raw.githubusercontent.com/ONSdigital/dp-code-list-api/cmd-develop/swagger.yaml", nil, nil},
 		{"hierarchy-api", "https://raw.githubusercontent.com/ONSdigital/dp-hierarchy-api/cmd-develop/swagger.yaml", nil, nil},
-		{"recipe-api", "https://raw.githubusercontent.com/ONSdigital/dp-recipe-api/cmd-develop/swagger.yaml", nil, nil},
 		{"search-api", "https://raw.githubusercontent.com/ONSdigital/dp-search-api/cmd-develop/swagger.yaml", nil, nil},
 	}
 
@@ -100,10 +126,13 @@ func main() {
 
 func generateModel(APIs spec.APIs) site {
 	var siteModel = make(site)
+	var orderedNav = &Nav{}
 
 	for _, api := range APIs {
 		var orderedPaths []APIPath
 		apiDir := strings.TrimSuffix(api.ID, "-api")
+
+		orderedNav.appendNavItem(api.Spec.Info.Title, apiDir)
 
 		for key, path := range api.Spec.Paths.Paths {
 			// generateMethods() only includes public methods so checking the length
@@ -116,18 +145,21 @@ func generateModel(APIs spec.APIs) site {
 			pathDir := strings.Replace(strings.TrimPrefix(key, "/"), "/", "-", -1)
 			orderedPaths = append(orderedPaths, APIPath{
 				APIURL:        key,
-				SiteURL:       pathDir + "/index.html",
+				SiteURL:       pathDir,
 				PathItemProps: path.PathItemProps,
 			})
 
 			siteModel[apiDir+"/"+pathDir] = Page{
 				templateName: "path",
 				Title:        api.Spec.Info.Title,
+				Path:         apiDir + "/" + pathDir,
 				Data: PathPage{
-					Spec:    api,
-					Path:    key,
-					Methods: pathMethods,
+					Spec:     api,
+					Path:     key,
+					Methods:  pathMethods,
+					APITitle: api.Spec.Info.Title,
 				},
+				nav: orderedNav,
 			}
 		}
 
@@ -138,15 +170,23 @@ func generateModel(APIs spec.APIs) site {
 		siteModel[apiDir] = Page{
 			templateName: "api",
 			Title:        api.Spec.Info.Title,
+			Path:         apiDir,
 			Data: APIPage{
 				Spec:         api,
 				OrderedPaths: orderedPaths,
 			},
-			Nav: nil,
+			nav: orderedNav,
 		}
 	}
 
 	return siteModel
+}
+
+func (n *Nav) appendNavItem(title string, url string) {
+	*n = append(*n, NavItem{
+		Name:    title,
+		SiteURL: url,
+	})
 }
 
 func generateMethods(path openAPI.PathItem) (methods []PathMethod) {

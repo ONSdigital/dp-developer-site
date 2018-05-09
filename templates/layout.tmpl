@@ -7,6 +7,15 @@
     <title>ONS developer site{{if .Title}} - {{.Title}}{{end}}</title>
 </head>
 <body>
+    <nav>
+        <ul>
+        {{range .Nav}}
+            <li>
+                <a {{if .IsActive $.Path}}class="active"{{end}} href="{{.GetRelativePath $.Path}}">{{.Name}}</a>
+            </li>
+        {{end}}
+        </ul>
+    </nav>
     {{yield}}
 </body>
 </html>
