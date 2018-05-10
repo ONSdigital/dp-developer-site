@@ -43,7 +43,7 @@ func (n NavItem) IsActive(currentPath string) bool {
 
 func (n NavItem) GetRelativePath(currentPath string) string {
 	c := strings.Count(currentPath, "/")
-	return strings.Repeat("../", c) + n.SiteURL
+	return strings.Repeat("../", c) + n.SiteURL + "/"
 }
 
 type APIPage struct {
