@@ -38,13 +38,11 @@ type NavItem struct {
 }
 
 func (n NavItem) IsActive(currentPath string) bool {
-	fmt.Printf("Current path: %+v\n", currentPath)
-	fmt.Printf("SiteURL path: %+v\n", n.SiteURL)
 	return strings.HasPrefix(currentPath, n.SiteURL)
 }
 
 func (n NavItem) GetRelativePath(currentPath string) string {
-	c := strings.Count(currentPath, "/") + 1
+	c := strings.Count(currentPath, "/")
 	return strings.Repeat("../", c) + n.SiteURL
 }
 
@@ -143,6 +141,7 @@ func generateModel(APIs spec.APIs) site {
 			}
 
 			pathDir := strings.Replace(strings.TrimPrefix(strings.TrimSuffix(key, "index.html"), "/"), "/", "-", -1)
+			fmt.Printf("pathDir: %+v\n", pathDir)
 			orderedPaths = append(orderedPaths, APIPath{
 				APIURL:        key,
 				SiteURL:       pathDir,
@@ -152,7 +151,7 @@ func generateModel(APIs spec.APIs) site {
 			siteModel[apiDir+"/"+pathDir] = Page{
 				templateName: "path",
 				Title:        api.Spec.Info.Title,
-				Path:         apiDir + "/" + pathDir,
+				Path:         apiDir + "/" + pathDir + "/",
 				Data: PathPage{
 					Spec:     api,
 					Path:     key,
