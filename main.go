@@ -144,7 +144,7 @@ func generateModel(APIs spec.APIs) site {
 			fmt.Printf("pathDir: %+v\n", pathDir)
 			orderedPaths = append(orderedPaths, APIPath{
 				APIURL:        key,
-				SiteURL:       pathDir,
+				SiteURL:       pathDir + "/",
 				PathItemProps: path.PathItemProps,
 			})
 
