@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"html/template"
 	"log"
 	"os"
 	"sort"
@@ -125,8 +126,27 @@ func main() {
 func generateModel(APIs spec.APIs) site {
 	var siteModel = make(site)
 	var orderedNav = &Nav{}
+	siteModel[""] = Page{
+		Title:        "Welcome",
+		Data:         template.HTML("<h1>Soup</h1>"),
+		nav:          orderedNav,
+		templateName: "static",
+	}
 
-	for _, api := range APIs {
+	siteModel.generateDynamicPages(APIs, orderedNav)
+
+	return siteModel
+}
+
+func (n *Nav) appendNavItem(title string, url string) {
+	*n = append(*n, NavItem{
+		Name:    title,
+		SiteURL: url,
+	})
+}
+
+func (s site) generateDynamicPages(a spec.APIs, orderedNav *Nav) {
+	for _, api := range a {
 		var orderedPaths []APIPath
 		apiDir := strings.TrimSuffix(api.ID, "-api")
 
@@ -141,14 +161,13 @@ func generateModel(APIs spec.APIs) site {
 			}
 
 			pathDir := strings.Replace(strings.TrimPrefix(strings.TrimSuffix(key, "index.html"), "/"), "/", "-", -1)
-			fmt.Printf("pathDir: %+v\n", pathDir)
 			orderedPaths = append(orderedPaths, APIPath{
 				APIURL:        key,
 				SiteURL:       pathDir + "/",
 				PathItemProps: path.PathItemProps,
 			})
 
-			siteModel[apiDir+"/"+pathDir] = Page{
+			s[apiDir+"/"+pathDir] = Page{
 				templateName: "path",
 				Title:        api.Spec.Info.Title,
 				Path:         apiDir + "/" + pathDir + "/",
@@ -166,7 +185,7 @@ func generateModel(APIs spec.APIs) site {
 			return orderedPaths[i].APIURL < orderedPaths[j].APIURL
 		})
 
-		siteModel[apiDir] = Page{
+		s[apiDir] = Page{
 			templateName: "api",
 			Title:        api.Spec.Info.Title,
 			Path:         apiDir + "/",
@@ -177,15 +196,6 @@ func generateModel(APIs spec.APIs) site {
 			nav: orderedNav,
 		}
 	}
-
-	return siteModel
-}
-
-func (n *Nav) appendNavItem(title string, url string) {
-	*n = append(*n, NavItem{
-		Name:    title,
-		SiteURL: url,
-	})
 }
 
 func generateMethods(path openAPI.PathItem) (methods []PathMethod) {
@@ -245,17 +255,6 @@ func generateMethods(path openAPI.PathItem) (methods []PathMethod) {
 	return
 }
 
-func contains(sl []string, s string) (b bool) {
-	b = false
-	for i := range sl {
-		if sl[i] == s {
-			b = true
-			break
-		}
-	}
-	return
-}
-
 func generateResponses(responses *openAPI.Responses) (orderedResponses []MethodResponse) {
 	for status, response := range responses.StatusCodeResponses {
 		orderedResponses = append(orderedResponses, MethodResponse{
@@ -270,3 +269,18 @@ func generateResponses(responses *openAPI.Responses) (orderedResponses []MethodR
 
 	return
 }
+
+func contains(sl []string, s string) (b bool) {
+	b = false
+	for i := range sl {
+		if sl[i] == s {
+			b = true
+			break
+		}
+	}
+	return
+}
+
+// func generateStaticPages() {
+
+// }
