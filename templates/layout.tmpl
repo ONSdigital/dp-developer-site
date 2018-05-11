@@ -58,7 +58,8 @@
     <div class="wrapper">
         <div class="header col-wrap">
             <div class="col col--lg-one-third col--md-half">
-                <a href="https://www.ons.gov.uk">
+                {{$firstNavItem := index .Nav 0}}
+                <a href="{{$firstNavItem.GetRelativePath .Path}}">
                     <img class="logo" src="https://cdn.ons.gov.uk/assets/images/ons-logo.svg" alt="Office for National Statistics">
                 </a>
             </div>
