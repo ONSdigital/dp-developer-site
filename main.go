@@ -167,7 +167,7 @@ func (s site) generateDynamicPages(a spec.APIs, orderedNav *Nav) {
 
 			s[apiDir+"/"+pathDir] = Page{
 				templateName: "path",
-				Title:        api.Spec.Info.Title,
+				Title:        key,
 				Path:         apiDir + "/" + pathDir + "/",
 				Data: PathPage{
 					Spec:     api,
@@ -294,10 +294,12 @@ func (s site) generateStaticPages(orderedNav *Nav) {
 			if err != nil {
 				log.Fatal(err)
 			}
-			html := blackfriday.MarkdownBasic(bytes)
+
+			templateBytes, metadata := generateStaticMetadata(bytes)
+			html := blackfriday.MarkdownBasic(templateBytes)
 			fileDir := strings.TrimSuffix(strings.TrimPrefix(path, "static"), "index.md")
 			s[fileDir] = Page{
-				Title:        "",
+				Title:        metadata["title"],
 				Data:         template.HTML(html),
 				nav:          orderedNav,
 				templateName: "static",
@@ -308,4 +310,38 @@ func (s site) generateStaticPages(orderedNav *Nav) {
 	if err != nil {
 		log.Fatal(err)
 	}
+}
+
+func generateStaticMetadata(md []byte) (b []byte, metadata map[string]string) {
+	metadata = make(map[string]string)
+	s := string(md)
+	lines := strings.Split(s, "\n")
+
+	var body []string
+	var isMetadata bool
+
+	for _, line := range lines {
+		if !isMetadata && line == "---" {
+			isMetadata = true
+			continue
+		}
+
+		if isMetadata {
+			if line == "---" {
+				isMetadata = false
+				continue
+			}
+			pair := strings.SplitN(line, ":", 2)
+			if len(pair) == 2 {
+				metadata[strings.TrimSpace(strings.ToLower(pair[0]))] = pair[1]
+			}
+			continue
+		}
+
+		body = append(body, line)
+	}
+
+	b = []byte(strings.Join(body, "\n"))
+
+	return
 }

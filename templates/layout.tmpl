@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ONS developer site{{if .Title}} - {{.Title}}{{end}}</title>
+    {{/* <link rel="stylesheet" href="//cdn.ons.gov.uk/sixteens/1f31a7c/css/main.css"> */}}
 </head>
 <body>
     <nav>
@@ -16,6 +17,9 @@
         {{end}}
         </ul>
     </nav>
+    <h1>{{.Title}}</h1>
     {{yield}}
+
+    {{/* <script src="//cdn.ons.gov.uk/sixteens/1f31a7c/js/main.js"></script> */}}
 </body>
 </html>
