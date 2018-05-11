@@ -1,6 +1,6 @@
 <p>{{.Data.Spec.Spec.Info.Description}}</p>
 <nav>
-    <ul>
+    <ul class="list--neutral">
     {{range $value := .Data.OrderedPaths}}
         <li><a href="{{$value.SiteURL}}">{{$value.APIURL}}</a></li>        
     {{end}}

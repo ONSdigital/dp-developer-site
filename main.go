@@ -66,10 +66,11 @@ type APIPath struct {
 }
 
 type PathPage struct {
-	Spec     *spec.API
-	Path     string
-	Methods  []PathMethod
-	APITitle string
+	Spec       *spec.API
+	Path       string
+	Methods    []PathMethod
+	Parameters []openAPI.Parameter
+	APITitle   string
 }
 
 type PathMethod struct {
@@ -175,10 +176,11 @@ func (s site) generateDynamicPages(a spec.APIs, orderedNav *Nav) {
 				Title:        key,
 				Path:         apiDir + "/" + pathDir + "/",
 				Data: PathPage{
-					Spec:     api,
-					Path:     key,
-					Methods:  pathMethods,
-					APITitle: api.Spec.Info.Title,
+					Spec:       api,
+					Path:       key,
+					Methods:    pathMethods,
+					APITitle:   api.Spec.Info.Title,
+					Parameters: path.PathItemProps.Parameters,
 				},
 				nav: orderedNav,
 			}

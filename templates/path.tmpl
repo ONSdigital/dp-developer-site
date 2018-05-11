@@ -1,15 +1,35 @@
-<p>API: {{.Data.APITitle}}</p>
-
 {{range .Data.Methods}}
     <h2>{{.Method}}</h2>
     <p>{{.Description}}</p>
 
-    <h3>Parameters</h3>
-    {{range .Parameters}}
-        <h4>{{.Name}}{{if .Required}} (required){{end}}</h4>
-        <p>Type: {{.In}}</p>
-        <p>{{.Description}}</p>
-    {{end}}
+    <h3 class="margin-bottom-sm--1 margin-bottom-md--2">Parameters</h3>
+    <div class="margin-bottom-sm--2 margin-bottom-md--4">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th align="left">Name</th>
+                    <th align="right">Type</th>
+                    <th align="right">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{range .Parameters}}
+                    <tr>
+                        <td align="left">{{.Name}}</td>
+                        <td align="right">{{.In}}</td>
+                        <td align="right">{{.Description}}</td>
+                    </tr>
+                {{end}}
+                {{range $.Data.Parameters}}
+                    <tr>
+                        <td align="left">{{.Name}}</td>
+                        <td align="right">{{.In}}</td>
+                        <td align="right">{{.Description}}</td>
+                    </tr>
+                {{end}}
+            </tbody>
+        </table>
+    </div>
     
     <h3>Responses</h3>
     {{range .OrderedResponses}}
