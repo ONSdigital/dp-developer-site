@@ -3,13 +3,16 @@ package main
 import (
 	"fmt"
 	"html/template"
+	"io/ioutil"
 	"log"
 	"os"
+	"path/filepath"
 	"sort"
 	"strings"
 
 	"github.com/ONSdigital/dp-developer-site/renderer"
 	"github.com/ONSdigital/dp-developer-site/spec"
+	"github.com/russross/blackfriday"
 
 	openAPI "github.com/go-openapi/spec"
 )
@@ -126,14 +129,9 @@ func main() {
 func generateModel(APIs spec.APIs) site {
 	var siteModel = make(site)
 	var orderedNav = &Nav{}
-	siteModel[""] = Page{
-		Title:        "Welcome",
-		Data:         template.HTML("<h1>Soup</h1>"),
-		nav:          orderedNav,
-		templateName: "static",
-	}
 
 	siteModel.generateDynamicPages(APIs, orderedNav)
+	siteModel.generateStaticPages(orderedNav)
 
 	return siteModel
 }
@@ -281,6 +279,33 @@ func contains(sl []string, s string) (b bool) {
 	return
 }
 
-// func generateStaticPages() {
+func (s site) generateStaticPages(orderedNav *Nav) {
+	err := filepath.Walk("static", func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			fmt.Printf("prevent panic by handling failure accessing a path %q: %v\n", "static", err)
+			return err
+		}
+		if info.IsDir() {
+			return nil
+		}
 
-// }
+		if strings.HasSuffix(path, "index.md") {
+			bytes, err := ioutil.ReadFile(path)
+			if err != nil {
+				log.Fatal(err)
+			}
+			html := blackfriday.MarkdownBasic(bytes)
+			fileDir := strings.TrimSuffix(strings.TrimPrefix(path, "static"), "index.md")
+			s[fileDir] = Page{
+				Title:        "",
+				Data:         template.HTML(html),
+				nav:          orderedNav,
+				templateName: "static",
+			}
+		}
+		return nil
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+}
