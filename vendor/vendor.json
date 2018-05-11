@@ -57,6 +57,18 @@
 			"revisionTime": "2018-03-23T15:44:45Z"
 		},
 		{
+			"checksumSHA1": "c7jHQZk5ZEsFR9EXsWJXkszPBZA=",
+			"path": "github.com/russross/blackfriday",
+			"revision": "5f33e7b7878355cd2b7e6b8eefc48a5472c69f70",
+			"revisionTime": "2016-10-03T16:27:22Z"
+		},
+		{
+			"checksumSHA1": "kbgJvKG3NRoqU91rYnXGnyR+8HQ=",
+			"path": "github.com/shurcooL/sanitized_anchor_name",
+			"revision": "1dba4b3954bc059efc3991ec364f9f9a35f597d2",
+			"revisionTime": "2016-09-18T04:11:01Z"
+		},
+		{
 			"checksumSHA1": "m4QwaQdvaqDo6Fp4BoykRkEFQ8E=",
 			"path": "github.com/unrolled/render",
 			"revision": "526faf80cd4b305bb8134abea8d20d5ced74faa6",
