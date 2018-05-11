@@ -44,6 +44,14 @@
                 top: initial;
             }
         }
+
+        .active-nav-link {
+            font-weight: 700;
+        }
+
+        .break-word {
+            overflow-wrap: break-word;
+        }
     </style>
 </head>
 <body class="adjust-font-size--16 link-adjust">
@@ -62,13 +70,13 @@
     <div class="wrapper">
         <div class="col-wrap">
             <div class="col col--md-one-half col--lg-one-third sticky sticky--lg-only">
-                <div class="margin-top--5 margin-right--2 padding-top--1 padding-right--1 padding-bottom--1 padding-left--1 background--iron-light">
+                <div class="margin-top--5 margin-right-lg--2 padding-top--1 padding-right--1 padding-bottom--1 padding-left--1 background--iron-light">
                     <h2 class="font-size--18 margin-top--2"><strong>Contents:</strong></h2>
                     <nav>
                         <ul class="list--neutral">
                         {{range .Nav}}
                             <li>
-                                <a {{if .IsActive $.Path}}class="active"{{end}} href="{{.GetRelativePath $.Path}}">{{.Name}}</a>
+                                <a {{if .IsActive $.Path}}class="active-nav-link"{{end}} href="{{.GetRelativePath $.Path}}">{{.Name}}</a>
                             </li>
                         {{end}}
                         </ul>
@@ -76,7 +84,7 @@
                 </div>
             </div>
             <div class="col col--md-one-half col--lg-two-thirds">
-                <h1><strong>{{.Title}}</strong></h1>
+                <h1 class="overflow-wrap: break-word;"><strong>{{.Title}}</strong></h1>
                 {{yield}}
             </div>
         </div>

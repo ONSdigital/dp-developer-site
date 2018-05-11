@@ -42,6 +42,11 @@ type NavItem struct {
 }
 
 func (n NavItem) IsActive(currentPath string) bool {
+	// Stop false-positives when handling root path
+	// (otherwise root path in navigation will always be active)
+	if n.SiteURL == "" && currentPath != "" {
+		return false
+	}
 	return strings.HasPrefix(currentPath, n.SiteURL)
 }
 
