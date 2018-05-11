@@ -47,7 +47,11 @@ func (n NavItem) IsActive(currentPath string) bool {
 
 func (n NavItem) GetRelativePath(currentPath string) string {
 	c := strings.Count(currentPath, "/")
-	return strings.Repeat("../", c) + n.SiteURL + "/"
+	p := strings.Repeat("../", c)
+	if len(n.SiteURL) > 0 {
+		p += n.SiteURL + "/"
+	}
+	return p
 }
 
 type APIPage struct {
@@ -129,6 +133,7 @@ func main() {
 func generateModel(APIs spec.APIs) site {
 	var siteModel = make(site)
 	var orderedNav = &Nav{}
+	orderedNav.appendNavItem("Introduction", "")
 
 	siteModel.generateDynamicPages(APIs, orderedNav)
 	siteModel.generateStaticPages(orderedNav)
@@ -319,6 +324,14 @@ func generateStaticMetadata(md []byte) (b []byte, metadata map[string]string) {
 
 	var body []string
 	var isMetadata bool
+
+	if len(lines) == 0 {
+		return
+	}
+
+	if strings.TrimSpace(lines[0]) != "---" {
+		return
+	}
 
 	for _, line := range lines {
 		if !isMetadata && line == "---" {
