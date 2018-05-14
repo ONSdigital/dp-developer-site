@@ -2,7 +2,7 @@
 <nav>
     <ul class="list--neutral">
     {{range $value := .Data.OrderedPaths}}
-        <li><a href="{{$value.SiteURL}}">{{$value.APIURL}}</a></li>        
+        <li class="break-word"><a href="{{$value.SiteURL}}">{{$value.APIURL}}</a></li>        
     {{end}}
     </ul>
 </nav>

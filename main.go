@@ -12,7 +12,7 @@ import (
 
 	"github.com/ONSdigital/dp-developer-site/renderer"
 	"github.com/ONSdigital/dp-developer-site/spec"
-	"github.com/russross/blackfriday"
+	blackfriday "gopkg.in/russross/blackfriday.v2"
 
 	openAPI "github.com/go-openapi/spec"
 )
@@ -308,7 +308,7 @@ func (s site) generateStaticPages(orderedNav *Nav) {
 			}
 
 			templateBytes, metadata := generateStaticMetadata(bytes)
-			html := blackfriday.MarkdownBasic(templateBytes)
+			html := blackfriday.Run(templateBytes, blackfriday.WithExtensions(blackfriday.AutoHeadingIDs), blackfriday.WithExtensions(blackfriday.FencedCode))
 			fileDir := strings.TrimSuffix(strings.TrimPrefix(path, "static"), "index.md")
 			s[fileDir] = Page{
 				Title:        metadata["title"],

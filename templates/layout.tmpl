@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ONS developer site{{if .Title}} - {{.Title}}{{end}}</title>
-    <link rel="preload" href="//cdn.ons.gov.uk/assets/fonts/open-sans-regular/OpenSans-Regular-webfont.woff2">
-    <link rel="preload" href="//cdn.ons.gov.uk/assets/fonts/open-sans-bold/OpenSans-Bold-webfont.woff2">
-    <link rel="stylesheet" href="//cdn.ons.gov.uk/sixteens/1f31a7c/css/main.css">
+    <link rel="preload" as="font"  type="font/woff2" href="https://cdn.ons.gov.uk/assets/fonts/open-sans-regular/OpenSans-Regular-webfont.woff2" crossorigin>
+    <link rel="preload" as="font"  type="font/woff2" href="https://cdn.ons.gov.uk/assets/fonts/open-sans-bold/OpenSans-Bold-webfont.woff2" crossorigin>
+    <link rel="stylesheet" href="https://cdn.ons.gov.uk/sixteens/46b398f/css/main.css">
     <style>
         .table th, .table td {
             border-bottom: 1px solid #D0D2D3;
@@ -52,6 +52,15 @@
         .break-word {
             overflow-wrap: break-word;
         }
+
+        .static pre {
+            overflow: scroll;
+            background-color: black;
+            color: white;
+        }
+        .static pre {
+            
+        }
     </style>
 </head>
 <body class="adjust-font-size--16 link-adjust">
@@ -85,11 +94,11 @@
                 </div>
             </div>
             <div class="col col--md-one-half col--lg-two-thirds">
-                <h1 class="overflow-wrap: break-word;"><strong>{{.Title}}</strong></h1>
+                <h1 class="break-word"><strong>{{.Title}}</strong></h1>
                 {{yield}}
             </div>
         </div>
     </div>
-    <script src="//cdn.ons.gov.uk/sixteens/1f31a7c/js/main.js"></script>
+    <script src="https://cdn.ons.gov.uk/sixteens/1f31a7c/js/main.js"></script>
 </body>
 </html>

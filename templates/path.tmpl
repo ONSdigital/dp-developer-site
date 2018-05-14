@@ -35,5 +35,9 @@
     {{range .OrderedResponses}}
         <h4>{{.Status}}</h4>
         <p>{{.Description}}</p>
+        {{if .Schema}}
+            
+        {{/* {{printf "%+v\n" .Schema.Description}} */}}
+        {{end}}
     {{end}}
 {{end}}
