@@ -29,38 +29,36 @@ For example;
 
 Provides links to codelist for individual items requested, observation value any observation level metadata/information (e.g coefficients of variation) and links to original dataset and complete metadata.
 
-```javascript
-{
-    “geography”:”https://api.ons.gov.uk/codelist/geography/local-authority/E07000224”,
-    “aggregate”:”https://api.ons.gov.uk/codelist/coicop/cpi1dim1A0”,
-    “time”=”https://api.ons.gov.uk/codelist/time/Jan-96”,
-    “observation”:”2.5”,
-    “observation_level_metadata”: [
-    <key>: string
-    ]
-    “coefficients of variation”:””,
-    “data_marking”:”p”,
-    “context”:””,
-    “dataset_metadata”:“href”:”https://beta.ons.gov.uk/datasets/cpih01/editions/current/versions/1/”,
-      "links": {
-        "version": [
-          "href": "https://beta.ons.gov.uk/datasets/cpih01/editions/2017/version/1",
-          "id": "1"
-        }
-      ],
-        "user_notes": [
-            {
-                "title": "Coefficient of variation (CV)",
-                "note": "The CV column the quality of each estimate based on the coefficient of variation (CV) of that estimate. The CV is the ratio of the standard error of an estimate to the estimate itself and is expressed as a percentage. The smaller the coefficient of variation the greater the accuracy of the estimate. The true value is likely to lie within +/- twice the CV. For example, for an estimate of £200 with a CV of 5%, we would expect the true population average to be within the range £180 to £220."
-            },
-            {
-                "title": "Data Markings",
-                 "note":"Estimates with a CV greater than 20% are suppressed from publication on quality grounds, along with those for which there is a risk of disclosure of individual employees or employers. This is shown as an 'x' in the data marking column"
+    {
+        “geography”:”https://api.ons.gov.uk/codelist/geography/local-authority/E07000224”,
+        “aggregate”:”https://api.ons.gov.uk/codelist/coicop/cpi1dim1A0”,
+        “time”=”https://api.ons.gov.uk/codelist/time/Jan-96”,
+        “observation”:”2.5”,
+        “observation_level_metadata”: [
+        <key>: string
+        ]
+        “coefficients of variation”:””,
+        “data_marking”:”p”,
+        “context”:””,
+        “dataset_metadata”:“href”:”https://beta.ons.gov.uk/datasets/cpih01/editions/current/versions/1/”,
+        "links": {
+            "version": [
+            "href": "https://beta.ons.gov.uk/datasets/cpih01/editions/2017/version/1",
+            "id": "1"
             }
-	    ]
+        ],
+            "user_notes": [
+                {
+                    "title": "Coefficient of variation (CV)",
+                    "note": "The CV column the quality of each estimate based on the coefficient of variation (CV) of that estimate. The CV is the ratio of the standard error of an estimate to the estimate itself and is expressed as a percentage. The smaller the coefficient of variation the greater the accuracy of the estimate. The true value is likely to lie within +/- twice the CV. For example, for an estimate of £200 with a CV of 5%, we would expect the true population average to be within the range £180 to £220."
+                },
+                {
+                    "title": "Data Markings",
+                    "note":"Estimates with a CV greater than 20% are suppressed from publication on quality grounds, along with those for which there is a risk of disclosure of individual employees or employers. This is shown as an 'x' in the data marking column"
+                }
+            ]
+        }
     }
-}
-```
 #### Time
 The time dimension is treated slightly differently from all other dimensions in that we require the time label, rather than the IDs (all IDs for a certain 'type' of time, e.g Months, are the same)
 
@@ -81,7 +79,7 @@ Using 'submitted=true' will immediately submit the job to generate the download 
 
 Any dimensions not filtered on will return all available dimension items for that dataset. 
 E.G. If you want everything in a dataset for a specific geographic location, you only need to provide the option for that geography, see below;
-```javascript
+
     {
       "dataset": {
 		    "id": "cpih01",
@@ -97,10 +95,10 @@ E.G. If you want everything in a dataset for a specific geographic location, you
         }
       ]
     }
-```
+
 
 Once submitted this filter will run the query and return the following JSON.
-```javascript
+
     {
       "downloads": {
         "xls": {
@@ -127,4 +125,3 @@ Once submitted this filter will run the query and return the following JSON.
         }
       }
     }
-```

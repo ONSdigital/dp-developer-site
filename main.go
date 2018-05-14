@@ -308,7 +308,7 @@ func (s site) generateStaticPages(orderedNav *Nav) {
 			}
 
 			templateBytes, metadata := generateStaticMetadata(bytes)
-			html := blackfriday.Run(templateBytes, blackfriday.WithExtensions(blackfriday.AutoHeadingIDs), blackfriday.WithExtensions(blackfriday.FencedCode))
+			html := blackfriday.Run(templateBytes, blackfriday.WithExtensions(blackfriday.AutoHeadingIDs))
 			fileDir := strings.TrimSuffix(strings.TrimPrefix(path, "static"), "index.md")
 			s[fileDir] = Page{
 				Title:        metadata["title"],
