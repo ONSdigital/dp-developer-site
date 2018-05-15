@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
 	"html/template"
 	"io/ioutil"
@@ -9,6 +10,10 @@ import (
 	"path/filepath"
 	"sort"
 	"strings"
+
+	"github.com/sourcegraph/syntaxhighlight"
+
+	"github.com/PuerkitoBio/goquery"
 
 	"github.com/ONSdigital/dp-developer-site/renderer"
 	"github.com/ONSdigital/dp-developer-site/spec"
@@ -308,11 +313,12 @@ func (s site) generateStaticPages(orderedNav *Nav) {
 			}
 
 			templateBytes, metadata := generateStaticMetadata(bytes)
-			html := blackfriday.Run(templateBytes, blackfriday.WithExtensions(blackfriday.AutoHeadingIDs))
+			html := blackfriday.Run(templateBytes, blackfriday.WithExtensions(blackfriday.AutoHeadingIDs|blackfriday.FencedCode))
+			styledHTML := generateStyledCodeHTML(html)
 			fileDir := strings.TrimSuffix(strings.TrimPrefix(path, "static"), "index.md")
 			s[fileDir] = Page{
 				Title:        metadata["title"],
-				Data:         template.HTML(html),
+				Data:         template.HTML(styledHTML),
 				nav:          orderedNav,
 				templateName: "static",
 			}
@@ -364,4 +370,29 @@ func generateStaticMetadata(md []byte) (b []byte, metadata map[string]string) {
 	b = []byte(strings.Join(body, "\n"))
 
 	return
+}
+
+func generateStyledCodeHTML(html []byte) []byte {
+	doc, err := goquery.NewDocumentFromReader(bytes.NewReader(html))
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	doc.Find("code[class*=\"language-\"]").Each(func(i int, s *goquery.Selection) {
+		formattedCode, err := syntaxhighlight.AsHTML([]byte(s.Text()))
+		if err != nil {
+			log.Fatal(err)
+		}
+		s.SetHtml(string(formattedCode))
+	})
+
+	formattedHTML, err := doc.Html()
+	if err != nil {
+		log.Fatal()
+	}
+
+	formattedHTML = strings.Replace(formattedHTML, "<html><head></head><body>", "", 1)
+	formattedHTML = strings.Replace(formattedHTML, "</body></html>", "", 1)
+
+	return []byte(formattedHTML)
 }
