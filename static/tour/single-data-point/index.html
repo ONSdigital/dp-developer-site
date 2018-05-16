@@ -1,0 +1,45 @@
+---
+title: Getting a single data point
+---
+
+<p>Once you have a link to the latest release, you can get a specific data point from the release using the <a href="/dataset/datasets-{id}-editions-{edition}-versions-{version}-observations/">get observation</a> endpoint.</p>
+
+<p>You need to specify a value for each of the available dimensions using query string parameters.</p>
+
+<script>
+    let latest_version_url = "";
+
+    window.onload = () => {
+        document.getElementById("tryitout-get-observation").addEventListener('click', function(){
+            fetch("https://api.beta.ons.gov.uk/v1/datasets/cpih01/editions/time-series/versions/6/observations")
+                .then((r) => {
+                    return r.json();
+                })
+                .then((r) => {
+                    console.log(r);
+                    document.getElementById("tryitout-get-observation-json").innerText = JSON.stringify(r, null, 2);
+                })
+                .catch((e) => {
+                    console.log(e);
+                });
+        });
+
+    };
+</script>
+
+<div>
+    <h3>Example</h3>
+    <div>
+        Make a <pre style="display: inline-block">GET</pre> request to <pre>https://api.beta.ons.gov.uk/v1/datasets/cpih01/editions/time-series/versions/6/observations</pre>
+    </div>
+    <div>
+        <button class="btn btn--primary" id="tryitout-get-observation">Try it out</button>
+    </div>
+    <h4>JSON result</h4>
+    <div><pre style="max-height: 300px; overflow-y: scroll;" id="tryitout-get-observation-json"></pre></div>
+    <!-- <h4>Parsed result</h4>
+    <div>The latest release can be found at <pre id="tryitout-get-dataset-link"></pre></div> -->
+</div>
+
+<a class="btn btn--primary" href="../latest-release/">Get the latest release <span class="icon icon-arrow-left--light-small"></span></a>
+<a class="btn btn--primary" href="../../">Done! <span class="icon icon-arrow-right--light-small"></span></a>
