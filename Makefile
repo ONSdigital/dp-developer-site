@@ -1,6 +1,6 @@
 build:
 	go run main.go
-	npm install
+	npm install --unsafe-perm
 watch:
 	make build
 	go get github.com/cespare/reflex
