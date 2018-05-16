@@ -323,6 +323,23 @@ func (s site) generateStaticPages(orderedNav *Nav) {
 				templateName: "static",
 			}
 		}
+
+		if strings.HasSuffix(path, "index.html") {
+			bytes, err := ioutil.ReadFile(path)
+			if err != nil {
+				log.Fatal(err)
+			}
+
+			templateBytes, metadata := generateStaticMetadata(bytes)
+			fileDir := strings.TrimSuffix(strings.TrimPrefix(path, "static"), "index.html")
+			s[fileDir] = Page{
+				Title:        metadata["title"],
+				Data:         template.HTML(templateBytes),
+				nav:          orderedNav,
+				templateName: "html",
+			}
+		}
+
 		return nil
 	})
 	if err != nil {

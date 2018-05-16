@@ -1,0 +1,60 @@
+---
+title: Getting started
+---
+
+<p>You can get a list of datasets using the <a href="/dataset/datasets/">list datasets</a> endpoint.</p>
+
+<script>
+    window.onload = () => {
+        document.getElementById("tryitout-list-datasets").addEventListener('click', function(){
+            fetch("https://api.cmd.onsdigital.co.uk/v1/datasets")
+                .then((r) => {
+                    return r.json();
+                })
+                .then((r) => {
+                    console.log(r);
+                    document.getElementById("tryitout-list-datasets-json").innerText = JSON.stringify(r, null, 2);
+                    let table = document.getElementById("tryitout-list-datasets-table");
+                    table.innerHTML = "";
+                    table.setAttribute("class", "table");
+                    r.items.forEach(dataset => {
+                        console.log(dataset);
+                        let row = document.createElement("tr");
+                        let datasetName = document.createElement("td");
+                        datasetName.innerText = dataset.title;
+                        row.appendChild(datasetName);
+                        table.appendChild(row);
+                    });
+                })
+                .catch((e) => {
+                    console.log(e);
+                });
+        });
+    };
+</script>
+
+<div>
+    <h3>Example</h3>
+    <div>
+        Make a <pre style="display: inline-block">GET</pre> request to <pre>https://api.beta.ons.gov.uk/v1/datasets</pre>
+    </div>
+    <div>
+        <button class="btn btn--primary" id="tryitout-list-datasets">Try it out</button>
+    </div>
+    <h4>JSON result</h4>
+    <div><pre style="max-height: 300px; overflow-y: scroll;" id="tryitout-list-datasets-json"></pre></div>
+    <h4>Parsed result</h4>
+    <div><table>
+        <thead>
+            <tr>
+                <th>Dataset</th>
+            </tr>
+        </thead>
+        <tbody id="tryitout-list-datasets-table">
+
+        </tbody>
+    </table></div>
+</div>
+
+<a href="../intro/">Introduction</a>
+<a href="../latest-release/">Get the latest release</a>
