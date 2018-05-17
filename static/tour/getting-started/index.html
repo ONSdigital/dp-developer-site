@@ -6,20 +6,43 @@ title: Getting started
 
 <script>
     window.onload = () => {
+        document.getElementById("tab-results").addEventListener('click', function(){
+            document.getElementById("tryitout-list-datasets-result-result").classList.remove("hidden");
+            document.getElementById("tryitout-list-datasets-json-result").classList.add("hidden");
+            document.getElementById("tryitout-list-datasets-json-result").classList.remove("btn--secondary-active");
+            document.getElementById("tab-results").classList.add("btn--secondary-active");
+            document.getElementById("tab-json").classList.remove("btn--secondary-active");
+        });
+        document.getElementById("tab-json").addEventListener('click', function(){
+            document.getElementById("tryitout-list-datasets-result-result").classList.add("hidden");
+            document.getElementById("tryitout-list-datasets-json-result").classList.remove("hidden");
+            document.getElementById("tab-results").classList.remove("btn--secondary-active");
+            document.getElementById("tab-json").classList.add("btn--secondary-active");
+        });
+
         document.getElementById("tryitout-list-datasets").addEventListener('click', function(){
+            document.getElementById("tryitout-list-datasets").setAttribute("disabled", "");
+            document.getElementById("tryitout-list-datasets-results").setAttribute("class", "hidden");
+            document.getElementById("tryitout-list-datasets").setAttribute("class", "btn btn--primary btn--primary-disabled");
+
             fetch("https://api.cmd.onsdigital.co.uk/v1/datasets")
                 .then((r) => {
                     return r.json();
                 })
                 .then((r) => {
-                    console.log(r);
+                    document.getElementById("tryitout-list-datasets-results").removeAttribute("class");
+                    document.getElementById("tryitout-list-datasets").removeAttribute("disabled");
+                    document.getElementById("tryitout-list-datasets").setAttribute("class", "btn btn--primary");
+
                     document.getElementById("tryitout-list-datasets-json").innerText = JSON.stringify(r, null, 2);
                     let table = document.getElementById("tryitout-list-datasets-table");
                     table.innerHTML = "";
                     table.setAttribute("class", "table");
                     r.items.forEach(dataset => {
-                        console.log(dataset);
                         let row = document.createElement("tr");
+                        let datasetID = document.createElement("td");
+                        datasetID.innerText = dataset.id;
+                        row.appendChild(datasetID);
                         let datasetName = document.createElement("td");
                         datasetName.innerText = dataset.title;
                         row.appendChild(datasetName);
@@ -36,25 +59,38 @@ title: Getting started
 <div>
     <h3>Example</h3>
     <div>
-        Make a <pre style="display: inline-block">GET</pre> request to <pre>https://api.beta.ons.gov.uk/v1/datasets</pre>
+        Make a <tt>GET</tt> request to <tt>https://api.beta.ons.gov.uk/v1/datasets</tt>
     </div>
     <div>
         <button class="btn btn--primary" id="tryitout-list-datasets">Try it out</button>
     </div>
-    <h4>JSON result</h4>
-    <div><pre style="max-height: 300px; overflow-y: scroll;" id="tryitout-list-datasets-json"></pre></div>
-    <h4>Parsed result</h4>
-    <div><table>
-        <thead>
-            <tr>
-                <th>Dataset</th>
-            </tr>
-        </thead>
-        <tbody id="tryitout-list-datasets-table">
+    <div class="hidden" style="margin-top: 20px;" id="tryitout-list-datasets-results">
+        <fieldset class="btn-group">
+            <div role="radiogroup">
+                <label class="btn btn--secondary btn--chart-control btn--secondary-active" id="tab-results">
+                    Results <input name="range" aria-controls="data" checked="" type="radio">
+                </label>
+                <label class="btn btn--secondary btn--chart-control" id="tab-json">
+                    JSON <input name="range" aria-controls="data" type="radio">
+                </label>
+            </div>
+        </fieldset>
+        <div id="tryitout-list-datasets-json-result" class="hidden"><pre style="max-height: 300px; overflow-y: scroll;" id="tryitout-list-datasets-json"></pre></div>
+        <div id="tryitout-list-datasets-result-result"><table>
+            <thead>
+                <tr>
+                    <th>Dataset ID</th>
+                    <th>Title</th>
+                </tr>
+            </thead>
+            <tbody id="tryitout-list-datasets-table">
 
-        </tbody>
-    </table></div>
+            </tbody>
+        </table></div>
+    </div>
 </div>
 
-<a class="btn btn--primary" href="../intro/">Introduction <span class="icon icon-arrow-left--light-small"></span></a>
-<a class="btn btn--primary" href="../latest-release/">Get the latest release <span class="icon icon-arrow-right--light-small"></span></a>
+<nav style="margin-top: 20px;">
+    <a class="btn btn--primary" href="../intro/"><span class="icon icon-arrow-left--light-small"></span> Introduction</a>
+    <a class="btn btn--primary float-right" href="../latest-release/">Get the latest release <span class="icon icon-arrow-right--light-small"></span></a>
+</nav>
