@@ -40,6 +40,10 @@ Or to watch the files for changes and host them run:
 ```
 make watch-serve
 ```
+or, with a custom port:
+```
+make watch-serve PORT=8000
+```
 
 ### Configuration
 
