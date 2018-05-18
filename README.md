@@ -41,10 +41,11 @@ Or to watch the files for changes and host them run:
 make watch-serve
 ```
 
-
 ### Configuration
 
-There's no configuration for this application.
+| Environment variable        | Default                                | Description
+| --------------------------- | ---------------------------------------| -----------
+| PORT                        | 36500                                  | The port to serve the files on
 
 ### Contributing
 
