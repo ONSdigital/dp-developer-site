@@ -1,0 +1,15 @@
+.break-word {
+    overflow-wrap: break-word;
+}
+
+.sticky {
+    position: sticky; 
+    top: 0;
+
+    @include breakpoint(md-max) {
+        &--lg-only {
+            position: initial;
+            top: initial;
+        }
+    }
+}
