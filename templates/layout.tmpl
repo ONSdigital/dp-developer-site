@@ -50,7 +50,13 @@
                             <ul class="list--neutral">
                             {{range .Nav}}
                                 <li>
-                                    <a {{if .IsActive $.Path}}class="active-nav-link"{{end}} href="{{.GetRelativePath $.Path}}">{{.Name}}</a>
+                                    <a href="{{.GetRelativePath $.Path}}">
+                                        {{if .IsActive $.Path}}
+                                            <strong>{{.Name}}</strong>
+                                        {{else}}
+                                            {{.Name}}
+                                        {{end}}
+                                    </a>
                                 </li>
                             {{end}}
                             </ul>
