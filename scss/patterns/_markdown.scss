@@ -1,0 +1,11 @@
+// Silently style elements inside our block of converted markdown 
+// because it's difficult to put specific class on the converted markdown -> HTML
+.markdown {
+    pre {
+        overflow: scroll;
+        background-color: #1d1f21;
+        font-family: Menlo,Bitstream Vera Sans Mono,DejaVu Sans Mono,Monaco,Consolas,monospace;
+        color: #c5c8c6;
+        padding: 8px;
+    }
+}

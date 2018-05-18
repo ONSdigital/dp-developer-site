@@ -1,7 +1,12 @@
-@import 'utilities/_variables.scss';
+@import 'base/_variables.scss';
+@import 'base/_breakpoints.scss';
 
 @import 'elements/_headings.scss';
 @import 'elements/_tables.scss';
 @import 'elements/_global.scss';
 
 @import 'patterns/_sticky-footer.scss';
+@import 'patterns/_header-title.scss';
+@import 'patterns/_markdown.scss';
+
+@import 'base/_utilities.scss';
