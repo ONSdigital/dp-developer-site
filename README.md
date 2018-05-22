@@ -17,18 +17,39 @@ make
 
 #### Development
 
-To watch and automatically rebuild the site on any changes to a `.go` or `.tmpl` file, run:
-```
-make watch
-```
-
 The templates that make up the developer site are available in `/templates`.
 
 Static pages, such as the introduction are in `/static`.
 
+To watch and automatically rebuild the site on any changes to any `.go`, `.md` or `.tmpl` file run:
+```
+make watch
+```
+
+To only serve the built assets (on default port of `23600`) run:
+```
+make serve
+```
+
+...which has an optional `PORT` environment variable, for example:
+```
+make server PORT=8000
+```
+
+Or to watch the files for changes and host them run:
+```
+make watch-serve
+```
+or, with a custom port:
+```
+make watch-serve PORT=8000
+```
+
 ### Configuration
 
-There's no configuration for this application.
+| Environment variable        | Default                                | Description
+| --------------------------- | ---------------------------------------| -----------
+| PORT                        | 36500                                  | The port to serve the files on
 
 ### Contributing
 

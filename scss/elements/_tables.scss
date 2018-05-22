@@ -1,0 +1,10 @@
+.table-cell {
+    border-bottom: 1px solid $iron;
+    line-height: 1.3;
+    padding: 0.8em 1em 0.8em 0;
+    
+    &--header {
+        border-bottom: 3px solid $iron;
+        border-top: 3px solid $iron;
+    }
+}
