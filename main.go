@@ -52,7 +52,11 @@ func (n NavItem) IsActive(currentPath string) bool {
 	if n.SiteURL == "" && currentPath != "" {
 		return false
 	}
-	return strings.HasPrefix(currentPath, n.SiteURL)
+
+	pathRoot := strings.Split(currentPath, "/")[0]
+	linkRoot := strings.Split(n.SiteURL, "/")[0]
+
+	return pathRoot == linkRoot
 }
 
 func (n NavItem) GetRelativePath(currentPath string) string {
@@ -315,9 +319,10 @@ func (s site) generateStaticPages(orderedNav *Nav) {
 			templateBytes, metadata := generateStaticMetadata(bytes)
 			html := blackfriday.Run(templateBytes, blackfriday.WithExtensions(blackfriday.AutoHeadingIDs|blackfriday.FencedCode))
 			styledHTML := generateStyledCodeHTML(html)
-			fileDir := strings.TrimSuffix(strings.TrimPrefix(path, "static"), "index.md")
+			fileDir := strings.TrimSuffix(strings.TrimPrefix(path, "static/"), "index.md")
 			s[fileDir] = Page{
 				Title:        metadata["title"],
+				Path:         fileDir,
 				Data:         template.HTML(styledHTML),
 				nav:          orderedNav,
 				templateName: "static",
