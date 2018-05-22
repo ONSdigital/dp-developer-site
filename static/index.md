@@ -11,10 +11,10 @@ The observation level data is provided in [JSON](https://www.w3schools.com/js/js
 
 This is currently limited to 10,000 observations.
 
-[Requesting specific observation](observations)
+[Requesting specific observation](observations/)
 
 
 ### Filter API
 For more complicated queries the Filter API will be the best approach. This allows any combination of dimensions to be requested and will return the data as CSV and Xlsx.
 
-[Requesting from filter API](filters)
+[Requesting from filter API](filters/)
