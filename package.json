@@ -1,0 +1,27 @@
+{
+  "name": "dp-developer-site",
+  "version": "0.0.1",
+  "description": "CSS and Javascript assets for developer.beta.ons.gov.uk",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run build:css",
+    "build:css": "./node_modules/node-sass/bin/node-sass --output-style compressed scss/main.scss -o assets/assets/css",
+    "watch": "npm run watch:css",
+    "watch:css": "./node_modules/node-sass/bin/node-sass -w scss --source-map-embed --output-style expanded scss/main.scss -o assets/assets/css",
+    "postinstall": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ONSdigital/dp-developer-site.git"
+  },
+  "author": "",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "bugs": {
+    "url": "https://github.com/ONSdigital/dp-developer-site/issues"
+  },
+  "homepage": "https://github.com/ONSdigital/dp-developer-site#readme",
+  "dependencies": {
+    "node-sass": "^4.9.0"
+  }
+}

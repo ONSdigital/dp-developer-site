@@ -5,8 +5,7 @@ platform: linux
 image_resource:
   type: docker-image
   source:
-    repository: golang
-    tags: 1.9.0
+    repository: onsdigital/dp-concourse-tools-node-go
 
 inputs:
   - name: dp-developer-site

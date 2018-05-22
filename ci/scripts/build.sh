@@ -5,7 +5,7 @@ cwd=$(pwd)
 export GOPATH=$cwd/go
 
 pushd $GOPATH/src/github.com/ONSdigital/dp-developer-site
-  go run main.go
+  make build
 popd
 
 cp -r $GOPATH/src/github.com/ONSdigital/dp-developer-site/assets/* build/
