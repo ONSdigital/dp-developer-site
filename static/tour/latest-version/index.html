@@ -1,10 +1,12 @@
 ---
-title: Find the latest release
+title: Get the latest version
 ---
 
-<p>Once you have a dataset ID, you can find the latest release of a dataset using the <a href="/dataset/datasets-{id}/">get dataset</a> endpoint.</p>
-
-<p>A link to the latest release can be found in <tt>links.latest_version</tt> field.</p>
+<p>
+    Once you have the link to the latest release, you can fetch its metadata using the 
+    <a href="/dataset/datasets-{id}-editions-{edition}-versions-{version}">get version</a> endpoint
+    using the URL from <tt>links.latest_version</tt>.
+</p>
 
 <script>
     let latest_version_url = "";
@@ -29,7 +31,7 @@ title: Find the latest release
             document.getElementById("tryitout-get-dataset-results").setAttribute("class", "hidden");
             document.getElementById("tryitout-get-dataset").setAttribute("class", "btn btn--primary btn--primary-disabled");
 
-            fetch("https://api.cmd.onsdigital.co.uk/v1/datasets/cpih01")
+            fetch("https://api.cmd.onsdigital.co.uk/v1/datasets/cpih01/editions/time-series/versions/6")
                 .then((r) => {
                     return r.json();
                 })
@@ -39,9 +41,21 @@ title: Find the latest release
                     document.getElementById("tryitout-get-dataset").setAttribute("class", "btn btn--primary");
 
                     document.getElementById("tryitout-get-dataset-json").innerText = JSON.stringify(r, null, 2);
-                    latest_version_url = r.links.latest_version.href;
-                    document.getElementById("tryitout-get-dataset-link").innerHTML = r.links.latest_version.href;
-                    document.getElementById("tryitout-get-dataset-link-2").innerHTML = r.links.latest_version.href;
+
+                    let table = document.getElementById("tryitout-get-version-table");
+                    table.innerHTML = "";
+                    table.setAttribute("class", "table");
+
+                    ["release_date", "edition", ].forEach(field => {
+                        let row = document.createElement("tr");
+                        let fieldTitle = document.createElement("td");
+                        fieldTitle.innerText = field;
+                        row.appendChild(fieldTitle);
+                        let fieldValue = document.createElement("td");
+                        fieldValue.innerText = r[field];
+                        row.appendChild(fieldValue);
+                        table.appendChild(row);
+                    });
                 })
                 .catch((e) => {
                     console.log(e);
@@ -53,7 +67,7 @@ title: Find the latest release
 <div>
     <h3>Example</h3>
     <p>
-        Make a <tt>GET</tt> request to <tt>https://api.beta.ons.gov.uk/v1/datasets/cpih01</tt>
+        Make a <tt>GET</tt> request to <tt>https://api.beta.ons.gov.uk/v1/datasets/cpih01/editions/time-series/versions/6</tt>
     </p>
     <div>
         <button class="btn btn--primary" id="tryitout-get-dataset">Try it out</button>
@@ -71,13 +85,23 @@ title: Find the latest release
             </div>
         </fieldset>
         <div id="tryitout-list-datasets-json-result" class="hidden"><pre style="max-height: 300px; overflow-y: scroll;" id="tryitout-get-dataset-json"></pre></div>
-        <p id="tryitout-list-datasets-result-result">
-                The latest release can be found at <tt id="tryitout-get-dataset-link"></tt>
-        </p>
+        <div id="tryitout-list-datasets-result-result">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Field</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody id="tryitout-get-version-table">
+        
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
 <nav style="margin-top: 20px;">
-    <a class="btn btn--primary" href="../getting-started/"><span class="icon icon-arrow-left--light-small"></span> Getting started</a>
-    <a class="btn btn--primary float-right" href="../latest-version/">Get the latest version <span class="icon icon-arrow-right--light-small"></span></a>
+    <a class="btn btn--primary" href="../latest-release/"><span class="icon icon-arrow-left--light-small"></span> Find the latest release</a>
+    <a class="btn btn--primary float-right" href="../single-data-point/">Get a single data point <span class="icon icon-arrow-right--light-small"></span></a>
 </nav>

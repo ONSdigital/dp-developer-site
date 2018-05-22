@@ -1,10 +1,12 @@
 ---
-title: Get a single data point
+title: Get a series of data points
 ---
 
-<p>Once you have a link to the latest release, you can get a specific data point from the release using the <a href="/dataset/datasets-{id}-editions-{edition}-versions-{version}-observations/">get observation</a> endpoint.</p>
+<p>You can also get a series of data points using the <a href="/dataset/datasets-{id}-editions-{edition}-versions-{version}-observations/">get observation</a> endpoint.</p>
 
-<p>You need to specify a value for each of the available dimensions using query string parameters.</p>
+<p>By making one of the dimensions values a wildcard, multiple data points are returned.</p>
+
+<p>You can use this to fetch a time series or data for multiple geographic areas.</p>
 
 <script>
     let latest_version_url = "";
@@ -25,7 +27,7 @@ title: Get a single data point
         });
 
         document.getElementById("tryitout-get-observation").addEventListener('click', function(){
-            fetch("https://api.beta.ons.gov.uk/v1/datasets/cpih01/editions/time-series/versions/6/observations?time=Aug-16&geography=K02000001&aggregate=cpih1dim1T100000")
+            fetch("https://api.beta.ons.gov.uk/v1/datasets/cpih01/editions/time-series/versions/6/observations?time=*&geography=K02000001&aggregate=cpih1dim1T100000")
                 .then((r) => {
                     return r.json();
                 })
@@ -49,7 +51,7 @@ title: Get a single data point
 <div>
     <h3>Example</h3>
     <p>
-        Make a <tt>GET</tt> request to <tt>https://api.beta.ons.gov.uk/v1/datasets/cpih01/editions/time-series/versions/6/observations?time=Aug-16&geography=K02000001&aggregate=cpih1dim1T100000</tt>
+        Make a <tt>GET</tt> request to <tt>https://api.beta.ons.gov.uk/v1/datasets/cpih01/editions/time-series/versions/6/observations?time=*&geography=K02000001&aggregate=cpih1dim1T100000</tt>
     </p>
     <div>
         <button class="btn btn--primary" id="tryitout-get-observation">Try it out</button>
@@ -74,6 +76,6 @@ title: Get a single data point
 </div>
 
 <nav style="margin-top: 20px">
-    <a class="btn btn--primary" href="../latest-version/"><span class="icon icon-arrow-left--light-small"></span> Get the latest version</a>
-    <a class="btn btn--primary float-right" href="../series-data-point/">Get a series of data points <span class="icon icon-arrow-right--light-small"></span></a>
+    <a class="btn btn--primary" href="../single-data-point/"><span class="icon icon-arrow-left--light-small"></span> Get a single data point</a>
+    <a class="btn btn--primary float-right" href="../../">Done! <span class="icon icon-arrow-right--light-small"></span></a>
 </nav>
