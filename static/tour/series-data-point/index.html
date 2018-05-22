@@ -9,7 +9,11 @@ title: Get a series of data points
 <p>You can use this to fetch a time series or data for multiple geographic areas.</p>
 
 <script>
-    let latest_version_url = "";
+    function orderByDate(a, b) {
+        if (a[2] < b[2]) return -1;
+        if (a[2] > b[2]) return 1;
+        return 0;
+    }
 
     window.onload = () => {
         document.getElementById("tab-results").addEventListener('click', function(){
@@ -27,6 +31,17 @@ title: Get a series of data points
         });
 
         document.getElementById("tryitout-get-observation").addEventListener('click', function(){
+            fetch("https://api.beta.ons.gov.uk/v1/datasets/cpih01")
+                .then((r) => {
+                    return r.json();
+                })
+                .then((r) => {
+                    document.getElementById("title").innerText = r.title;
+                })
+                .catch((e) => {
+                    console.log(e);
+                });
+
             fetch("https://api.beta.ons.gov.uk/v1/datasets/cpih01/editions/time-series/versions/6/observations?time=*&geography=K02000001&aggregate=cpih1dim1T100000")
                 .then((r) => {
                     return r.json();
@@ -38,7 +53,53 @@ title: Get a series of data points
 
                     document.getElementById("tryitout-get-observation-json").innerText = JSON.stringify(r, null, 2);
 
-                    document.getElementById("tryitout-get-observation-value").innerText = r.observations[0].observation;
+                    //create an array to story data
+                    let timeseries = [];
+
+                    //build a map of the dimensions
+                    r.observations.map(function (data) {
+                        //create a new field from the date to allow it to  be ordered
+                        sort = new Date("1-" + data.dimensions.time.label);
+                        //build an array with the 3 values we need and convert the value to a number
+                        let chartdata = [data.dimensions.time.label, parseFloat(data.observation), sort];
+                        //add these arrays to the timeseries array
+                        timeseries.push(chartdata);
+                    });
+
+                    //sort the array on the 'sort' field created earlier
+                    timeseries = timeseries.sort(orderByDate);
+
+                    //create the chart
+                    Highcharts.chart('chart', {
+                        series: [{
+                            //add the data to the chart
+                            data: timeseries
+                        }],
+                        navigation: {
+                            buttonOptions: {
+                                enabled: false
+                            }
+                        },
+                        title: {
+                            text: null
+                        },
+                        yAxis: {
+                            labels: {
+                                enabled: false
+                            },
+                            title: {
+                                enabled: false
+                            },
+                            // min: 0
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        xAxis: {
+                            type: "category",
+                            crosshair: true
+                        }
+                    });
                 })
                 .catch((e) => {
                     console.log(e);
@@ -69,9 +130,11 @@ title: Get a series of data points
             </div>
         </fieldset>
         <div id="tryitout-get-observation-json-result" class="hidden"><pre style="max-height: 300px; overflow-y: scroll;" id="tryitout-get-observation-json"></pre></div>
-        <p id="tryitout-get-observation-result-result">
-            The value of CPIH for the United Kingdom in August 2016 was <tt id="tryitout-get-observation-value"></tt>
-        </p>
+        <div id="tryitout-get-observation-result-result">
+            <script src="https://code.highcharts.com/highcharts.js"></script>
+            <div id='title'></div>
+            <div id='chart' style='max-width:600px'></div>
+        </div>
     </div>
 </div>
 
