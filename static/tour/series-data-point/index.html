@@ -59,7 +59,7 @@ title: Get a series of data points
                     //build a map of the dimensions
                     r.observations.map(function (data) {
                         //create a new field from the date to allow it to  be ordered
-                        sort = new Date("1-" + data.dimensions.time.label);
+                        sort = new Date("1-" + data.dimensions.time.label.replace("-", " "));
                         //build an array with the 3 values we need and convert the value to a number
                         let chartdata = [data.dimensions.time.label, parseFloat(data.observation), sort];
                         //add these arrays to the timeseries array
