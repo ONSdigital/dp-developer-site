@@ -52,7 +52,11 @@ func (n NavItem) IsActive(currentPath string) bool {
 	if n.SiteURL == "" && currentPath != "" {
 		return false
 	}
-	return strings.HasPrefix(currentPath, n.SiteURL)
+
+	pathRoot := strings.Split(currentPath, "/")[0]
+	linkRoot := strings.Split(n.SiteURL, "/")[0]
+
+	return pathRoot == linkRoot
 }
 
 func (n NavItem) GetRelativePath(currentPath string) string {
