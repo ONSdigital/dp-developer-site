@@ -149,8 +149,8 @@ func generateModel(APIs spec.APIs) site {
 	var siteModel = make(site)
 	var orderedNav = &Nav{}
 	orderedNav.appendNavItem("Introduction", "")
-	orderedNav.appendNavItem("Guide to filtering a dataset", "filters")
 	orderedNav.appendNavItem("Guide to requesting specific observation", "observations")
+	orderedNav.appendNavItem("Guide to filtering a dataset", "filters")
 
 	siteModel.generateDynamicPages(APIs, orderedNav)
 	siteModel.generateStaticPages(orderedNav)
