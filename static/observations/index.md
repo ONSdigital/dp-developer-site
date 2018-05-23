@@ -1,8 +1,8 @@
 ---
-title: Requesting data directly
+title: Requesting data
 ---
 
-GET on the dataset providing a single dimension option for each dimension. The URL follows the following structure:    
+Using the ['Explore our data'](../dataset/) services you can request data from a specific version of a dataset. This is done with a GET request providing a single dimension option for each dimension. The URL follows the following structure:    
 
     /datasets/{datasetId}/editions/{edition}/versions/{version}/observations?time={timeLabel}&geography={geographyID}&dimension3={dimension3ID}&dimension4={dimension4ID}...
 
@@ -12,7 +12,7 @@ Example URI;
 
 
 
-As well as the requested data, the response provides links to code-lists for individual items requested, any observation level metadata/information (e.g coefficients of variation) and links to original dataset and complete metadata.
+As well as the requested data, the response provides links to [code lists](../code-list/) for individual items requested, any observation level metadata/information (e.g coefficients of variation) and links to original dataset and complete metadata.
 
     {
         "dimensions": {
@@ -63,7 +63,7 @@ As well as the requested data, the response provides links to code-lists for ind
 The time dimension is treated slightly differently from all other dimensions and you need to use the time label, rather than the ID. This is beacause all IDs for a certain 'type' of time, e.g Months, are currently the same.
 
 #### Wildcard
-Theis endpoint allows a single dimension to be replaced with a wildcard (a '*') to instead return all values for this dimension.
+This endpoint allows a single dimension to be replaced with a wildcard ('*') to return all values for this dimension.
 
 Example URI
 
