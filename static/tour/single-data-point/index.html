@@ -25,7 +25,7 @@ title: Get a single data point
         });
 
         document.getElementById("tryitout-get-observation").addEventListener('click', function(){
-            fetch("https://api.beta.ons.gov.uk/v1/datasets/cpih01/editions/time-series/versions/6/observations?time=Aug-16&geography=K02000001&aggregate=cpih1dim1T100000")
+            fetch("https://api.beta.ons.gov.uk/v1/datasets/cpih01/editions/time-series/versions/6/observations?time=Aug-16&geography=K02000001&aggregate=cpih1dim1A0")
                 .then((r) => {
                     return r.json();
                 })
@@ -49,7 +49,7 @@ title: Get a single data point
 <div>
     <h3>Example</h3>
     <p>
-        Make a <tt>GET</tt> request to <tt>https://api.beta.ons.gov.uk/v1/datasets/cpih01/editions/time-series/versions/6/observations?time=Aug-16&geography=K02000001&aggregate=cpih1dim1T100000</tt>
+        Make a <tt>GET</tt> request to <tt>https://api.beta.ons.gov.uk/v1/datasets/cpih01/editions/time-series/versions/6/observations?time=Aug-16&geography=K02000001&aggregate=cpih1dim1A0</tt>
     </p>
     <div>
         <button class="btn btn--primary" id="tryitout-get-observation">Try it out</button>

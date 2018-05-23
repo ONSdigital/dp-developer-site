@@ -42,7 +42,7 @@ title: Get a series of data points
                     console.log(e);
                 });
 
-            fetch("https://api.beta.ons.gov.uk/v1/datasets/cpih01/editions/time-series/versions/6/observations?time=*&geography=K02000001&aggregate=cpih1dim1T100000")
+            fetch("https://api.beta.ons.gov.uk/v1/datasets/cpih01/editions/time-series/versions/6/observations?time=*&geography=K02000001&aggregate=cpih1dim1A0")
                 .then((r) => {
                     return r.json();
                 })
@@ -112,7 +112,7 @@ title: Get a series of data points
 <div>
     <h3>Example</h3>
     <p>
-        Make a <tt>GET</tt> request to <tt>https://api.beta.ons.gov.uk/v1/datasets/cpih01/editions/time-series/versions/6/observations?time=*&geography=K02000001&aggregate=cpih1dim1T100000</tt>
+        Make a <tt>GET</tt> request to <tt>https://api.beta.ons.gov.uk/v1/datasets/cpih01/editions/time-series/versions/6/observations?time=*&geography=K02000001&aggregate=cpih1dim1A0</tt>
     </p>
     <div>
         <button class="btn btn--primary" id="tryitout-get-observation">Try it out</button>
