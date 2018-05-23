@@ -18,52 +18,55 @@ As well as the requested data, the response provides links to code-lists for ind
         "dimensions": {
             "aggregate": {
                 "option": {
-                    "id": "cpih1dim1A0",
-                    "href": "http://localhost:22400/code-lists/cpih1dim1aggid/codes/cpih1dim1A0"
+                    "href": "https://api.beta.ons.gov.uk/v1/code-lists/cpih1dim1aggid/codes/cpih1dim1A0",
+                    "id": "cpih1dim1A0"
                 }
             },
             "geography": {
                 "option": {
-                    "id": "K02000001",
-                    "href": "http://localhost:22400/code-lists/uk-only/codes/K02000001"
+                    "href": "https://api.beta.ons.gov.uk/v1/code-lists/uk-only/codes/K02000001",
+                    "id": "K02000001"
                 }
             },
             "time": {
                 "option": {
-                    "id": "Oct-11",
-                    "href": "http://localhost:22400/code-lists/time/codes/Oct-11"
+                    "href": "https://api.beta.ons.gov.uk/v1/code-lists/time/codes/Mar-18",
+                    "id": "Mar-18"
                 }
             }
         },
         "limit": 10000,
         "links": {
             "dataset_metadata": {
-                "href": "http://localhost:22000/datasets/cpih01/editions/time-series/versions/6/metadata"
+                "href": "https://api.beta.ons.gov.uk/v1/datasets/cpih01/editions/time-series/versions/6/metadata"
             },
             "self": {
-                "href": "http://localhost:22000/datasets/cpih01/editions/time-series/versions/6/observations?time=Oct-11&aggregate=cpih1dim1A0&geography=K02000001"
+                "href": "https://api.beta.ons.gov.uk/v1/datasets/cpih01/editions/time-series/versions/6/observations?time=Mar-18&aggregate=cpih1dim1A0&geography=K02000001"
             },
             "version": {
-                "id": "6",
-                "href": "http://localhost:22000/datasets/cpih01/editions/time-series/versions/6"
+                "href": "https://api.beta.ons.gov.uk/v1/datasets/cpih01/editions/time-series/versions/6",
+                "id": "6"
             }
         },
-        "offset": 0,
-        "total_observations": 1,
         "observations": [
             {
-                "observation": "94.5"
+                "observation": "105.1"
             }
-        ]
+        ],
+        "offset": 0,
+        "total_observations": 1,
+        "unit_of_measure": "Index: 2015=100"
     }
 
-  
+
 #### Time
 The time dimension is treated slightly differently from all other dimensions in that we require the time label, rather than the IDs (all IDs for a certain 'type' of time, e.g Months, are the same)
 
 #### Wildcard
-The API allows a single dimension to be replaced with a wildcard to instead return all values for this dimension (up to a maximum of 10,0000).
+The API allows a single dimension to be replaced with a wildcard to instead return all values for this dimension.
 
 Example URI
 
     /datasets/cpih01/editions/time-series/versions/6/observations?time=*&aggregate=cpih1dim1A0&geography=K02000001
+
+This is currently limited to 10,000 observations.

@@ -2,19 +2,21 @@
 title: Introduction
 ---
 
+The Office for National Statistics API makes datasets and other data available programmatically using HTTP. It allows you to filter datasets and directly access specific data points.
+
+The API is available at     `https://api.beta.ons.gov.uk/v1`
+
+The API is open and unrestricted - no API keys are required, so you can start using it immediately.
+
 ## Getting data from ONS Beta API
 
-All URIs are relative to `https://api.beta.ons.gov.uk/v1`
+### Requesting data directly
+Observation level data is provided in [JSON](https://www.w3schools.com/js/js_json_intro.asp) through GET requests to the [Dataset API](https://developer.beta.ons.gov.uk/dataset/). This allows querying of a single observation/value through providing one option per dimension but will also allow one of these dimensions to be a 'wildcard' and return all values for this dimension. 
 
-### Observation data
-The observation level data is provided in [JSON](https://www.w3schools.com/js/js_json_intro.asp) through GET requests to the Dataset API. This will allow querying of a single observation/value through providing one option per dimension but will also allow one of these dimensions to be a 'wildcard' and return all values for this dimension. 
-
-This is currently limited to 10,000 observations.
-
-[Requesting specific observation](observations/)
+[Guide to requesting specific observation](/observations)
 
 
-### Filter API
-For more complicated queries the Filter API will be the best approach. This allows any combination of dimensions to be requested and will return the data as CSV and Xlsx.
+### Filtering a dataset
+For more complicated queries the [Filter API](https://developer.beta.ons.gov.uk/filter/) will be the best approach. This allows any combination of dimensions to be requested and will return the data as CSV and Xlsx.
 
-[Requesting from filter API](filters/)
+[Guide to requesting from filter API](/filters)

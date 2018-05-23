@@ -2,68 +2,124 @@
 title: Requesting from filter API
 ---
 
-GET on the dataset providing a single dimension option for each dimension. The URL follows the following structure:    
+POST to filter API with dataset ID ("dataset_filter_id") and body containing details of dimensions. 
 
-    /datasets/{datasetId}/editions/{edition}/versions/{version}/observations?time={timeLabel}&geography={geographyID}&dimension3={dimension3ID}&dimension4={dimension4ID}...
+    /filters?submitted=true
 
-Example URI;
+Using 'submitted=true' will immediately submit the job to generate the download files
 
-    /datasets/cpih01/editions/time-series/versions/6/observations?time=Oct-11&geography=K02000001&aggregate=cpih1dim1A0
-
-
-
-As well as the requested data, the response provides links to code-lists for individual items requested, any observation level metadata/information (e.g coefficients of variation) and links to original dataset and complete metadata.
+Any dimensions not filtered on will return all available dimension items for that dataset. 
+If you want everything in a dataset for a specific geographic location, you only need to provide the option for that geography, see below;
 
     {
-        "dimensions": {
-            "aggregate": {
-                "option": {
-                    "id": "cpih1dim1A0",
-                    "href": "http://localhost:22400/code-lists/cpih1dim1aggid/codes/cpih1dim1A0"
-                }
-            },
-            "geography": {
-                "option": {
-                    "id": "K02000001",
-                    "href": "http://localhost:22400/code-lists/uk-only/codes/K02000001"
-                }
-            },
-            "time": {
-                "option": {
-                    "id": "Oct-11",
-                    "href": "http://localhost:22400/code-lists/time/codes/Oct-11"
-                }
-            }
+      "dataset": {
+		    "id": "cpih01",
+		    "edition": "time-series",
+		    "version": "6"
+			},
+      "dimensions": [
+        {
+          "name": "Geography",
+          "options": [
+            "E07000224"
+          ]
+        }
+      ]
+    }
+
+Responce
+
+    {
+        "dataset": {
+            "id": "cpih01",
+            "edition": "time-series",
+            "version": 6
         },
-        "limit": 10000,
+        "instance_id": "2426ff0f-ca8b-45f6-8728-e851ea165b85",
+        "dimensions": [
+            {
+                "name": "geography",
+                "options": [
+                    "K02000001"
+                ]
+            }
+        ],
+        "events": {},
+        "filter_id": "63c77ab3-b57d-40a8-8397-9830ed98f9fd",
+        "published": true,
         "links": {
-            "dataset_metadata": {
-                "href": "http://localhost:22000/datasets/cpih01/editions/time-series/versions/6/metadata"
+            "dimensions": {
+                "href": "https://api.beta.ons.gov.uk/v1/filters/63c77ab3-b57d-40a8-8397-9830ed98f9fd/dimensions"
             },
+            "filter_output": {
+                "id": "9dd04dd7-07e9-4ce9-90bb-a4205b743027",
+                "href": "https://api.beta.ons.gov.uk/v1/filter-outputs/9dd04dd7-07e9-4ce9-90bb-a4205b743027"
+            },
+            "filter_blueprint": {},
             "self": {
-                "href": "http://localhost:22000/datasets/cpih01/editions/time-series/versions/6/observations?time=Oct-11&aggregate=cpih1dim1A0&geography=K02000001"
+                "href": "https://api.beta.ons.gov.uk/v1/filters/63c77ab3-b57d-40a8-8397-9830ed98f9fd"
             },
             "version": {
                 "id": "6",
-                "href": "http://localhost:22000/datasets/cpih01/editions/time-series/versions/6"
+                "href": "https://api.beta.ons.gov.uk/v1/datasets/cpih01/editions/time-series/versions/6"
             }
-        },
-        "offset": 0,
-        "total_observations": 1,
-        "observations": [
-            {
-                "observation": "94.5"
-            }
-        ]
+        }
     }
 
-  
-#### Time
-The time dimension is treated slightly differently from all other dimensions in that we require the time label, rather than the IDs (all IDs for a certain 'type' of time, e.g Months, are the same)
+This creates a 'filter output' which will contain the files once generated. This is available in the response and follows this format;
 
-#### Wildcard
-The API allows a single dimension to be replaced with a wildcard to instead return all values for this dimension (up to a maximum of 10,0000).
+    "filter_output": {
+                    "id": "9dd04dd7-07e9-4ce9-90bb-a4205b743027",
+                    "href": "https://api.beta.ons.gov.uk/v1/filter-outputs/9dd04dd7-07e9-4ce9-90bb-a4205b743027"
+                },
 
-Example URI
+A GET on the filter-output will return the following;
 
-    /datasets/cpih01/editions/time-series/versions/6/observations?time=*&aggregate=cpih1dim1A0&geography=K02000001
+    {
+    "dataset": {
+        "edition": "time-series",
+        "id": "cpih01",
+        "version": 6
+    },
+    "dimensions": [
+        {
+            "name": "geography",
+            "options": [
+                "K02000001"
+            ]
+        }
+    ],
+    "downloads": {
+        "csv": {
+            "href": "https://download.beta.ons.gov.uk/downloads/filter-outputs/a5deb5e7-bb91-47bc-bb70-f9da12d54fa1.csv",
+            "size": "2061369"
+        },
+        "xls": {
+            "href": "https://download.beta.ons.gov.uk/downloads/filter-outputs/a5deb5e7-bb91-47bc-bb70-f9da12d54fa1.xlsx",
+            "size": "112878"
+        }
+    },
+    "events": {},
+    "filter_id": "a5deb5e7-bb91-47bc-bb70-f9da12d54fa1",
+    "instance_id": "bc873fb8-0797-469b-84ed-9bb3da80feeb",
+    "links": {
+        "dimensions": {},
+        "filter_blueprint": {
+            "href": "https://api.beta.ons.gov.uk/v1/filters/5ce923e2-613e-4dcf-874c-d750d97afe79",
+            "id": "5ce923e2-613e-4dcf-874c-d750d97afe79"
+        },
+        "filter_output": {},
+        "self": {
+            "href": "https://api.beta.ons.gov.uk/v1/filter-outputs/a5deb5e7-bb91-47bc-bb70-f9da12d54fa1"
+        },
+        "version": {
+            "href": "https://api.beta.ons.gov.uk/v1/datasets/cpih01/editions/time-series/versions/6",
+            "id": "6"
+        }
+    },
+    "published": true,
+    "state": "completed"
+    }
+
+
+The split between 'filter' and 'filter-outputs' is there to allow the filter to be modified and resubmitted. 
