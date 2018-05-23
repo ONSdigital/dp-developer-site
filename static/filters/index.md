@@ -2,11 +2,7 @@
 title: Requesting from filter API
 ---
 
-POST to filter API with dataset ID ("dataset_filter_id") and body containing details of dimensions. 
-
-    /filters?submitted=true
-
-Using 'submitted=true' will immediately submit the job to generate the download files
+POST to [Filter API](/filter) with dataset ID, edition and version and body containing details of dimensions. 
 
 Any dimensions not filtered on will return all available dimension items for that dataset. 
 If you want everything in a dataset for a specific geographic location, you only need to provide the option for that geography, see below;
@@ -26,6 +22,10 @@ If you want everything in a dataset for a specific geographic location, you only
         }
       ]
     }
+
+Using 'submitted=true' will immediately submit the job to generate the download files
+
+    /filters?submitted=true
 
 Responce
 
