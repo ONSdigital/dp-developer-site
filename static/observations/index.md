@@ -60,10 +60,10 @@ As well as the requested data, the response provides links to code-lists for ind
 
 
 #### Time
-The time dimension is treated slightly differently from all other dimensions in that we require the time label, rather than the IDs (all IDs for a certain 'type' of time, e.g Months, are the same)
+The time dimension is treated slightly differently from all other dimensions and you need to use the time label, rather than the ID. This is beacause all IDs for a certain 'type' of time, e.g Months, are currently the same.
 
 #### Wildcard
-The API allows a single dimension to be replaced with a wildcard to instead return all values for this dimension.
+Theis endpoint allows a single dimension to be replaced with a wildcard (a '*') to instead return all values for this dimension.
 
 Example URI
 
