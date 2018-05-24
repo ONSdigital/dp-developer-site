@@ -7,21 +7,23 @@ The ['Filter a dataset'](../filter/) service allows any combination of dimension
 Any dimensions not filtered on will return all available dimension items for that dataset. 
 If you want everything in a dataset for a specific geographic location, you only need to provide the option for that geography, for example;
 
-    {
-      "dataset": {
-		    "id": "cpih01",
-		    "edition": "time-series",
-		    "version": "6"
-			},
-      "dimensions": [
+```
+{
+    "dataset": {
+        "id": "cpih01",
+        "edition": "time-series",
+        "version": "6"
+    },
+    "dimensions": [
         {
-          "name": "geography",
-          "options": [
-            "K02000001"
-          ]
+            "name": "geography",
+            "options": [
+                "K02000001"
+            ]
         }
-      ]
-    }
+    ]
+}
+```
 
 This example body can be sent via post to create a filter, with the response giving you a unique ID. As shown in this example under `filter_id`:
 
