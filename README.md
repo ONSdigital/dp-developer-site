@@ -3,7 +3,7 @@ dp-developer-site
 
 A Go application that generates the HTML pages for the developer site for ons.gov.uk. 
 
-Should be available soon at [developer.ons.gov.uk](https://developer.ons.gov.uk).
+Available at [developer.beta.ons.gov.uk](https://developer.beta.ons.gov.uk).
 
 ### Getting started
 
