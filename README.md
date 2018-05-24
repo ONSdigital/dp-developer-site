@@ -1,8 +1,6 @@
 dp-developer-site
 ================
 
-:warning: Work in progress :warning:
-
 A Go application that generates the HTML pages for the developer site for ons.gov.uk. 
 
 Should be available soon at [developer.ons.gov.uk](https://developer.ons.gov.uk).
