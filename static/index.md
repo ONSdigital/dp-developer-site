@@ -8,6 +8,8 @@ The API is available at     `https://api.beta.ons.gov.uk/v1`
 
 The API is open and unrestricted - no API keys are required, so you can start using it immediately.
 
+This API is currently in Beta and still being developed. Please be aware that as a result of this there may occasionally be breaking changes as we enhance functionality and respond to feedback.
+
 ## Getting data from ONS Beta API
 
 ### Requesting data
