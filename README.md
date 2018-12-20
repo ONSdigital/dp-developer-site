@@ -47,7 +47,7 @@ make watch-serve PORT=8000
 
 | Environment variable        | Default                                | Description
 | --------------------------- | ---------------------------------------| -----------
-| PORT                        | 36500                                  | The port to serve the files on
+| PORT                        | 23600                                  | The port to serve the files on
 
 ### Contributing
 
