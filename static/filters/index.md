@@ -12,7 +12,7 @@ If you want everything in a dataset for a specific geographic location, you only
     "dataset": {
         "id": "cpih01",
         "edition": "time-series",
-        "version": "6"
+        "version": 6
     },
     "dimensions": [
         {
