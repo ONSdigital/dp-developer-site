@@ -29,7 +29,7 @@ title: Find the latest release
             document.getElementById("tryitout-get-dataset-results").setAttribute("class", "hidden");
             document.getElementById("tryitout-get-dataset").setAttribute("class", "btn btn--primary btn--primary-disabled");
 
-            fetch("https://api.cmd.onsdigital.co.uk/v1/datasets/cpih01")
+            fetch("https://api.beta.ons.gov.uk/v1/datasets/cpih01")
                 .then((r) => {
                     return r.json();
                 })

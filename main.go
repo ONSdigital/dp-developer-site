@@ -112,11 +112,11 @@ var Tags = tags{
 
 func main() {
 	sources := spec.APIs{
-		{"dataset-api", "https://raw.githubusercontent.com/ONSdigital/dp-dataset-api/cmd-develop/swagger.yaml", nil, nil},
-		{"filter-api", "https://raw.githubusercontent.com/ONSdigital/dp-filter-api/cmd-develop/swagger.yaml", nil, nil},
-		{"code-list-api", "https://raw.githubusercontent.com/ONSdigital/dp-code-list-api/cmd-develop/swagger.yaml", nil, nil},
-		{"hierarchy-api", "https://raw.githubusercontent.com/ONSdigital/dp-hierarchy-api/cmd-develop/swagger.yaml", nil, nil},
-		{"search-api", "https://raw.githubusercontent.com/ONSdigital/dp-search-api/cmd-develop/swagger.yaml", nil, nil},
+		{"dataset-api", "https://raw.githubusercontent.com/ONSdigital/dp-dataset-api/develop/swagger.yaml", nil, nil},
+		{"filter-api", "https://raw.githubusercontent.com/ONSdigital/dp-filter-api/develop/swagger.yaml", nil, nil},
+		{"code-list-api", "https://raw.githubusercontent.com/ONSdigital/dp-code-list-api/develop/swagger.yaml", nil, nil},
+		{"hierarchy-api", "https://raw.githubusercontent.com/ONSdigital/dp-hierarchy-api/develop/swagger.yaml", nil, nil},
+		{"search-api", "https://raw.githubusercontent.com/ONSdigital/dp-search-api/develop/swagger.yaml", nil, nil},
 	}
 
 	if err := sources.Load(); err != nil {

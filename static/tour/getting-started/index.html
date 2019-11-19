@@ -25,7 +25,7 @@ title: Getting started
             document.getElementById("tryitout-list-datasets-results").setAttribute("class", "hidden");
             document.getElementById("tryitout-list-datasets").setAttribute("class", "btn btn--primary btn--primary-disabled");
 
-            fetch("https://api.cmd.onsdigital.co.uk/v1/datasets")
+            fetch("https://api.beta.ons.gov.uk/v1/datasets")
                 .then((r) => {
                     return r.json();
                 })
