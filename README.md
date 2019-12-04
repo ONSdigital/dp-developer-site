@@ -1,11 +1,9 @@
 dp-developer-site
 ================
 
-:warning: Work in progress :warning:
-
 A Go application that generates the HTML pages for the developer site for ons.gov.uk. 
 
-Should be available soon at [developer.ons.gov.uk](https://developer.ons.gov.uk).
+Available at [developer.beta.ons.gov.uk](https://developer.beta.ons.gov.uk).
 
 ### Getting started
 
@@ -49,7 +47,7 @@ make watch-serve PORT=8000
 
 | Environment variable        | Default                                | Description
 | --------------------------- | ---------------------------------------| -----------
-| PORT                        | 36500                                  | The port to serve the files on
+| PORT                        | 23600                                  | The port to serve the files on
 
 ### Contributing
 

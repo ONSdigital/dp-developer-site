@@ -2,42 +2,42 @@
     <h2>{{.Method}}</h2>
     <p>{{.Description}}</p>
 
-    <h3 class="margin-bottom-sm--1 margin-bottom-md--2">Parameters</h3>
-    <div class="margin-bottom-sm--2 margin-bottom-md--4">
-        <table>
-            <thead>
-                <tr>
-                    <th class="table-cell table-cell--header" align="left">Name</th>
-                    <th class="table-cell table-cell--header" align="left">Type</th>
-                    <th class="table-cell table-cell--header" align="left">Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{range .Parameters}}
+    {{if .Parameters}}
+        <h3 class="margin-bottom-sm--1 margin-bottom-md--2">Parameters</h3>
+        <div class="margin-bottom-sm--2 margin-bottom-md--4">
+            <table>
+                <thead>
                     <tr>
-                        <td class="table-cell" align="left">{{.Name}}</td>
-                        <td class="table-cell" align="left">{{.In}}</td>
-                        <td class="table-cell" align="left">{{.Description}}</td>
+                        <th class="table-cell table-cell--header" align="left">Name</th>
+                        <th class="table-cell table-cell--header" align="left">Type</th>
+                        <th class="table-cell table-cell--header" align="left">Description</th>
                     </tr>
-                {{end}}
-                {{range $.Data.Parameters}}
-                    <tr>
-                        <td class="table-cell" align="left">{{.Name}}</td>
-                        <td class="table-cell" align="left">{{.In}}</td>
-                        <td class="table-cell" align="left">{{.Description}}</td>
-                    </tr>
-                {{end}}
-            </tbody>
-        </table>
-    </div>
+                </thead>
+                <tbody> 
+                    {{range .Parameters}}
+                        <tr>
+                            <td class="table-cell" align="left">{{.Name}}</td>
+                            <td class="table-cell" align="left">{{.In}}</td>
+                            <td class="table-cell" align="left">{{.Description}}</td>
+                        </tr>
+                    {{end}}
+                    {{range $.Data.Parameters}}
+                        <tr>
+                            <td class="table-cell" align="left">{{.Name}}</td>
+                            <td class="table-cell" align="left">{{.In}}</td>
+                            <td class="table-cell" align="left">{{.Description}}</td>
+                        </tr>
+                    {{end}}
+                </tbody>
+            </table>
+        </div>
+    {{end}}
     
     <h3>Responses</h3>
     {{range .OrderedResponses}}
         <h4>{{.Status}}</h4>
         <p>{{.Description}}</p>
         {{if .Schema}}
-            
-        {{/* {{printf "%+v\n" .Schema.Description}} */}}
         {{end}}
     {{end}}
 {{end}}

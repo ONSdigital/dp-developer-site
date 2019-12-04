@@ -21,7 +21,7 @@
     <!-- End Google Tag Manager -->
 </head>
 <body class="adjust-font-size--16 link-adjust sticky-footer">
-    <header>
+    <header class="padding-bottom-md--1 padding-bottom-sm--3 border-bottom--iron-sm border-bottom--iron-md">
         <!-- Google Tag Manager (noscript) -->
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MBCBVQS"
                             height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -41,10 +41,10 @@
         </div>
     </header>
     <main id="main" role="main" tabindex="-1">
-        <div class="wrapper margin-bottom--6">
+        <div class="wrapper margin-bottom-sm--3 margin-bottom-md--6">
             <div class="col-wrap">
                 <div class="col col--md-one-half col--lg-one-third sticky sticky--lg-only">
-                    <div class="margin-top--5 margin-right-lg--2 padding-top--1 padding-right--1 padding-bottom--1 padding-left--1 background--iron-light">
+                    <div class="margin-top-sm--4 margin-top-md--5 margin-right-lg--2 padding-top--1 padding-right--1 padding-bottom--1 padding-left--1 background--iron-light">
                         <h2 class="font-size--18 margin-top--2"><strong>Contents:</strong></h2>
                         <nav>
                             <ul class="list--neutral">
@@ -64,7 +64,7 @@
                     </div>
                 </div>
                 <div class="col col--md-one-half col--lg-two-thirds">
-                    <h1 class="break-word"><strong>{{.Title}}</strong></h1>
+                    <h1 class="break-word margin-top-sm--3 margin-bottom-sm--3"><strong>{{.Title}}</strong></h1>
                     {{yield}}
                 </div>
             </div>
@@ -133,6 +133,44 @@
                                 </li>
                             </ul>
                         </div>
+                        <div class="col col--lg-one-third col--md-one-third">
+                            <h3 class="footer-nav__heading">About ONS</h3>
+                            <ul class="footer-nav__list">
+                                <li class="footer-nav__item">
+                                    <a href="/aboutus/whatwedo">What we do</a>
+                                </li>
+                                <li class="footer-nav__item">
+                                    <a href="/aboutus/careers">Careers</a>
+                                </li>
+                                <li class="footer-nav__item">
+                                    <a href="/aboutus/contactus">Contact us</a>
+                                </li>
+                                <li class="footer-nav__item">
+                                    <a href="/news">News</a>
+                                </li>
+                                <li class="footer-nav__item">
+                                    <a href="/aboutus/transparencyandgovernance/freedomofinformationfoi">Freedom of Information</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col col--lg-one-third col--md-one-third">
+                            <h3 class="footer-nav__heading">Connect with us</h3>
+                            <ul class="footer-nav__list">
+                                <li class="footer-nav__item">
+                                    <a href="https://twitter.com/ONS" class="icon--hide">Twitter</a>
+                                </li>
+                                <li class="footer-nav__item">
+                                    <a href="https://www.facebook.com/ONS" class="icon--hide">Facebook</a>
+                                </li>
+                                <li class="footer-nav__item">
+                                    <a href="https://www.linkedin.com/company/office-for-national-statistics" class="icon--hide">LinkedIn</a>
+                                </li>
+                                <li class="footer-nav__item">
+                                    <a href="https://public.govdelivery.com/accounts/UKONS/subscribers/new" class="icon--hide">Email alerts</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </nav>
             </div>
             <div class="wrapper">
