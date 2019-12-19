@@ -181,16 +181,21 @@ func (s site) generateDynamicPages(a spec.APIs, orderedNav *Nav) {
 			}
 
 			pathDir := strings.Replace(strings.TrimPrefix(strings.TrimSuffix(key, "index.html"), "/"), "/", "-", -1)
+
+			urlSanitiser := strings.NewReplacer("{", "", "}", "")
+			sanitisedPathDir := urlSanitiser.Replace(pathDir)
+
 			orderedPaths = append(orderedPaths, APIPath{
 				APIURL:        key,
-				SiteURL:       pathDir + "/",
+				SiteURL:       sanitisedPathDir + "/",
 				PathItemProps: path.PathItemProps,
 			})
 
-			s[apiDir+"/"+pathDir] = Page{
+			fmt.Printf("%+v\n", `paths:`+sanitisedPathDir)
+			s[apiDir+"/"+sanitisedPathDir] = Page{
 				templateName: "path",
 				Title:        key,
-				Path:         apiDir + "/" + pathDir + "/",
+				Path:         apiDir + "/" + sanitisedPathDir + "/",
 				Data: PathPage{
 					Spec:       api,
 					Path:       key,
