@@ -182,7 +182,11 @@ func (s site) generateDynamicPages(a spec.APIs, orderedNav *Nav) {
 
 			pathDir := strings.Replace(strings.TrimPrefix(strings.TrimSuffix(key, "index.html"), "/"), "/", "-", -1)
 
-			urlSanitiser := strings.NewReplacer("{", "", "}", "")
+			// Remove instances of curly brackets from the pathDir to have a cleaner URL.
+			urlSanitiser := strings.NewReplacer(
+				"{", "",
+				"}", "",
+			)
 			sanitisedPathDir := urlSanitiser.Replace(pathDir)
 
 			orderedPaths = append(orderedPaths, APIPath{
@@ -191,7 +195,6 @@ func (s site) generateDynamicPages(a spec.APIs, orderedNav *Nav) {
 				PathItemProps: path.PathItemProps,
 			})
 
-			fmt.Printf("%+v\n", `paths:`+sanitisedPathDir)
 			s[apiDir+"/"+sanitisedPathDir] = Page{
 				templateName: "path",
 				Title:        key,
