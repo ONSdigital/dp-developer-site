@@ -2,9 +2,9 @@
 title: Requesting from filter API
 ---
 
-The ['Filter a dataset'](../filter/) service allows any combination of dimension options to be requested. This is aimed at more complicated queries than the ['Explore our dataset'](../dataset/) service and requires a POST containing dataset ID, edition, version and details of dimensions. 
+The ['Filter a dataset'](../filter/) service allows any combination of dimension options to be requested. This is aimed at more complicated queries than the ['Explore our dataset'](../dataset/) service and requires a POST containing dataset ID, edition, version and details of dimensions.
 
-Any dimensions not filtered on will return all available dimension items for that dataset. 
+Any dimensions not filtered on will return all available dimension items for that dataset.
 If you want everything in a dataset for a specific geographic location, you only need to provide the option for that geography, for example;
 
 ```json

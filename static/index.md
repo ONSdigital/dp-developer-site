@@ -18,7 +18,7 @@ The API is open and unrestricted - no API keys are required, so you can start us
 
 ### Requesting data
 
-Observation level data is provided in [JSON](https://www.w3schools.com/js/js_json_intro.asp) through GET requests to the ['Explore our data'](dataset/) service. This allows querying of a single observation/value by providing one option per dimension, but will also allow one of these dimensions to be a 'wildcard' and return all values for this dimension. 
+Observation level data is provided in [JSON](https://www.w3schools.com/js/js_json_intro.asp) through GET requests to the ['Explore our data'](dataset/) service. This allows querying of a single observation/value by providing one option per dimension, but will also allow one of these dimensions to be a 'wildcard' and return all values for this dimension.
 
 [Guide to requesting specific observation](observations/)
 
