@@ -40,7 +40,7 @@ For example: Population Estimates for UK, England and Wales, Scotland and Northe
 ### Edition
 
 A subset of the dataset representing a specific time period. For some datasets this edition can contain all time periods (all historical data). The latest version of this is displayed by default.
-For example: Population Estimates for UK, England and Wales, Scotland and Northern Ireland Mid-2016 
+For example: Population Estimates for UK, England and Wales, Scotland and Northern Ireland Mid-2016
 
 ### Version
 
