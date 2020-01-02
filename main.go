@@ -149,6 +149,7 @@ func generateModel(APIs spec.APIs) site {
 	var siteModel = make(site)
 	var orderedNav = &Nav{}
 	orderedNav.appendNavItem("Introduction", "")
+	orderedNav.appendNavItem("Take a tour of the API", "tour/getting-started")
 	orderedNav.appendNavItem("Guide to requesting specific observation", "observations")
 	orderedNav.appendNavItem("Guide to filtering a dataset", "filters")
 
