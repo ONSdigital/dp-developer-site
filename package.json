@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm run build:css",
+    "build": "npm run build:css && npm run build:js",
     "build:css": "./node_modules/node-sass/bin/node-sass --output-style compressed scss/main.scss -o assets/assets/css",
+    "build:js": "webpack --config ./webpack.config.js",
     "watch": "npm run watch:css",
     "watch:css": "./node_modules/node-sass/bin/node-sass -w scss --source-map-embed --output-style expanded scss/main.scss -o assets/assets/css",
     "postinstall": "npm run build"
@@ -23,5 +24,9 @@
   "homepage": "https://github.com/ONSdigital/dp-developer-site#readme",
   "dependencies": {
     "node-sass": "^4.9.0"
+  },
+  "devDependencies": {
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
   }
 }
