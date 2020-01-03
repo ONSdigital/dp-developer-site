@@ -1,14 +1,10 @@
-// Elements
-const codeContainer = document.getElementById("codeExample");
 let codeBlock = document.createElement('pre')
-const jsExample = document.getElementById('jsExampleLink')
+let codeContainer = document.getElementById("codeExample");
 
-const endpoint = `https://api.beta.ons.gov.uk/v1${jsExample.dataset.endpoint}`
-
-const toggleCodeExample = () => {
+const toggleCodeExample = (url) => {
     if (codeContainer.classList.contains('hidden')) {
         codeContainer.classList.remove('hidden')
-        buildCodeExample(endpoint)
+        buildCodeExample(url)
     } else {
         codeContainer.classList.add('hidden')
         codeBlock.innerHTML = ''
@@ -17,8 +13,8 @@ const toggleCodeExample = () => {
 
 const buildCodeExample = (url) => {
     codeBlock.innerHTML = `
-        <code class="embed-code__code">
-            fetch("${url}")
+    <code>
+        fetch("${url}")
             .then((result) => {
                 return result.json();
             })
@@ -28,14 +24,9 @@ const buildCodeExample = (url) => {
             .catch(function(error) {
                 console.log(error);
             });
-        </code>
+    </code>
     `
     codeContainer.appendChild(codeBlock)
 }
-
-// Event listeners
-jsExample.addEventListener('click', () => {
-    toggleCodeExample()
-})
 
 export { toggleCodeExample, buildCodeExample }
