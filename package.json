@@ -26,6 +26,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.7.0",
     "code-prettify": "^0.1.0",
+    "highcharts": "^8.0.0",
     "node-sass": "^4.9.0"
   },
   "devDependencies": {

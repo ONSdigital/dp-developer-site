@@ -1,8 +1,10 @@
+import Highcharts from 'highcharts'
+
 const jsonView = document.querySelector("[data-tour-results-view='json'] > .markdown > pre");
 const resultsView = document.querySelector("[data-tour-results-view='results']");
 
 const toggleResultsView = (viewType) => {
-    switch(viewType) {
+    switch (viewType) {
         case 'json':
             jsonView.classList.remove('hidden');
             resultsView.classList.add('hidden');
@@ -19,10 +21,11 @@ const buildJSONView = (response) => {
 }
 
 const buildResultsView = (el, response, resultType) => {
-    switch(resultType) {
+    console.log('here', resultType)
+    switch (resultType) {
         case 'table':
-           buildTableBody(el, response);
-           break;
+            buildTableBody(el, response);
+            break;
         case 'latestRelease':
             buildText(el, response.links.latest_version.href)
             break;
@@ -63,7 +66,60 @@ const buildText = (resultsContainer, text) => {
 }
 
 const buildChart = (resultsContainer, data) => {
+    let timeseries = [];
 
+    data.observations
+        .map(function (data) {
+            //create a new field from the date to allow it to  be ordered
+            let sort = new Date("1-" + data.dimensions.time.label.replace("-", " "));
+            //build an array with the 3 values we need and convert the value to a number
+            let chartdata = [
+                data.dimensions.time.label,
+                parseFloat(data.observation),
+                sort
+            ];
+            //add these arrays to the timeseries array
+            timeseries.push(chartdata);
+        });
+
+    timeseries = timeseries.sort(orderByDate);
+
+    Highcharts.chart('chart', {
+        series: [
+            {
+                data: timeseries
+            }
+        ],
+        navigation: {
+            buttonOptions: {
+                enabled: false
+            }
+        },
+        title: {
+            text: null
+        },
+        yAxis: {
+            labels: {
+                enabled: false
+            },
+            title: {
+                enabled: false
+            },
+        },
+        legend: {
+            enabled: false
+        },
+        xAxis: {
+            type: "category",
+            crosshair: true
+        }
+    });
+}
+
+const orderByDate = (a, b) => {
+    if (a[2] < b[2]) return -1;
+    if (a[2] > b[2]) return 1;
+    return 0;
 }
 
 export { toggleResultsView, buildJSONView, buildResultsView }

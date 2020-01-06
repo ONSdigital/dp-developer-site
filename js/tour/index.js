@@ -9,14 +9,12 @@ export default function tourInit() {
     const endpoint = document.querySelector('[data-tour-endpoint]').dataset.tourEndpoint
     const url = `https://api.beta.ons.gov.uk/v1${endpoint}`;
 
-
     // Toggle Code Example
     const jsExample = document.querySelector('[data-tour-example]');
 
     jsExample.addEventListener('click', function () {
         toggleCodeExample(url)
     })
-
 
     // Results Views
     let resultsData;
