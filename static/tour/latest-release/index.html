@@ -28,20 +28,14 @@ title: Take a tour of the API
         </div>
 
         <div class="hidden" style="margin-top: 20px;" id="tryitout-get-dataset-results">
-            <fieldset class="btn-group">
-                <div role="radiogroup">
-                    <label class="btn btn--secondary btn--chart-control btn--secondary-active" id="tab-results">
-                        Results <input name="range" aria-controls="data" checked="" type="radio">
-                    </label>
-                    <label class="btn btn--secondary btn--chart-control" id="tab-json">
-                        JSON <input name="range" aria-controls="data" type="radio">
-                    </label>
-                </div>
-            </fieldset>
-            <div id="tryitout-list-datasets-json-result" class="hidden">
+            <div class="btn-group">
+                <button type="button" class="btn btn--secondary btn--chart-control btn--secondary-active" data-tour-results-tab="json">JSON</button>
+                <button type="button" class="btn btn--secondary btn--chart-control btn--secondary-active" data-tour-results-tab="results">Results</button>
+            </div>
+            <div data-tour-results-view="json" id="tryitout-list-datasets-json-result" class="hidden">
                 <pre style="max-height: 300px; overflow-y: scroll;" id="tryitout-get-dataset-json"></pre>
             </div>
-            <p id="tryitout-list-datasets-result-result">
+            <p data-tour-results-view="results" id="tryitout-list-datasets-result-result">
                 The latest release can be found at <tt id="tryitout-get-dataset-link"></tt>
             </p>
         </div>

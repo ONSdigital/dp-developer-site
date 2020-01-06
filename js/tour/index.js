@@ -1,5 +1,7 @@
 
 import { toggleCodeExample } from './CodeExamples'
+import { fetchData } from './FetchData';
+import { toggleResultsView } from './Results';
 
 export default function tourInit () {
 
@@ -8,39 +10,39 @@ const jsExample = document.querySelector('[data-tour-example]');
 const tryItOut = document.getElementById('tryitout-get-observation');
 const endpoint = document.querySelector('[data-tour-endpoint]').dataset.tourEndpoint
 
-console.log('endpoint', endpoint)
-
 // Results 
 let results;
+
+const resultsTabs = document.querySelectorAll('[data-tour-results-tab]')
 const datasetResults = document.getElementById('tryitout-list-datasets-results');
 const jsonResults = document.getElementById('tryitout-list-datasets-json-result');
 
+console.log(resultsTabs)
+
 // State
 const url = `https://api.beta.ons.gov.uk/v1${endpoint}`;
-const currentPage = tryItOut.dataset.page;
-let resultsView = 'json';
+const currentPage = tryItOut.dataset.tourPage;
 
-// Event listeners
+// Event Listeners
 jsExample.addEventListener('click', function () {
     toggleCodeExample(url)
 })
 
-tryItOut.addEventListener('click', function () {
+tryItOut.addEventListener('click', async function () {
     tryItOut.setAttribute('disabled', 'true');
     tryItOut.classList.add('btn--primary-disabled');
-    fetch(url).then(response => {
-        return response.json();
-    }).then(parsedResponse => {
-        results = parsedResponse;
-        console.log('results', results)
-        datasetResults.classList.remove('hidden');
-        tryItOut.classList.remove('btn--primary-disabled');
-    }).catch(err => {
-        throw new Error(err);
+    results = await fetchData(url)
+    datasetResults.classList.remove('hidden');
+    tryItOut.classList.remove('btn--primary-disabled');
+})
+
+// Event Listener for toggling radio (results/json) - loop through buttons and apply class depending on which radio button is clicked
+resultsTabs.forEach((tab) => {
+    tab.addEventListener('click', (e) => {
+        toggleResultsView(e.target.dataset.tourResultsTab)
     })
 })
 
-// Event Listener for toggling radio (results/json) - loop through radio buttons and apply class depending on which radio button is clicked
-
 // Functionality for displaying JSON and building a table of results
+
 }

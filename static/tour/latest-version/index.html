@@ -30,17 +30,13 @@ title: Take a tour of the API
         </div>
 
         <div class="hidden" style="margin-top: 20px;" id="tryitout-get-dataset-results">
-            <fieldset class="btn-group">
-                <div role="radiogroup">
-                    <label class="btn btn--secondary btn--chart-control" id="tab-json">
-                        JSON <input name="range" aria-controls="data" type="radio">
-                    </label>
-                </div>
-            </fieldset>
+            <div class="btn-group">
+                <button type="button" class="btn btn--secondary btn--chart-control btn--secondary-active" data-tour-results-tab="json">JSON</button>
+            </div>
             <div id="tryitout-list-datasets-json-result" class="hidden">
                 <pre style="max-height: 300px; overflow-y: scroll;" id="tryitout-get-dataset-json"></pre>
             </div>
-            <div id="tryitout-list-datasets-result-result">
+            <div data-tour-results-view="json" id="tryitout-list-datasets-result-result">
                 <table>
                     <thead>
                         <tr>

@@ -33,20 +33,14 @@ title: Take a tour of the API
         </div>
 
         <div class="hidden" style="margin-top: 20px;" id="tryitout-get-observation-results">
-            <fieldset class="btn-group">
-                <div role="radiogroup">
-                    <label class="btn btn--secondary btn--chart-control btn--secondary-active" id="tab-results">
-                        Results <input name="range" aria-controls="data" checked="" type="radio">
-                    </label>
-                    <label class="btn btn--secondary btn--chart-control" id="tab-json">
-                        JSON <input name="range" aria-controls="data" type="radio">
-                    </label>
-                </div>
-            </fieldset>
-            <div id="tryitout-get-observation-json-result" class="hidden">
+            <div class="btn-group">
+                <button type="button" class="btn btn--secondary btn--chart-control btn--secondary-active" data-tour-results-tab="json">JSON</button>
+                <button type="button" class="btn btn--secondary btn--chart-control btn--secondary-active" data-tour-results-tab="results">Results</button>
+            </div>
+            <div data-tour-results-view="json" id="tryitout-get-observation-json-result" class="hidden">
                 <pre style="max-height: 300px; overflow-y: scroll;" id="tryitout-get-observation-json"></pre>
             </div>
-            <div id="tryitout-get-observation-result-result">
+            <div data-tour-results-view="results" id="tryitout-get-observation-result-result">
                 <script src="https://code.highcharts.com/highcharts.js"></script>
                 <div id='title'></div>
                 <div id='chart' style='max-width:600px'></div>

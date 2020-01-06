@@ -1,7 +1,9 @@
 ---
 title: Take a tour of the API
 ---
-<h2 class="break-word margin-top-sm--3 margin-bottom-sm--3"><strong>Getting started</strong></h2>
+<h2 class="break-word margin-top-sm--3 margin-bottom-sm--3">
+    <strong>Getting started</strong>
+</h2>
 <section data-tour-endpoint="/datasets" class="static section__content--static-markdown">
 
     <p>You can get a list of datasets using the <a href="../../dataset/datasets/">list datasets</a>
@@ -23,22 +25,16 @@ title: Take a tour of the API
         </div>
 
         <div class="hidden" style="margin-top: 20px;" id="tryitout-list-datasets-results">
-            <fieldset class="btn-group">
-                <div role="radiogroup">
-                    <label class="btn btn--secondary btn--chart-control btn--secondary-active" id="tab-json">
-                        JSON <input name="range" aria-controls="data" value="json" type="radio">
-                    </label>
-                    <label class="btn btn--secondary btn--chart-control" id="tab-results">
-                        Results <input name="range" aria-controls="data" checked="" value="results" type="radio">
-                    </label>
-                </div>
-            </fieldset>
-            <div id="tryitout-list-datasets-json-result" style="max-height: 400px; overflow-y: scroll;">
+            <div class="btn-group">
+                <button type="button" class="btn btn--secondary btn--chart-control btn--secondary-active" data-tour-results-tab="json">JSON</button>
+                <button type="button" class="btn btn--secondary btn--chart-control btn--secondary-active" data-tour-results-tab="results">Results</button>
+            </div>
+            <div data-tour-results-view="json" id="tryitout-list-datasets-json-result" style="max-height: 400px; overflow-y: scroll;">
                 <div class="markdown">
-                    <pre id="tryitout-list-datasets-json"></pre>
+                    <pre id="tryitout-list-datasets-json">JSON</pre>
                 </div>
             </div>
-            <div id="tryitout-list-datasets-result-result" class="hidden"
+            <div data-tour-results-view="results" id="tryitout-list-datasets-result-result" class="hidden"
                 style="max-height: 400px; overflow-y: scroll;">
                 <table class="results">
                     <thead>
@@ -47,8 +43,7 @@ title: Take a tour of the API
                             <th>Title</th>
                         </tr>
                     </thead>
-                    <tbody id="tryitout-list-datasets-table">
-                    </tbody>
+                    <tbody id="tryitout-list-datasets-table"></tbody>
                 </table>
             </div>
         </div>
