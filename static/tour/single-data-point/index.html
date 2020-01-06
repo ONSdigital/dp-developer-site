@@ -30,15 +30,17 @@ title: Take a tour of the API
             <button class="btn btn--primary" id="tryitout-get-observation" data-page="single-data-point">Try it out</button>
         </div>
 
-        <div class="hidden" style="margin-top: 20px;" id="tryitout-get-observation-results">
+        <div class="hidden" style="margin-top: 20px;" id="tryitout-list-datasets-results">
             <div class="btn-group">
                 <button type="button" class="btn btn--secondary btn--chart-control btn--secondary-active" data-tour-results-tab="json">JSON</button>
                 <button type="button" class="btn btn--secondary btn--chart-control btn--secondary-active" data-tour-results-tab="results">Results</button>
             </div>
-            <div data-tour-results-view="json" id="tryitout-get-observation-json-result" class="hidden">
-                <pre style="max-height: 300px; overflow-y: scroll;" id="tryitout-get-observation-json"></pre>
+            <div data-tour-results-view="json" id="tryitout-list-datasets-json-result" style="max-height: 400px; overflow-y: scroll;">
+                <div class="markdown">
+                    <pre style="max-height: 300px; overflow-y: scroll"></pre>
+                </div>
             </div>
-            <p data-tour-results-view="results" id="tryitout-get-observation-result-result">
+            <p data-tour-results-view="results" data-tour-results-type="text" id="tryitout-get-observation-result-result">
                 The value of CPIH for the United Kingdom in August 2016 was <tt
                     id="tryitout-get-observation-value"></tt>
             </p>

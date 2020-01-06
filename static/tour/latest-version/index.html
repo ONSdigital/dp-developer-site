@@ -29,25 +29,14 @@ title: Take a tour of the API
             <button class="btn btn--primary" id="tryitout-get-observation" data-page="latest-version">Try it out</button>
         </div>
 
-        <div class="hidden" style="margin-top: 20px;" id="tryitout-get-dataset-results">
+        <div class="hidden" style="margin-top: 20px;" id="tryitout-list-datasets-results">
             <div class="btn-group">
                 <button type="button" class="btn btn--secondary btn--chart-control btn--secondary-active" data-tour-results-tab="json">JSON</button>
             </div>
-            <div id="tryitout-list-datasets-json-result" class="hidden">
-                <pre style="max-height: 300px; overflow-y: scroll;" id="tryitout-get-dataset-json"></pre>
-            </div>
-            <div data-tour-results-view="json" id="tryitout-list-datasets-result-result">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Field</th>
-                            <th>Value</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tryitout-get-version-table">
-
-                    </tbody>
-                </table>
+            <div data-tour-results-view="json" id="tryitout-list-datasets-json-result" style="max-height: 400px; overflow-y: scroll;">
+                <div class="markdown">
+                    <pre style="max-height: 300px; overflow-y: scroll"></pre>
+                </div>
             </div>
         </div>
     </section>
