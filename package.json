@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run build:css && npm run build:js",
     "build:css": "./node_modules/node-sass/bin/node-sass --output-style compressed scss/main.scss -o assets/assets/css",
-    "build:js": "webpack --mode=development --config ./webpack.config.js",
+    "build:js": "webpack --mode=production --config ./webpack.config.js",
     "watch": "npm run watch:css && npm run watch:js",
     "watch:js": "webpack --mode=development --config ./webpack.config.js --watch",
     "watch:css": "./node_modules/node-sass/bin/node-sass -w scss --source-map-embed --output-style expanded scss/main.scss -o assets/assets/css",
@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/ONSdigital/dp-developer-site#readme",
   "dependencies": {
+    "@babel/polyfill": "^7.7.0",
     "code-prettify": "^0.1.0",
     "node-sass": "^4.9.0"
   },
