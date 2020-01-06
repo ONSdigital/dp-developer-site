@@ -2,34 +2,34 @@
 title: Take a tour of the API
 ---
 <h2 class="break-word margin-top-sm--3 margin-bottom-sm--3"><strong>Getting started</strong></h2>
-<div class="static section__content--static-markdown">
+<section data-tour-endpoint="/datasets" class="static section__content--static-markdown">
 
     <p>You can get a list of datasets using the <a href="../../dataset/datasets/">list datasets</a>
         endpoint.</p>
 
-    <div>
+    <section>
         <h3>Example</h3>
         <p class="margin-bottom--0 ">
             Make a <tt>GET</tt> request to <tt>https://api.beta.ons.gov.uk/v1/datasets</tt>
         </p>
         <p class="margin-top--0">
-            <a id="jsExampleLink" data-endpoint="/datasets">Show/hide JavaScript example</a>
+            <a data-tour-example>Show/hide JavaScript example</a>
         </p>
-        <div class="markdown hidden" id="codeExample">
+        <div class="markdown hidden" data-tour-example-block>
             <!-- Code block injected via buildCodeExample() method in CodeExamples.js -->
         </div>
         <div>
-            <button class="btn btn--primary" id="tryitout-get-observation" data-page="getting-started">Try it out</button>
+            <button class="btn btn--primary" id="tryitout-get-observation" data-tour-page="getting-started">Try it out</button>
         </div>
 
         <div class="hidden" style="margin-top: 20px;" id="tryitout-list-datasets-results">
             <fieldset class="btn-group">
                 <div role="radiogroup">
                     <label class="btn btn--secondary btn--chart-control btn--secondary-active" id="tab-json">
-                        JSON <input name="range" aria-controls="data" type="radio">
+                        JSON <input name="range" aria-controls="data" value="json" type="radio">
                     </label>
                     <label class="btn btn--secondary btn--chart-control" id="tab-results">
-                        Content <input name="range" aria-controls="data" checked="" type="radio">
+                        Results <input name="range" aria-controls="data" checked="" value="results" type="radio">
                     </label>
                 </div>
             </fieldset>
@@ -52,9 +52,9 @@ title: Take a tour of the API
                 </table>
             </div>
         </div>
-    </div>
+    </section>
     <hr class="margin-top--3">
     <nav style="margin-top: 20px;">
         <a class="float-right" href="../latest-release/">Next: Find the latest release</a>
     </nav>
-</div>
+</section>

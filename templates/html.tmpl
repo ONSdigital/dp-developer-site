@@ -1,6 +1,6 @@
 {{$firstNavItem := index .Nav 0}}
 {{$rootPath := $firstNavItem.GetRelativePath .Path}}
-<div class="static section__content--static-markdown">
+<article class="static section__content--static-markdown">
     {{.Data}}
-</div>
-<script src="/{{$rootPath}}assets/js/tour-bundle.js"></script>
+</article>
+<script src="/{{$rootPath}}assets/js/bundle.js"></script>

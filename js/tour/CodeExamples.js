@@ -1,5 +1,5 @@
 let codeBlock = document.createElement('pre')
-let codeContainer = document.getElementById("codeExample");
+let codeContainer = document.querySelector('[data-tour-example-block]');
 
 const toggleCodeExample = (url) => {
     if (codeContainer.classList.contains('hidden')) {
@@ -12,8 +12,8 @@ const toggleCodeExample = (url) => {
 }
 
 const buildCodeExample = (url) => {
-    codeBlock.innerHTML = `
-    <code>
+    codeBlock.innerHTML = 
+    `<code>
         fetch("${url}")
             .then((result) => {
                 return result.json();
@@ -24,8 +24,7 @@ const buildCodeExample = (url) => {
             .catch(function(error) {
                 console.log(error);
             });
-    </code>
-    `
+    </code>`
     codeContainer.appendChild(codeBlock)
 }
 

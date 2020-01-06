@@ -5,25 +5,25 @@ title: Take a tour of the API
 <h2 class="break-word margin-top-sm--3 margin-bottom-sm--3">
     <strong> Get a single data point</strong>
 </h2>
-<div class="static section__content--static-markdown">
+<section data-tour-endpoint="/datasets/cpih01/editions/time-series/versions/6/observations?time=*&geography=K02000001&aggregate=cpih1dim1A0" class="static section__content--static-markdown">
     <p>Once you have a link to the latest release, you can get a specific data point from the release using the <a
             href="../../dataset/datasets-{id}-editions-{edition}-versions-{version}-observations/">get observation</a>
         endpoint.</p>
 
     <p>You need to specify a value for each of the available dimensions using query string parameters.</p>
 
-    <div>
+    <section>
         <h3>Example</h3>
         <p>
             Make a <tt>GET</tt> request to
             <tt>https://api.beta.ons.gov.uk/v1/datasets/cpih01/editions/time-series/versions/6/observations?time=Aug-16&geography=K02000001&aggregate=cpih1dim1A0</tt>
         </p>
         <p class="margin-top--0">
-            <a id="jsExampleLink" data-endpoint="/datasets/cpih01/editions/time-series/versions/6/observations?time=*&geography=K02000001&aggregate=cpih1dim1A0">
+            <a id="jsExampleLink" data-tour-example>
                 Show/hide JavaScript example
             </a>
         </p>
-        <div class="markdown hidden" id="codeExample">
+        <div class="markdown hidden" data-tour-example-block>
             <!-- Code block injected via buildCodeExample() method in CodeExamples.js -->
         </div>
         <div>
@@ -49,10 +49,10 @@ title: Take a tour of the API
                     id="tryitout-get-observation-value"></tt>
             </p>
         </div>
-    </div>
+    </section>
     <hr class="margin-top--3">
     <nav style="margin-top: 20px;">
         <a class="float-left" href="../latest-version/">Previous: Get the latest version</a>
         <a class="float-right" href="../series-data-point/">Next: Get a series of data points</a>
     </nav>
-</div>
+</section>

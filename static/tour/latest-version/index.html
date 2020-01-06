@@ -5,23 +5,24 @@ title: Take a tour of the API
 <h2 class="break-word margin-top-sm--3 margin-bottom-sm--3">
     <strong> Get the latest version</strong>
 </h2>
-<div class="static section__content--static-markdown">
+<section data-tour-endpoint="/datasets/cpih01/editions/time-series/versions/6" 
+        class="static section__content--static-markdown">
     <p>
         Once you have the link to the latest release, you can fetch its metadata using the
         <a href="../../dataset/datasets-{id}-editions-{edition}-versions-{version}">get version</a> endpoint
         using the URL from <tt>links.latest_version</tt>.
     </p>
 
-    <div>
+    <section>
         <h3>Example</h3>
         <p>
             Make a <tt>GET</tt> request to
             <tt>https://api.beta.ons.gov.uk/v1/datasets/cpih01/editions/time-series/versions/6</tt>
         </p>
         <p class="margin-top--0">
-            <a id="jsExampleLink" data-endpoint="/datasets/cpih01/editions/time-series/versions/6">Show/hide JavaScript example</a>
+            <a data-tour-example>Show/hide JavaScript example</a>
         </p>
-        <div class="markdown hidden" id="codeExample">
+        <div class="markdown hidden" data-tour-example-block>
             <!-- Code block passed in via buildCodeExample() method in CodeExamples.js -->
         </div>
         <div>
@@ -53,11 +54,11 @@ title: Take a tour of the API
                 </table>
             </div>
         </div>
-    </div>
+    </section>
 
     <hr class="margin-top--3">
     <nav style="margin-top: 20px;">
         <a class="float-left" href="../latest-release/">Previous: Get the latest release</a>
         <a class="float-right" href="../single-data-point/">Next: Get a single data point</a>
     </nav>
-</div>
+</section>
