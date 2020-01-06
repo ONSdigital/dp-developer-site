@@ -19,7 +19,7 @@ export default function tourInit() {
 
 
     // Results Views
-    let results;
+    let resultsData;
     const tryItOut = document.getElementById('tryitout-get-observation');
     const resultsTabs = document.querySelectorAll('[data-tour-results-tab]')
     const datasetResults = document.getElementById('tryitout-list-datasets-results')
@@ -29,15 +29,15 @@ export default function tourInit() {
         // Fetch data; disable Try It Out button while waiting for response/error
         tryItOut.setAttribute('disabled', 'true');
         tryItOut.classList.add('btn--primary-disabled');
-        results = await fetchData(url)
+        resultsData = await fetchData(url)
         datasetResults.classList.remove('hidden');
         tryItOut.classList.remove('btn--primary-disabled');
 
         // Get results type string. If none present, assume current page of tour does not have a Results section and default to 'jsonOnly'
         const resultsType = resultsContainer ? resultsContainer.dataset.tourResultsType : 'jsonOnly';
 
-        buildJSONView(results)
-        buildResultsView(results, resultsType)
+        buildJSONView(resultsData)
+        buildResultsView(resultsContainer, resultsData, resultsType)
     })
 
     // Toggle between Results and JSON
