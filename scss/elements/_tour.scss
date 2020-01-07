@@ -12,4 +12,8 @@
     &__chart-container {
         max-height: 600px;
     }
+
+    &__endpoint-text {
+        word-break: break-word;
+    }
 }
