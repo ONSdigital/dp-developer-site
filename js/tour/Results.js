@@ -33,7 +33,7 @@ const buildResultsView = (el, response, resultType) => {
       buildText(el, response.observations[0].observation);
       break;
     case 'chart':
-      buildChart(el, response);
+      buildChart(response);
       break;
     case 'jsonOnly':
       return;
@@ -44,10 +44,13 @@ const buildTableBody = (resultsContainer, data) => {
   const table = resultsContainer;
   data.items.forEach((dataset) => {
     const row = document.createElement('tr');
+    row.classList.add('tour-table__body-row');
     const datasetID = document.createElement('td');
+    datasetID.classList.add('tour-table__body-cell');
     datasetID.innerText = dataset.id;
     row.appendChild(datasetID);
     const datasetName = document.createElement('td');
+    datasetName.classList.add('tour-table__body-cell');
     datasetName.innerText = dataset.title;
     row.appendChild(datasetName);
     table.appendChild(row);
@@ -65,8 +68,9 @@ const buildText = (resultsContainer, text) => {
   }
 };
 
-const buildChart = (resultsContainer, data) => {
+const buildChart = (data) => {
   let timeseries = [];
+  const maxNumberOfPointsOnChart = 10;
 
   data.observations
       .map(function(data) {
@@ -82,7 +86,7 @@ const buildChart = (resultsContainer, data) => {
         timeseries.push(chartdata);
       });
 
-  timeseries = timeseries.sort(orderByDate);
+  timeseries = timeseries.sort(orderByDate).splice(0, maxNumberOfPointsOnChart);
 
   chart('chart', {
     series: [
