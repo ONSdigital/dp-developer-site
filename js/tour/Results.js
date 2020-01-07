@@ -1,6 +1,9 @@
 import {chart} from 'highcharts';
 import {orderByDate} from '../utils/orderByDate';
 
+const jsonButton = document.querySelector('[data-tour-results-tab=\'json\'');
+const resultsButton = document.querySelector('[data-tour-results-tab=\'results\'');
+
 const jsonView = document.querySelector('[data-tour-results-view=\'json\'] > .markdown > pre');
 const resultsView = document.querySelector('[data-tour-results-view=\'results\']');
 
@@ -9,10 +12,16 @@ const toggleResultsView = (viewType) => {
     case 'json':
       jsonView.classList.remove('hidden');
       resultsView.classList.add('hidden');
+
+      jsonButton.classList.add('btn--secondary-active');
+      resultsButton.classList.remove('btn--secondary-active');
       break;
     case 'results':
       jsonView.classList.add('hidden');
       resultsView.classList.remove('hidden');
+
+      jsonButton.classList.remove('btn--secondary-active');
+      resultsButton.classList.add('btn--secondary-active');
       break;
   }
 };
