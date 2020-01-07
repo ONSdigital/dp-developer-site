@@ -1,5 +1,5 @@
-import tourInit from './tour/index'
+import tourInit from './tour/index';
 
 document.addEventListener('DOMContentLoaded', () => {
-    tourInit()
-})
+  tourInit();
+});
