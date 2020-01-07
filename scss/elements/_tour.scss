@@ -1,0 +1,15 @@
+.tour {
+    &__results-container {
+        max-height: 400px; 
+        overflow-y: scroll;
+    }
+
+    &__json-container {
+        max-height: 300px;
+        overflow-y: scroll;
+    }
+
+    &__chart-container {
+        max-height: 600px;
+    }
+}

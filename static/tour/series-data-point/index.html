@@ -21,7 +21,7 @@ title: Take a tour of the API
             <tt>https://api.beta.ons.gov.uk/v1/datasets/cpih01/editions/time-series/versions/6/observations?time=*&geography=K02000001&aggregate=cpih1dim1A0</tt>
         </p>
         <p class="margin-top--0">
-            <a data-tour-example>
+            <a href="#" data-tour-example>
                 Show/hide JavaScript example
             </a>
         </p>
@@ -29,27 +29,28 @@ title: Take a tour of the API
             <!-- Code block injected via buildCodeExample() method in CodeExamples.js -->
         </div>
         <div>
-            <button class="btn btn--primary" id="tryitout-get-observation" data-page="series-data-point">Try it out</button>
+            <button class="btn btn--primary" data-tour-tryitout="observation" data-page="series-data-point">Try it out</button>
         </div>
 
-        <div class="hidden" style="margin-top: 20px;" id="tryitout-list-datasets-results">
+        <div class="hidden margin-top--2" data-tour-tryitout="results">
             <div class="btn-group">
                 <button type="button" class="btn btn--secondary btn--chart-control btn--secondary-active" data-tour-results-tab="json">JSON</button>
                 <button type="button" class="btn btn--secondary btn--chart-control" data-tour-results-tab="results">Results</button>
             </div>
-            <div data-tour-results-view="json" id="tryitout-list-datasets-json-result" style="max-height: 400px; overflow-y: scroll;">
+            <div data-tour-results-view="json" class="tour__results-container">
                 <div class="markdown">
-                    <pre style="max-height: 300px; overflow-y: scroll"></pre>
+                    <pre class="tour__json-container"></pre>
                 </div>
             </div>
-            <div data-tour-results-view="results" class="hidden" data-tour-results-type="chart" id="tryitout-get-observation-result-result">
+            <div data-tour-results-view="results" class="hidden" data-tour-results-type="chart">
+                <!-- Highcharts plugin implemented -->
                 <div id='title'></div>
-                <div id='chart' style='max-width:600px'></div>
+                <div id='chart' class="tour__chart-container"></div>
             </div>
         </div>
     </section>
     <hr class="margin-top--3">
-    <nav style="margin-top: 20px;">
+    <nav class="margin-top--2">
         <a class="float-left" href="../single-data-point/">Previous: Get a single data point</a>
         <a class="float-right" href="../finished/">Next: Finished</a>
     </nav>

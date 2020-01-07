@@ -19,9 +19,9 @@ export default function tourInit() {
 
     // Results Views
     let resultsData;
-    const tryItOut = document.getElementById('tryitout-get-observation');
+    const tryItOut = document.querySelector('[data-tour-tryitout=\'observation\']');
     const resultsTabs = document.querySelectorAll('[data-tour-results-tab]');
-    const datasetResults = document.getElementById('tryitout-list-datasets-results');
+    const datasetResults = document.querySelector('[data-tour-tryitout=\'results\']');
     const resultsContainer = document.querySelector('[data-tour-results-type]');
 
     tryItOut.addEventListener('click', async function() {

@@ -18,30 +18,30 @@ title: Take a tour of the API
             Make a <tt>GET</tt> request to <tt>https://api.beta.ons.gov.uk/v1/datasets/cpih01</tt>
         </p>
         <p class="margin-top--0">
-            <a data-tour-example>Show/hide JavaScript example</a>
+            <a href="#" data-tour-example>Show/hide JavaScript example</a>
         </p>
         <div class="markdown hidden" data-tour-example-block>
             <!-- Code block injected via buildCodeExample() method in CodeExamples.js -->
         </div>
         <div>
-            <button class="btn btn--primary" id="tryitout-get-observation" data-page="latest-release">Try it out</button>
+            <button class="btn btn--primary" data-tour-tryitout="observation" data-page="latest-release">Try it out</button>
         </div>
 
-        <div class="hidden" style="margin-top: 20px;" id="tryitout-list-datasets-results">
+        <div class="hidden margin-top--2" data-tour-tryitout="results">
             <div class="btn-group">
                 <button type="button" class="btn btn--secondary btn--chart-control btn--secondary-active" data-tour-results-tab="json">JSON</button>
                 <button type="button" class="btn btn--secondary btn--chart-control" data-tour-results-tab="results">Results</button>
             </div>
-            <div data-tour-results-view="json" id="tryitout-list-datasets-json-result" style="max-height: 400px; overflow-y: scroll;">
+            <div data-tour-results-view="json" class="tour__results-container">
                 <div class="markdown">
-                    <pre style="max-height: 300px; overflow-y: scroll"></pre>
+                    <pre class="tour__json-container"></pre>
                 </div>
             </div>
             <p class="hidden" data-tour-results-view="results" data-tour-results-type="latestRelease"></p>
         </div>
 
         <hr class="margin-top--3">
-        <nav style="margin-top: 20px;">
+        <nav class="margin-top--2">
             <a class="float-left" href="../getting-started/">Previous: Getting Started</a>
             <a class="float-right" href="../latest-version/">Next: Get the latest version</a>
         </nav>
