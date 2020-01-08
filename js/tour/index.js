@@ -1,7 +1,8 @@
 
 import {toggleCodeExample} from './CodeExamples';
 import {fetchData} from './FetchData';
-import {toggleResultsView, buildJSONView, buildResultsView} from './Results';
+import {buildJSONView, buildResultsView} from './Results';
+import {initialiseTabFunctionality} from '../utils/tabs';
 
 export default function tourInit() {
   // Check if endpoint attribute is present - Finished page will not require it
@@ -20,11 +21,11 @@ export default function tourInit() {
     // Results Views
     let resultsData;
     const tryItOut = document.querySelector('[data-tour-tryitout=\'observation\']');
-    const resultsTabs = document.querySelectorAll('[data-tour-results-tab]');
     const datasetResults = document.querySelector('[data-tour-tryitout=\'results\']');
     const resultsContainer = document.querySelector('[data-tour-results-type]');
 
     tryItOut.addEventListener('click', async function() {
+      initialiseTabFunctionality();
       // Fetch data; disable Try It Out button while waiting for response/error
       tryItOut.setAttribute('disabled', 'true');
       tryItOut.classList.add('btn--primary-disabled');
@@ -37,13 +38,6 @@ export default function tourInit() {
 
       buildJSONView(resultsData);
       buildResultsView(resultsContainer, resultsData, resultsType);
-    });
-
-    // Toggle between Results and JSON
-    resultsTabs.forEach((tab) => {
-      tab.addEventListener('click', (e) => {
-        toggleResultsView(e.target.dataset.tourResultsTab);
-      });
     });
   }
 }

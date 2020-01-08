@@ -30,10 +30,10 @@ title: Take a tour of the API
         </div>
 
         <div class="hidden margin-top--2" data-tour-tryitout="results">
-            <div class="btn-group">
-                <button type="button" class="btn btn--secondary btn--chart-control btn--secondary-active" data-tour-results-tab="json">JSON</button>
+            <div class="btn-group" role="tablist">
+                <a type="button" id="json-tab" role="tab" tabindex="0" aria-controls="json" class="btn btn--secondary btn--chart-control btn--secondary-active" data-tour-results-tab="json">JSON</a>
             </div>
-            <div data-tour-results-view="json" class="tour__results-container">
+            <div id="json" data-tour-results-view="json" tabindex="0" class="tour__results-container" role="tabpanel" aria-labelledby="json-tab" aria-hidden="false">
                 <div class="markdown">
                     <pre class="tour__json-container"></pre>
                 </div>

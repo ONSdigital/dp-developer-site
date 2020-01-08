@@ -31,16 +31,16 @@ title: Take a tour of the API
         </div>
 
         <div class="hidden margin-top--2" data-tour-tryitout="results">
-            <div class="btn-group">
-                <button type="button" class="btn btn--secondary btn--chart-control btn--secondary-active" data-tour-results-tab="json">JSON</button>
-                <button type="button" class="btn btn--secondary btn--chart-control" data-tour-results-tab="results">Results</button>
+            <div class="btn-group" role="tablist">
+                <a type="button" id="json-tab" role="tab" tabindex="0" aria-controls="json" class="btn btn--secondary btn--chart-control tour__tab" aria-selected="true" data-tour-results-tab="json">JSON</a>
+                <a type="button" id="results-tab" role="tab" tabindex="0" aria-controls="results" class="btn btn--secondary btn--chart-control" data-tour-results-tab="results">Content</a>
             </div>
-            <div data-tour-results-view="json" class="tour__results-container">
+            <div id="json" data-tour-results-view="json" tabindex="0" class="tour__results-container" role="tabpanel" aria-labelledby="json-tab" aria-selected="true" aria-hidden="false">
                 <div class="markdown">
                     <pre class="tour__json-container"></pre>
                 </div>
             </div>
-            <p data-tour-results-view="results" class="hidden" data-tour-results-type="singlePoint" id="tryitout-get-observation-result-result"></p>
+            <p id="results" data-tour-results-view="results" tabindex="0" data-tour-results-type="singlePoint" class="tour__results-container" role="tabpanel" aria-labelledby="results-tab" aria-hidden="true"></p>
         </div>
     </section>
     <hr class="margin-top--3">

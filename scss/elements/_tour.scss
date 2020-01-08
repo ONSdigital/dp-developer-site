@@ -16,4 +16,10 @@
     &__endpoint-text {
         word-break: break-word;
     }
+
+    &__tab {
+        &[aria-selected=true] {
+            background-color: #222;
+        }
+    }
 }
