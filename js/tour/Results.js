@@ -1,9 +1,8 @@
 import {chart} from 'highcharts';
 import {orderByDate} from '../utils/orderByDate';
 
-const buildJSONView = (response) => {
-  const jsonTextContainer = document.querySelector('[data-tour-results-view=\'json\'] > .markdown > pre');
-  jsonTextContainer.innerHTML = `<code>${JSON.stringify(response, null, 2)}</code>`;
+const buildJSONView = (container, response) => {
+  container.innerHTML = `<code>${JSON.stringify(response, null, 2)}</code>`;
 };
 
 const buildResultsView = (el, response, resultType) => {

@@ -1,17 +1,16 @@
 const codeBlock = document.createElement('pre');
-const codeContainer = document.querySelector('[data-tour-example-block]');
 
-const toggleCodeExample = (url) => {
-  if (codeContainer.classList.contains('hidden')) {
-    codeContainer.classList.remove('hidden');
-    buildCodeExample(url);
+const toggleCodeExample = (container, url) => {
+  if (container.classList.contains('hidden')) {
+    container.classList.remove('hidden');
+    buildCodeExample(container, url);
   } else {
-    codeContainer.classList.add('hidden');
+    container.classList.add('hidden');
     codeBlock.innerHTML = '';
   }
 };
 
-const buildCodeExample = (url) => {
+const buildCodeExample = (container, url) => {
   codeBlock.innerHTML =
     `<code>
         fetch("${url}")
@@ -25,7 +24,7 @@ const buildCodeExample = (url) => {
                 console.log(error);
             });
     </code>`;
-  codeContainer.appendChild(codeBlock);
+  container.appendChild(codeBlock);
 };
 
 export {toggleCodeExample, buildCodeExample};

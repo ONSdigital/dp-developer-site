@@ -1,9 +1,14 @@
-const tabs = document.querySelectorAll('[role="tab"]');
-const tabPanels = document.querySelectorAll('[role="tabpanel"]');
-const tabList = document.querySelector('[role=tablist]');
-let activeTab = document.querySelector('[role=tab][aria-selected=true]');
+let tabs;
+let tabPanels;
+let tabList;
+let activeTab;
 
-const initialiseTabFunctionality = () => {
+const initialiseTabFunctionality = (container) => {
+  tabs = container.querySelectorAll('[role="tab"]');
+  tabPanels = container.querySelectorAll('[role="tabpanel"]');
+  tabList = container.querySelector('[role=tablist]');
+  activeTab = container.querySelector('[role=tab][aria-selected=true]');
+
   tabs.forEach((tab) => {
     tab.addEventListener('click', (e) => {
       e.preventDefault();

@@ -5,39 +5,39 @@ import {buildJSONView, buildResultsView} from './Results';
 import {initialiseTabFunctionality} from '../utils/tabs';
 
 export default function tourInit() {
-  // Check if endpoint attribute is present - Finished page will not require it
-  if (document.querySelector('[data-tour-endpoint]')) {
-    // Build API URL
-    const endpoint = document.querySelector('[data-tour-endpoint]').dataset.tourEndpoint;
-    const url = `https://api.beta.ons.gov.uk/v1${endpoint}`;
+  // Build API URL
+  const endpoint = document.querySelector('[data-tour-endpoint]').dataset.tourEndpoint;
+  const url = `https://api.beta.ons.gov.uk/v1${endpoint}`;
 
-    // Toggle Code Example
-    const jsExample = document.querySelector('[data-tour-example]');
+  // Toggle Code Example
+  const exampleContainer = document.querySelector('[data-tour-example-block]');
+  const jsExample = document.querySelector('[data-tour-example]');
 
-    jsExample.addEventListener('click', function() {
-      toggleCodeExample(url);
-    });
+  jsExample.addEventListener('click', function() {
+    toggleCodeExample(exampleContainer, url);
+  });
 
-    // Results Views
-    let resultsData;
-    const tryItOut = document.querySelector('[data-tour-tryitout=\'observation\']');
-    const datasetResults = document.querySelector('[data-tour-tryitout=\'results\']');
-    const resultsContainer = document.querySelector('[data-tour-results-type]');
+  // Results Views
+  let resultsData;
+  const tryItOut = document.querySelector('[data-tour-tryitout=\'observation\']');
+  const resultsContainer = document.querySelector('[data-tour-tryitout=\'results\']');
+  const datasetResults = document.querySelector('[data-tour-tryitout=\'results\']');
+  const resultsOutputContainer = document.querySelector('[data-tour-results-type]');
+  const jsonContainer = document.querySelector('[data-tour-results-view=\'json\'] > .markdown > pre');
 
-    tryItOut.addEventListener('click', async function() {
-      initialiseTabFunctionality();
-      // Fetch data; disable Try It Out button while waiting for response/error
-      tryItOut.setAttribute('disabled', 'true');
-      tryItOut.classList.add('btn--primary-disabled');
-      resultsData = await fetchData(url);
-      datasetResults.classList.remove('hidden');
-      tryItOut.classList.remove('btn--primary-disabled');
+  tryItOut.addEventListener('click', async function() {
+    initialiseTabFunctionality(resultsContainer);
+    // Fetch data; disable Try It Out button while waiting for response/error
+    tryItOut.setAttribute('disabled', 'true');
+    tryItOut.classList.add('btn--primary-disabled');
+    resultsData = await fetchData(url);
+    datasetResults.classList.remove('hidden');
+    tryItOut.classList.remove('btn--primary-disabled');
 
-      // Get results type string. If none present, assume current page of tour does not have a Results section and default to 'jsonOnly'
-      const resultsType = resultsContainer ? resultsContainer.dataset.tourResultsType : 'jsonOnly';
+    // Get results type string. If none present, assume current page of tour does not have a Results section and default to 'jsonOnly'
+    const resultsType = resultsOutputContainer ? resultsOutputContainer.dataset.tourResultsType : 'jsonOnly';
 
-      buildJSONView(resultsData);
-      buildResultsView(resultsContainer, resultsData, resultsType);
-    });
-  }
+    buildJSONView(jsonContainer, resultsData);
+    buildResultsView(resultsOutputContainer, resultsData, resultsType);
+  });
 }
