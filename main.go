@@ -340,9 +340,10 @@ func (s site) generateStaticPages(orderedNav *Nav) {
 			}
 
 			templateBytes, metadata := generateStaticMetadata(bytes)
-			fileDir := strings.TrimSuffix(strings.TrimPrefix(path, "static"), "index.html")
+			fileDir := strings.TrimSuffix(strings.TrimPrefix(path, "static/"), "index.html")
 			s[fileDir] = Page{
 				Title:        metadata["title"],
+				Path:         fileDir,
 				Data:         template.HTML(templateBytes),
 				nav:          orderedNav,
 				templateName: "html",
