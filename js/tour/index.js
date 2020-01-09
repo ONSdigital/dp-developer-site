@@ -18,10 +18,8 @@ export default function tourInit() {
   });
 
   // Results Views
-  let resultsData;
   const tryItOut = document.querySelector('[data-tour-tryitout=\'observation\']');
   const resultsContainer = document.querySelector('[data-tour-tryitout=\'results\']');
-  const datasetResults = document.querySelector('[data-tour-tryitout=\'results\']');
   const resultsOutputContainer = document.querySelector('[data-tour-results-type]');
   const jsonContainer = document.querySelector('[data-tour-results-view=\'json\'] > .markdown > pre');
 
@@ -30,8 +28,8 @@ export default function tourInit() {
     // Fetch data; disable Try It Out button while waiting for response/error
     tryItOut.setAttribute('disabled', 'true');
     tryItOut.classList.add('btn--primary-disabled');
-    resultsData = await fetchData(url);
-    datasetResults.classList.remove('hidden');
+    const resultsData = await fetchData(url);
+    resultsContainer.classList.remove('hidden');
     tryItOut.classList.remove('btn--primary-disabled');
 
     // Get results type string. If none present, assume current page of tour does not have a Results section and default to 'jsonOnly'
