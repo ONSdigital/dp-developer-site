@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
 	"html/template"
 	"io/ioutil"
@@ -96,6 +97,7 @@ type PathMethod struct {
 type MethodResponse struct {
 	Status int
 	openAPI.ResponseProps
+	ExampleResponse string
 }
 
 type tags struct {
@@ -286,9 +288,13 @@ func generateMethods(path openAPI.PathItem) (methods []PathMethod) {
 
 func generateResponses(responses *openAPI.Responses) (orderedResponses []MethodResponse) {
 	for status, response := range responses.StatusCodeResponses {
+
+		json, _ := json.MarshalIndent(response.ResponseProps.Schema, "", "  ")
+
 		orderedResponses = append(orderedResponses, MethodResponse{
-			Status:        status,
-			ResponseProps: response.ResponseProps,
+			Status:          status,
+			ResponseProps:   response.ResponseProps,
+			ExampleResponse: string(json),
 		})
 	}
 
