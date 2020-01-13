@@ -93,6 +93,18 @@
 			"revisionTime": "2018-03-23T15:44:45Z"
 		},
 		{
+			"checksumSHA1": "ibjotVl1/AIWtMOgxtk/7uc+ml4=",
+			"path": "github.com/mattn/go-colorable",
+			"revision": "c742d6fb21c22a5bb6f768a683e6782e52fe0311",
+			"revisionTime": "2020-01-10T01:04:45Z"
+		},
+		{
+			"checksumSHA1": "5sA40iCp9oYkz+rlnGPKH0TAL34=",
+			"path": "github.com/mattn/go-isatty",
+			"revision": "219d1dc2592ebc2adbddc32cebf5ad273e81fa69",
+			"revisionTime": "2020-01-10T01:01:25Z"
+		},
+		{
 			"checksumSHA1": "c7jHQZk5ZEsFR9EXsWJXkszPBZA=",
 			"path": "github.com/russross/blackfriday",
 			"revision": "5f33e7b7878355cd2b7e6b8eefc48a5472c69f70",
