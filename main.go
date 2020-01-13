@@ -6,18 +6,15 @@ import (
 	"fmt"
 	"html/template"
 	"io/ioutil"
-	"log"
 	"os"
 	"path/filepath"
 	"sort"
 	"strings"
 
-	"github.com/sourcegraph/syntaxhighlight"
-
-	"github.com/PuerkitoBio/goquery"
-
 	"github.com/ONSdigital/dp-developer-site/renderer"
 	"github.com/ONSdigital/dp-developer-site/spec"
+	"github.com/PuerkitoBio/goquery"
+	"github.com/sourcegraph/syntaxhighlight"
 	blackfriday "gopkg.in/russross/blackfriday.v2"
 
 	openAPI "github.com/go-openapi/spec"
@@ -122,29 +119,30 @@ func main() {
 	}
 
 	if err := sources.Load(); err != nil {
-		log.Fatal(err)
+		// log.Event(nil, "Error loading Swagger API docs", log.Error(err))
 	}
 
 	siteModel := generateModel(sources)
-	fmt.Println("Creating files...")
+	// log.Event(nil, "Creating files...")
 	for key, value := range siteModel {
 		if err := os.MkdirAll("assets/"+key, 0755); err != nil {
-			log.Fatal(err)
+			// log.Event(nil, "Error creating assets directories", nil, log.Error(err))
 		}
 
 		file, err := os.Create("assets/" + key + "/index.html")
 		if err != nil {
-			log.Fatal(err)
+			// log.Event(nil, "Error creating index.html files within the assets directories", log.Error(err))
 		}
 		defer file.Close()
 
 		if err = renderer.Render(file, value.templateName, value); err != nil {
-			log.Fatal(err)
+			// log.Event(nil, "Error rendering templates", log.Error(err))
 		}
 	}
 
-	fmt.Println("Files created")
-	fmt.Println("Finished!")
+	// log.Event(nil, "Files created.")
+
+	// log.Event(nil, "Finished!")
 }
 
 func generateModel(APIs spec.APIs) site {
@@ -292,7 +290,8 @@ func generateResponses(responses *openAPI.Responses) (orderedResponses []MethodR
 		json, err := json.MarshalIndent(response.ResponseProps.Schema, "", "  ")
 
 		if err != nil {
-			log.Fatal(err)
+			// log.Event(nil, "Error marshalling JSON", log.Error(err))
+			// json = []byte{}
 		}
 
 		orderedResponses = append(orderedResponses, MethodResponse{
@@ -333,7 +332,7 @@ func (s site) generateStaticPages(orderedNav *Nav) {
 		if strings.HasSuffix(path, "index.md") {
 			bytes, err := ioutil.ReadFile(path)
 			if err != nil {
-				log.Fatal(err)
+				// log.Event(nil, "Error reading file index.md", nil, log.Error(err))
 			}
 
 			templateBytes, metadata := generateStaticMetadata(bytes)
@@ -351,7 +350,7 @@ func (s site) generateStaticPages(orderedNav *Nav) {
 		return nil
 	})
 	if err != nil {
-		log.Fatal(err)
+		// log.Event(nil, "Error generating static pages", nil, log.Error(err))
 	}
 }
 
@@ -400,20 +399,20 @@ func generateStaticMetadata(md []byte) (b []byte, metadata map[string]string) {
 func generateStyledCodeHTML(html []byte) []byte {
 	doc, err := goquery.NewDocumentFromReader(bytes.NewReader(html))
 	if err != nil {
-		log.Fatal(err)
+		// log.Event(nil, "Error reading html file", nil, log.Error(err))
 	}
 
 	doc.Find("code[class*=\"language-\"]").Each(func(i int, s *goquery.Selection) {
 		formattedCode, err := syntaxhighlight.AsHTML([]byte(s.Text()))
 		if err != nil {
-			log.Fatal(err)
+			// log.Event(nil, "Error formatting code blocks", nil, log.Error(err))
 		}
 		s.SetHtml(string(formattedCode))
 	})
 
 	formattedHTML, err := doc.Html()
 	if err != nil {
-		log.Fatal()
+		// log.Event(nil, "Error creating formatted HTML code", nil, log.Error(err))
 	}
 
 	formattedHTML = strings.Replace(formattedHTML, "<html><head></head><body>", "", 1)
