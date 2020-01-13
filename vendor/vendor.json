@@ -3,6 +3,18 @@
 	"ignore": "test",
 	"package": [
 		{
+			"checksumSHA1": "IV6CmyPxZnOlkVCcXXYVuBwUz+I=",
+			"path": "github.com/ONSdigital/go-ns/common",
+			"revision": "f144c4ec2e58b1c191107eb9500ef3093fae4042",
+			"revisionTime": "2019-11-04T12:12:06Z"
+		},
+		{
+			"checksumSHA1": "r2PdGOPVGXt0WTdGQXN5aHfp0RM=",
+			"path": "github.com/ONSdigital/log.go/log",
+			"revision": "2a610b254f2019adc3e37e3f3c3c89888325dc14",
+			"revisionTime": "2019-11-27T13:41:26Z"
+		},
+		{
 			"checksumSHA1": "uvutHOxcwOHqLNLbHcTz5cI3fEA=",
 			"path": "github.com/PuerkitoBio/goquery",
 			"revision": "ea1bc64a63088ac2bbf1a2edcae38413794a7710",
@@ -27,6 +39,12 @@
 			"revisionTime": "2018-02-20T18:43:36Z"
 		},
 		{
+			"checksumSHA1": "ZAx+0+nA0f+pk1LTqvCqe24D2+U=",
+			"path": "github.com/fatih/color",
+			"revision": "daf2830f2741ebb735b21709a520c5f37d642d85",
+			"revisionTime": "2020-01-07T17:30:06Z"
+		},
+		{
 			"checksumSHA1": "6dTGC5A1Y1xnv+JSi9z8S6JfnH0=",
 			"path": "github.com/go-openapi/jsonpointer",
 			"revision": "3a0015ad55fa9873f41605d3e8f28cd279c32ab2",
@@ -49,6 +67,12 @@
 			"path": "github.com/go-openapi/swag",
 			"revision": "811b1089cde9dad18d4d0c2d09fbdbf28dbd27a5",
 			"revisionTime": "2018-04-05T20:17:59Z"
+		},
+		{
+			"checksumSHA1": "JGMpO/GI103ayDqDsEoOsWx0yVE=",
+			"path": "github.com/hokaccha/go-prettyjson",
+			"revision": "108c894c2c0e4a3236172e3698c14f1e3199548d",
+			"revisionTime": "2019-08-18T11:41:11Z"
 		},
 		{
 			"checksumSHA1": "T8soMJArSZrYnhmdpAnq1bVxQ6Q=",
@@ -115,6 +139,12 @@
 			"path": "golang.org/x/net/idna",
 			"revision": "5f9ae10d9af5b1c89ae6904293b14b064d4ada23",
 			"revisionTime": "2018-04-20T07:04:21Z"
+		},
+		{
+			"checksumSHA1": "ATYlQBUz7wE9/XGUo8LzqxnET84=",
+			"path": "golang.org/x/sys/unix",
+			"revision": "4a24b406529242041050cb1dec3e0e4c46a5f1b6",
+			"revisionTime": "2019-12-18T06:34:59Z"
 		},
 		{
 			"checksumSHA1": "CbpjEkkOeh0fdM/V8xKDdI0AA88=",
