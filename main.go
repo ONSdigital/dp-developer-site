@@ -289,7 +289,11 @@ func generateMethods(path openAPI.PathItem) (methods []PathMethod) {
 func generateResponses(responses *openAPI.Responses) (orderedResponses []MethodResponse) {
 	for status, response := range responses.StatusCodeResponses {
 
-		json, _ := json.MarshalIndent(response.ResponseProps.Schema, "", "  ")
+		json, err := json.MarshalIndent(response.ResponseProps.Schema, "", "  ")
+
+		if err != nil {
+			log.Fatal(err)
+		}
 
 		orderedResponses = append(orderedResponses, MethodResponse{
 			Status:          status,
@@ -302,7 +306,7 @@ func generateResponses(responses *openAPI.Responses) (orderedResponses []MethodR
 		return orderedResponses[i].Status < orderedResponses[j].Status
 	})
 
-	return
+	return nil
 }
 
 func contains(sl []string, s string) (b bool) {
