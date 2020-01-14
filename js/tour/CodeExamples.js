@@ -1,11 +1,13 @@
 const codeBlock = document.createElement('pre');
 
-const toggleCodeExample = (container, url) => {
+const toggleCodeExample = (container, linkContainer, url) => {
   if (container.classList.contains('hidden')) {
     container.classList.remove('hidden');
+    linkContainer.innerText = 'Hide JavaScript example';
     buildCodeExample(container, url);
   } else {
     container.classList.add('hidden');
+    linkContainer.innerText = 'Show JavaScript example';
     codeBlock.innerHTML = '';
   }
 };

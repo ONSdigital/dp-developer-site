@@ -14,7 +14,7 @@ export default function tourInit() {
   const jsExample = document.querySelector('[data-tour-example]');
 
   jsExample.addEventListener('click', function() {
-    toggleCodeExample(exampleContainer, url);
+    toggleCodeExample(exampleContainer, jsExample, url);
   });
 
   // Results Views

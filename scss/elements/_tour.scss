@@ -17,6 +17,10 @@
         word-break: break-word;
     }
 
+    &__tabs {
+        padding: .3rem 0;
+    }
+
     &__tab {
         &[aria-selected=true] {
             background-color: #222;
