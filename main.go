@@ -15,7 +15,7 @@ import (
 
 	"github.com/ONSdigital/dp-developer-site/renderer"
 	"github.com/ONSdigital/dp-developer-site/spec"
-	logger "github.com/ONSdigital/log.go/log"
+	"github.com/ONSdigital/log.go/log"
 	"github.com/PuerkitoBio/goquery"
 	blackfriday "gopkg.in/russross/blackfriday.v2"
 
@@ -121,29 +121,29 @@ func main() {
 	}
 
 	if err := sources.Load(); err != nil {
-		logger.Event(nil, "Failed to load sources", logger.Error(err))
+		log.Event(nil, "Failed to load sources", log.Error(err))
 	}
 
 	siteModel := generateModel(sources)
-	logger.Event(nil, "Creating files...")
+	log.Event(nil, "Creating files...")
 	for key, value := range siteModel {
 		if err := os.MkdirAll("assets/"+key, 0755); err != nil {
-			logger.Event(nil, "Failed to create directories", logger.Error(err))
+			log.Event(nil, "Failed to create directories", log.Error(err))
 		}
 
 		file, err := os.Create("assets/" + key + "/index.html")
 		if err != nil {
-			logger.Event(nil, "Failed to create HTML files", logger.Error(err))
+			log.Event(nil, "Failed to create HTML files", log.Error(err))
 		}
 		defer file.Close()
 
 		if err = renderer.Render(file, value.templateName, value); err != nil {
-			logger.Event(nil, "Failed to render templates", logger.Error(err))
+			log.Event(nil, "Failed to render templates", log.Error(err))
 		}
 	}
 
-	logger.Event(nil, "Files created.")
-	logger.Event(nil, "Finished!")
+	log.Event(nil, "Files created.")
+	log.Event(nil, "Finished!")
 }
 
 func generateModel(APIs spec.APIs) site {
@@ -291,7 +291,7 @@ func generateResponses(responses *openAPI.Responses) (orderedResponses []MethodR
 		json, err := json.MarshalIndent(response.ResponseProps.Schema, "", "  ")
 
 		if err != nil {
-			logger.Event(nil, "Failed to marshall json", logger.Error(err))
+			log.Event(nil, "Failed to marshall json", log.Error(err))
 			json = []byte{}
 		}
 
@@ -334,7 +334,7 @@ func (s site) generateStaticPages(orderedNav *Nav) {
 		if strings.HasSuffix(path, "index.md") {
 			bytes, err := ioutil.ReadFile(path)
 			if err != nil {
-				logger.Event(nil, "Failed to read index.md file", logger.Error(err))
+				log.Event(nil, "Failed to read index.md file", log.Error(err))
 			}
 
 			templateBytes, metadata := generateStaticMetadata(bytes)
@@ -352,7 +352,7 @@ func (s site) generateStaticPages(orderedNav *Nav) {
 		return nil
 	})
 	if err != nil {
-		logger.Event(nil, "Failed to generate static files", logger.Error(err))
+		log.Event(nil, "Failed to generate static files", log.Error(err))
 	}
 }
 
@@ -401,20 +401,20 @@ func generateStaticMetadata(md []byte) (b []byte, metadata map[string]string) {
 func generateStyledCodeHTML(html []byte) []byte {
 	doc, err := goquery.NewDocumentFromReader(bytes.NewReader(html))
 	if err != nil {
-		logger.Event(nil, "Failed to read html file", logger.Error(err))
+		log.Event(nil, "Failed to read html file", log.Error(err))
 	}
 
 	doc.Find("code[class*=\"language-\"]").Each(func(i int, s *goquery.Selection) {
 		formattedCode, err := syntaxhighlight.AsHTML([]byte(s.Text()))
 		if err != nil {
-			logger.Event(nil, "Failed to format HTML code blocks", logger.Error(err))
+			log.Event(nil, "Failed to format HTML code blocks", log.Error(err))
 		}
 		s.SetHtml(string(formattedCode))
 	})
 
 	formattedHTML, err := doc.Html()
 	if err != nil {
-		logger.Event(nil, "Failed to find formatted HTML", logger.Error(err))
+		log.Event(nil, "Failed to find formatted HTML", log.Error(err))
 	}
 
 	formattedHTML = strings.Replace(formattedHTML, "<html><head></head><body>", "", 1)
