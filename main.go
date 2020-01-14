@@ -125,7 +125,7 @@ func main() {
 	}
 
 	siteModel := generateModel(sources)
-	log.Event(nil, "Creating files...")
+	log.Event(nil, "Creating assets directories and HTML files")
 	for key, value := range siteModel {
 		if err := os.MkdirAll("assets/"+key, 0755); err != nil {
 			log.Event(nil, "Failed to create directories", log.Error(err))
@@ -143,7 +143,6 @@ func main() {
 	}
 
 	log.Event(nil, "Files created.")
-	log.Event(nil, "Finished!")
 }
 
 func generateModel(APIs spec.APIs) site {
@@ -291,7 +290,7 @@ func generateResponses(responses *openAPI.Responses) (orderedResponses []MethodR
 		json, err := json.MarshalIndent(response.ResponseProps.Schema, "", "  ")
 
 		if err != nil {
-			log.Event(nil, "Failed to marshall json", log.Error(err))
+			log.Event(nil, "Failed to marshall API responses to json", log.Error(err))
 			json = []byte{}
 		}
 
