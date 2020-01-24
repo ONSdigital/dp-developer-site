@@ -24,6 +24,12 @@ title: Take a tour of the API
             <button class="btn btn--primary" data-tour-tryitout="observation" data-tour-page="getting-started">Try it out</button>
         </div>
 
+        <div class="hidden margin-top--2" data-tour="error" role="alert">
+            <div class="font-size--16 form-error filter-overview__error-message margin-top--1 margin-bottom--1">
+                An error occurred when trying to display results. Please try again.
+            </div>
+        </div>
+    
         <div class="hidden margin-top--2" data-tour-tryitout="results">
             <div class="btn-group tour__tabs" role="tablist">
                 <a type="button" id="json-tab" role="tab" tabindex="0" aria-controls="json" class="btn btn--secondary btn--chart-control tour__tab" aria-selected="true" data-tour-results-tab="json">JSON</a>

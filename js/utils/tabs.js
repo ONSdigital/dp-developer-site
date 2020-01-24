@@ -54,6 +54,4 @@ const setActiveTab = (id) => {
   }
 };
 
-
 export {initialiseTabFunctionality};
-
