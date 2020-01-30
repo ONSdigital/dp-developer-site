@@ -17,7 +17,7 @@ const buildResultsView = (el, response, resultType) => {
       buildText(el, response.observations[0].observation);
       break;
     case 'chart':
-      buildChart(response);
+      buildChart(el, response);
       break;
     case 'jsonOnly':
       return;
@@ -52,7 +52,7 @@ const buildText = (resultsContainer, text) => {
   }
 };
 
-const buildChart = (data) => {
+const buildChart = (chartContainer, data) => {
   // The relevant element where the chart needs to be added in the html should have an id of 'chart'
   let timeseries = [];
   const maxNumberOfPointsOnChart = 10;
@@ -73,7 +73,7 @@ const buildChart = (data) => {
 
   timeseries = timeseries.sort(orderByDate).splice(0, maxNumberOfPointsOnChart);
 
-  chart('chart', {
+  chart(chartContainer, {
     series: [
       {
         data: timeseries,
