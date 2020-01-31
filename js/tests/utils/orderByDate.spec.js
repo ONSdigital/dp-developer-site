@@ -1,4 +1,3 @@
-/* eslint-disable no-extend-native */
 import {orderByDate} from '../../utils/orderByDate';
 
 describe('order by date tests', () => {
