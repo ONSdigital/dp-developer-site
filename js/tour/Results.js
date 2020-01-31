@@ -53,7 +53,6 @@ const buildText = (resultsContainer, text) => {
 };
 
 const buildChart = (chartContainer, data) => {
-  // The relevant element where the chart needs to be added in the html should have an id of 'chart'
   let timeseries = [];
   const maxNumberOfPointsOnChart = 10;
 
