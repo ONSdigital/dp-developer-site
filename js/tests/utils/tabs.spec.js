@@ -73,7 +73,8 @@ describe('tab functionality', () => {
       initialiseTabFunctionality(container);
       const tabList = container.querySelector('[role=tablist]');
       tabList.dispatchEvent(leftArrowPress);
-      expect(container.querySelector('[aria-selected=true]').innerHTML === '2').toBe(true);
+      tabList.dispatchEvent(leftArrowPress);
+      expect(container.querySelector('[aria-selected=true]').innerHTML === '1').toBe(true);
     });
   });
 });
