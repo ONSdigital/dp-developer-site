@@ -39,4 +39,4 @@ For example: Population Estimates for UK, England and Wales, Scotland and Northe
 ### Version
 A specific instance of the edition at a point in time. New versions can be published as a result of corrections, revisions or new data becoming available.
 
-Are these definitions helpful? Are there other terms we need to explain? [Let us know](mailto:customise.my.data@ons.gsi.gov.uk)
+Are these definitions helpful? Are there other terms we need to explain? [Let us know](mailto:customise.my.data@ons.gov.uk)
