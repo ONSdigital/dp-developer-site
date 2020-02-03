@@ -2,188 +2,210 @@
 {{$rootPath := $firstNavItem.GetRelativePath .Path}}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ONS developer site{{if .Title}} - {{.Title}}{{end}}</title>
-    <link rel="preload" as="font"  type="font/woff2" href="https://cdn.ons.gov.uk/assets/fonts/open-sans-regular/OpenSans-Regular-webfont.woff2" crossorigin>
-    <link rel="preload" as="font"  type="font/woff2" href="https://cdn.ons.gov.uk/assets/fonts/open-sans-bold/OpenSans-Bold-webfont.woff2" crossorigin>
-    <link rel="stylesheet" href="https://cdn.ons.gov.uk/sixteens/eb938ca/css/main.css">
-    <link rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
-    <link rel="stylesheet" href="/{{$rootPath}}assets/css/main.css">
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-MBCBVQS');</script>
-    <!-- End Google Tag Manager -->
-</head>
-<body class="adjust-font-size--16 link-adjust sticky-footer">
-    <header class="padding-bottom-md--1 padding-bottom-sm--3 border-bottom--iron-sm border-bottom--iron-md">
-        <!-- Google Tag Manager (noscript) -->
-        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MBCBVQS"
-                            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-        <!-- End Google Tag Manager (noscript) -->
-        <a class="skiplink" href="#main" tabindex="0">Skip to main content</a>
-        <div class="wrapper">
-            <div class="header col-wrap">
-                <div class="col col--lg-one-third col--md-half">
-                    <a class="inline-block" href="{{$rootPath}}">
-                        <img class="logo" src="https://cdn.ons.gov.uk/assets/images/ons-logo.svg" alt="Office for National Statistics">
-                    </a>
-                </div>
-                <div class="col col--lg-two-thirds col--md-half header-title">
-                    <strong>Developer site</strong>
-                </div>
-            </div>
-        </div>
-    </header>
-    <main id="main" role="main" tabindex="-1">
-        <div class="wrapper margin-bottom-sm--3 margin-bottom-md--6">
-            <div class="col-wrap">
-                <div class="col col--md-one-half col--lg-one-third sticky sticky--lg-only">
-                    <div class="margin-top-sm--4 margin-top-md--5 margin-right-lg--2 padding-top--1 padding-right--1 padding-bottom--1 padding-left--1 background--iron-light">
-                        <h2 class="font-size--18 margin-top--2"><strong>Contents:</strong></h2>
-                        <nav>
-                            <ul class="list--neutral">
-                            {{range .Nav}}
-                                <li>
-                                    <a href="/{{.GetRelativePath $.Path}}">
-                                        {{if .IsActive $.Path}}
-                                            <strong>{{.Name}}</strong>
-                                        {{else}}
-                                            {{.Name}}
-                                        {{end}}
-                                    </a>
-                                </li>
-                            {{end}}
-                            </ul>
-                        </nav>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>ONS developer site{{if .Title}} - {{.Title}}
+            {{end}}
+        </title>
+        <link rel="preload" as="font"  type="font/woff2" href="https://cdn.ons.gov.uk/assets/fonts/open-sans-regular/OpenSans-Regular-webfont.woff2" crossorigin>
+        <link rel="preload" as="font"  type="font/woff2" href="https://cdn.ons.gov.uk/assets/fonts/open-sans-bold/OpenSans-Bold-webfont.woff2" crossorigin>
+        <link rel="stylesheet" href="https://cdn.ons.gov.uk/sixteens/eb938ca/css/main.css">
+        <link rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+        <link rel="stylesheet" href="/{{$rootPath}}assets/css/main.css">
+        <!-- Google Tag Manager -->
+        <script>
+            (function (w, d, s, l, i) {
+                w[l] = w[l] || [];
+                w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s),
+                    dl = l != 'dataLayer'
+                        ? '&l=' + l
+                        : '';
+                j.async = true;
+                j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f
+                    .parentNode
+                    .insertBefore(j, f);
+            })(window, document, 'script', 'dataLayer', 'GTM-MBCBVQS');
+        </script>
+        <!-- End Google Tag Manager -->
+    </head>
+    <body class="adjust-font-size--16 link-adjust sticky-footer">
+        <header class="padding-bottom-md--1 padding-bottom-sm--3 border-bottom--iron-sm border-bottom--iron-md">
+            <!-- Google Tag Manager (noscript) -->
+            <noscript>
+                <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MBCBVQS"
+                            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+            </noscript>
+            <!-- End Google Tag Manager (noscript) -->
+            <a class="skiplink" href="#main" tabindex="0">Skip to main content</a>
+            <div class="wrapper">
+                <div class="header col-wrap">
+                    <div class="col col--lg-one-third col--md-half">
+                        <a class="inline-block" href="{{$rootPath}}">
+                            <img class="logo" src="https://cdn.ons.gov.uk/assets/images/ons-logo.svg" alt="Office for National Statistics">
+                        </a>
+                    </div>
+                    <div class="col col--lg-two-thirds col--md-half header-title">
+                        <strong>Developer site</strong>
                     </div>
                 </div>
-                <div class="col col--md-one-half col--lg-two-thirds">
-                    <h1 class="break-word margin-top-sm--3 margin-bottom-sm--3"><strong>{{.Title}}</strong></h1>
-                    {{yield}}
+            </div>
+        </header>
+        <main id="main" role="main" tabindex="-1">
+            <div class="wrapper margin-bottom-sm--3 margin-bottom-md--6">
+                <div class="col-wrap">
+                    <div class="col col--md-one-half col--lg-one-third sticky sticky--lg-only">
+                        <div class="margin-top-sm--4 margin-top-md--5 margin-right-lg--2 padding-top--1 padding-right--1 padding-bottom--1 padding-left--1 background--iron-light">
+                            <h2 class="font-size--18 margin-top--2">
+                                <strong>Contents:</strong>
+                            </h2>
+                            <nav>
+                                <ul class="list--neutral">
+                                    {{range .Nav}}
+                                        <li {{if .JSOnly}} class="nojs--hide" {{end}}>
+                                            <a href="/{{.GetRelativePath $.Path}}">
+                                                {{if .IsActive $.Path}}
+                                                    <strong>{{.Name}}</strong>
+                                                {{else}}
+                                                    {{.Name}}
+                                                {{end}}
+                                            </a>
+                                        </li>
+                                    {{end}}
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="col col--md-one-half col--lg-two-thirds">
+                        <h1 class="break-word margin-top-sm--3 margin-bottom-sm--3">
+                            <strong>{{.Title}}</strong>
+                        </h1>
+                        {{yield}}
+                    </div>
                 </div>
             </div>
-        </div>
-    </main>
-    <footer>
-        <div class="wrapper">
-            <div class="improve-this-page" data-module="improve-this-page">
-                <div class="improve-this-page__prompt clearfix" id="feedback-form-header" tabindex="-1">
-                <h3 class="improve-this-page__is-useful-question">Is this page useful?</h3>
-                <a id="feedback-form-yes" class="improve-this-page__page-is-useful-button" href="https://beta.ons.gov.uk/feedback/thanks">
+        </main>
+        <footer>
+            <div class="wrapper">
+                <div class="improve-this-page" data-module="improve-this-page">
+                    <div class="improve-this-page__prompt clearfix" id="feedback-form-header" tabindex="-1">
+                        <h3 class="improve-this-page__is-useful-question">Is this page useful?</h3>
+                        <a id="feedback-form-yes" class="improve-this-page__page-is-useful-button" href="https://beta.ons.gov.uk/feedback/thanks">
                 Yes
                 </a>
-                <a id="feedback-form-no" class="js-toggle" href="https://beta.ons.gov.uk/feedback?service=dev">
+                        <a id="feedback-form-no" class="js-toggle" href="https://beta.ons.gov.uk/feedback?service=dev">
                 No
                 </a>
-                <a id="feedback-form-anything-wrong" class="js-toggle improve-this-page__anything-wrong" href="https://beta.ons.gov.uk/feedback?service=dev">
+                        <a id="feedback-form-anything-wrong" class="js-toggle improve-this-page__anything-wrong" href="https://beta.ons.gov.uk/feedback?service=dev">
                 Can't find what you're looking for?
                 </a>
-                </div>
-                <div id="feedback-form" class="improve-this-page__form js-hidden">
-                    <a href="#" id="feedback-form-close" class="improve-this-page__close js-toggle">Close</a>
-                    <form id="feedback-form-container">
-                        <input name="feedback-form-type" value="footer" type="hidden">
-                        <input name="url" id="feedback-form-url" value="https://developer.beta.ons.gov.uk{{.Path}}" type="hidden">
-                        <div class="form-group">
-                            <label class="form-label-bold" id="description-field-label" for="description-field">
+                    </div>
+                    <div id="feedback-form" class="improve-this-page__form js-hidden">
+                        <a href="#" id="feedback-form-close" class="improve-this-page__close js-toggle">Close</a>
+                        <form id="feedback-form-container">
+                            <input name="feedback-form-type" value="footer" type="hidden">
+                            <input name="url" id="feedback-form-url" value="https://developer.beta.ons.gov.uk{{.Path}}" type="hidden">
+                            <div class="form-group">
+                                <label class="form-label-bold" id="description-field-label" for="description-field">
                             How should we improve this page?
                             </label>
-                            <textarea id="description-field" class="form-control" name="description" rows="5"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label-bold" for="name-field">
+                                <textarea id="description-field" class="form-control" name="description" rows="5"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label-bold" for="name-field">
                             Name (optional)
                                 <span class="form-hint">Include your name and email address if you'd like us to get back to you.</span>
-                            </label>
-                            <input id="name-field" class="form-control" name="name" type="text">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label-bold" id="email-field-label" for="email-field">Email (optional)</label>
-                            <input id="email-field" class="form-control" name="email" type="text">
-                        </div>
-                        <div>
-                            <input id="feedback-form-submit" class="btn btn--primary font-weight-700" value="Send feedback" type="submit">
-                        </div>
-                    </form>
+                                </label>
+                                <input id="name-field" class="form-control" name="name" type="text">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label-bold" id="email-field-label" for="email-field">Email (optional)</label>
+                                <input id="email-field" class="form-control" name="email" type="text">
+                            </div>
+                            <div>
+                                <input id="feedback-form-submit" class="btn btn--primary font-weight-700" value="Send feedback" type="submit">
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
-        <h2 class="visuallyhidden">Footer links</h2>
-        <div class="footer">
-            <div class="wrapper">
-                <nav>
-                    <div class="footer-nav col-wrap">
-                        <div class="col col--lg-one-third col--md-one-third">
-                            <h3 class="footer-nav__heading">Help</h3>
-                            <ul class="footer-nav__list">
-                                <li class="footer-nav__item">
-                                    <a href="/help/accessibility">Accessibility</a>
-                                </li>
-                                <li class="footer-nav__item">
-                                    <a href="/help/cookiesandprivacy">Cookies and privacy</a>
-                                </li>
-                                <li class="footer-nav__item">
-                                    <a href="/help/termsandconditions">Terms and conditions</a>
-                                </li>
-                            </ul>
+            <h2 class="visuallyhidden">Footer links</h2>
+            <div class="footer">
+                <div class="wrapper">
+                    <nav>
+                        <div class="footer-nav col-wrap">
+                            <div class="col col--lg-one-third col--md-one-third">
+                                <h3 class="footer-nav__heading">Help</h3>
+                                <ul class="footer-nav__list">
+                                    <li class="footer-nav__item">
+                                        <a href="/help/accessibility">Accessibility</a>
+                                    </li>
+                                    <li class="footer-nav__item">
+                                        <a href="/help/cookiesandprivacy">Cookies and privacy</a>
+                                    </li>
+                                    <li class="footer-nav__item">
+                                        <a href="/help/termsandconditions">Terms and conditions</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col col--lg-one-third col--md-one-third">
+                                <h3 class="footer-nav__heading">About ONS</h3>
+                                <ul class="footer-nav__list">
+                                    <li class="footer-nav__item">
+                                        <a href="/aboutus/whatwedo">What we do</a>
+                                    </li>
+                                    <li class="footer-nav__item">
+                                        <a href="/aboutus/careers">Careers</a>
+                                    </li>
+                                    <li class="footer-nav__item">
+                                        <a href="/aboutus/contactus">Contact us</a>
+                                    </li>
+                                    <li class="footer-nav__item">
+                                        <a href="/news">News</a>
+                                    </li>
+                                    <li class="footer-nav__item">
+                                        <a href="/aboutus/transparencyandgovernance/freedomofinformationfoi">Freedom of Information</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col col--lg-one-third col--md-one-third">
+                                <h3 class="footer-nav__heading">Connect with us</h3>
+                                <ul class="footer-nav__list">
+                                    <li class="footer-nav__item">
+                                        <a href="https://twitter.com/ONS" class="icon--hide">Twitter</a>
+                                    </li>
+                                    <li class="footer-nav__item">
+                                        <a href="https://www.facebook.com/ONS" class="icon--hide">Facebook</a>
+                                    </li>
+                                    <li class="footer-nav__item">
+                                        <a href="https://www.linkedin.com/company/office-for-national-statistics" class="icon--hide">LinkedIn</a>
+                                    </li>
+                                    <li class="footer-nav__item">
+                                        <a href="https://public.govdelivery.com/accounts/UKONS/subscribers/new" class="icon--hide">Email alerts</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="col col--lg-one-third col--md-one-third">
-                            <h3 class="footer-nav__heading">About ONS</h3>
-                            <ul class="footer-nav__list">
-                                <li class="footer-nav__item">
-                                    <a href="/aboutus/whatwedo">What we do</a>
-                                </li>
-                                <li class="footer-nav__item">
-                                    <a href="/aboutus/careers">Careers</a>
-                                </li>
-                                <li class="footer-nav__item">
-                                    <a href="/aboutus/contactus">Contact us</a>
-                                </li>
-                                <li class="footer-nav__item">
-                                    <a href="/news">News</a>
-                                </li>
-                                <li class="footer-nav__item">
-                                    <a href="/aboutus/transparencyandgovernance/freedomofinformationfoi">Freedom of Information</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col col--lg-one-third col--md-one-third">
-                            <h3 class="footer-nav__heading">Connect with us</h3>
-                            <ul class="footer-nav__list">
-                                <li class="footer-nav__item">
-                                    <a href="https://twitter.com/ONS" class="icon--hide">Twitter</a>
-                                </li>
-                                <li class="footer-nav__item">
-                                    <a href="https://www.facebook.com/ONS" class="icon--hide">Facebook</a>
-                                </li>
-                                <li class="footer-nav__item">
-                                    <a href="https://www.linkedin.com/company/office-for-national-statistics" class="icon--hide">LinkedIn</a>
-                                </li>
-                                <li class="footer-nav__item">
-                                    <a href="https://public.govdelivery.com/accounts/UKONS/subscribers/new" class="icon--hide">Email alerts</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-            <div class="wrapper">
-                <div class="footer-license">
-                    <img class="footer-license__img" alt="OGL" width="60" src="https://www.ons.gov.uk/img/ogl.png">
-                    <p class="footer-license__text margin-left-sm--0">
-                        All content is available under the <a class="icon--hide" href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">Open Government Licence v3.0</a> <span class="icon icon-external--light-small"></span>, except where otherwise stated
+                    </nav>
+                </div>
+                <div class="wrapper">
+                    <div class="footer-license">
+                        <img class="footer-license__img" alt="OGL" width="60" src="https://www.ons.gov.uk/img/ogl.png">
+                        <p class="footer-license__text margin-left-sm--0">
+                        All content is available under the <a class="icon--hide" href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">Open Government Licence v3.0</a>
+                            <span class="icon icon-external--light-small"></span>, except where otherwise stated
                     </p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    </footer>
-    <script>window.feedbackOrigin = "https://beta.ons.gov.uk"</script>
-    <script src="https://cdn.ons.gov.uk/sixteens/eb938ca/js/main.js"></script>
-</body>
+        </footer>
+        <script>
+            window.feedbackOrigin = "https://beta.ons.gov.uk"
+        </script>
+        <script src="https://cdn.ons.gov.uk/sixteens/eb938ca/js/main.js"></script>
+    </body>
 </html>
