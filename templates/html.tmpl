@@ -1,6 +1,13 @@
 {{$firstNavItem := index .Nav 0}}
 {{$rootPath := $firstNavItem.GetRelativePath .Path}}
-<article class="static section__content--static-markdown">
+<noscript>    
+    <div class="margin-top--2" role="alert">
+        <div class="font-size--16 form-error filter-overview__error-message margin-top--1 margin-bottom--1">
+            Please enable JavaScript to view the tour.
+        </div>
+    </div>
+</noscript>
+<article class="nojs--hide static section__content--static-markdown">
     {{.Data}}
 </article>
 <script src="/{{$rootPath}}assets/js/bundle.js"></script>

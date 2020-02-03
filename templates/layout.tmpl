@@ -49,7 +49,7 @@
                         <nav>
                             <ul class="list--neutral">
                             {{range .Nav}}
-                                <li>
+                                <li {{if .JSOnly}} class="nojs--hide" {{end}}>
                                     <a href="/{{.GetRelativePath $.Path}}">
                                         {{if .IsActive $.Path}}
                                             <strong>{{.Name}}</strong>
