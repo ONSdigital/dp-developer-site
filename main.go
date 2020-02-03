@@ -44,7 +44,6 @@ type Nav []NavItem
 type NavItem struct {
 	Name    string
 	SiteURL string
-	JSOnly  bool
 }
 
 func (n NavItem) IsActive(currentPath string) bool {
@@ -149,11 +148,11 @@ func main() {
 func generateModel(APIs spec.APIs) site {
 	var siteModel = make(site)
 	var orderedNav = &Nav{}
-	orderedNav.appendNavItem("Introduction", "", false)
+	orderedNav.appendNavItem("Introduction", "")
 	// FIXME need to handle static content
-	orderedNav.appendNavItem("Take a tour of the API", "tour/getting-started", true)
-	orderedNav.appendNavItem("Guide to requesting specific observation", "observations", false)
-	orderedNav.appendNavItem("Guide to filtering a dataset", "filters", false)
+	orderedNav.appendNavItem("Take a tour of the API", "tour/getting-started")
+	orderedNav.appendNavItem("Guide to requesting specific observation", "observations")
+	orderedNav.appendNavItem("Guide to filtering a dataset", "filters")
 
 	siteModel.generateDynamicPages(APIs, orderedNav)
 	siteModel.generateStaticPages(orderedNav)
@@ -161,11 +160,10 @@ func generateModel(APIs spec.APIs) site {
 	return siteModel
 }
 
-func (n *Nav) appendNavItem(title string, url string, requiresJS bool) {
+func (n *Nav) appendNavItem(title string, url string) {
 	*n = append(*n, NavItem{
 		Name:    title,
 		SiteURL: url,
-		JSOnly:  requiresJS,
 	})
 }
 
@@ -174,7 +172,7 @@ func (s site) generateDynamicPages(a spec.APIs, orderedNav *Nav) {
 		var orderedPaths []APIPath
 		apiDir := strings.TrimSuffix(api.ID, "-api")
 
-		orderedNav.appendNavItem(api.Spec.Info.Title, apiDir, false)
+		orderedNav.appendNavItem(api.Spec.Info.Title, apiDir)
 
 		for key, path := range api.Spec.Paths.Paths {
 			// generateMethods() only includes public methods so checking the length
