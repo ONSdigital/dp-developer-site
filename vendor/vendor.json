@@ -3,6 +3,18 @@
 	"ignore": "test",
 	"package": [
 		{
+			"checksumSHA1": "IV6CmyPxZnOlkVCcXXYVuBwUz+I=",
+			"path": "github.com/ONSdigital/go-ns/common",
+			"revision": "f144c4ec2e58b1c191107eb9500ef3093fae4042",
+			"revisionTime": "2019-11-04T12:12:06Z"
+		},
+		{
+			"checksumSHA1": "r2PdGOPVGXt0WTdGQXN5aHfp0RM=",
+			"path": "github.com/ONSdigital/log.go/log",
+			"revision": "2a610b254f2019adc3e37e3f3c3c89888325dc14",
+			"revisionTime": "2019-11-27T13:41:26Z"
+		},
+		{
 			"checksumSHA1": "uvutHOxcwOHqLNLbHcTz5cI3fEA=",
 			"path": "github.com/PuerkitoBio/goquery",
 			"revision": "ea1bc64a63088ac2bbf1a2edcae38413794a7710",
@@ -25,6 +37,12 @@
 			"path": "github.com/andybalholm/cascadia",
 			"revision": "901648c87902174f774fac311d7f176f8647bdaa",
 			"revisionTime": "2018-02-20T18:43:36Z"
+		},
+		{
+			"checksumSHA1": "ZAx+0+nA0f+pk1LTqvCqe24D2+U=",
+			"path": "github.com/fatih/color",
+			"revision": "daf2830f2741ebb735b21709a520c5f37d642d85",
+			"revisionTime": "2020-01-07T17:30:06Z"
 		},
 		{
 			"checksumSHA1": "6dTGC5A1Y1xnv+JSi9z8S6JfnH0=",
@@ -51,7 +69,13 @@
 			"revisionTime": "2017-01-29T22:26:39Z"
 		},
 		{
-			"checksumSHA1": "401nRca5/N7U0e+MD2RisEhoyQk=",
+			"checksumSHA1": "JGMpO/GI103ayDqDsEoOsWx0yVE=",
+			"path": "github.com/hokaccha/go-prettyjson",
+			"revision": "108c894c2c0e4a3236172e3698c14f1e3199548d",
+			"revisionTime": "2019-08-18T11:41:11Z"
+		},
+		{
+			"checksumSHA1": "T8soMJArSZrYnhmdpAnq1bVxQ6Q=",
 			"path": "github.com/mailru/easyjson/buffer",
 			"revision": "d89c33ca38a143e5190297c6252fcc75f01694ed",
 			"revisionTime": "2017-02-19T11:33:54Z"
@@ -65,8 +89,26 @@
 		{
 			"checksumSHA1": "n+xcHJ3Ds6rixHBuS7e1fZcvUSM=",
 			"path": "github.com/mailru/easyjson/jwriter",
-			"revision": "d89c33ca38a143e5190297c6252fcc75f01694ed",
-			"revisionTime": "2017-02-19T11:33:54Z"
+			"revision": "8b799c424f57fa123fc63a99d6383bc6e4c02578",
+			"revisionTime": "2018-03-23T15:44:45Z"
+		},
+		{
+			"checksumSHA1": "ibjotVl1/AIWtMOgxtk/7uc+ml4=",
+			"path": "github.com/mattn/go-colorable",
+			"revision": "c742d6fb21c22a5bb6f768a683e6782e52fe0311",
+			"revisionTime": "2020-01-10T01:04:45Z"
+		},
+		{
+			"checksumSHA1": "5sA40iCp9oYkz+rlnGPKH0TAL34=",
+			"path": "github.com/mattn/go-isatty",
+			"revision": "219d1dc2592ebc2adbddc32cebf5ad273e81fa69",
+			"revisionTime": "2020-01-10T01:01:25Z"
+		},
+		{
+			"checksumSHA1": "c7jHQZk5ZEsFR9EXsWJXkszPBZA=",
+			"path": "github.com/russross/blackfriday",
+			"revision": "5f33e7b7878355cd2b7e6b8eefc48a5472c69f70",
+			"revisionTime": "2016-10-03T16:27:22Z"
 		},
 		{
 			"checksumSHA1": "kbgJvKG3NRoqU91rYnXGnyR+8HQ=",
@@ -107,8 +149,20 @@
 		{
 			"checksumSHA1": "GIGmSrYACByf5JDIP9ByBZksY80=",
 			"path": "golang.org/x/net/idna",
-			"revision": "f2499483f923065a842d38eb4c7f1927e6fc6e6d",
-			"revisionTime": "2017-01-14T04:22:49Z"
+			"revision": "5f9ae10d9af5b1c89ae6904293b14b064d4ada23",
+			"revisionTime": "2018-04-20T07:04:21Z"
+		},
+		{
+			"checksumSHA1": "ATYlQBUz7wE9/XGUo8LzqxnET84=",
+			"path": "golang.org/x/sys/unix",
+			"revision": "4a24b406529242041050cb1dec3e0e4c46a5f1b6",
+			"revisionTime": "2019-12-18T06:34:59Z"
+		},
+		{
+			"checksumSHA1": "CbpjEkkOeh0fdM/V8xKDdI0AA88=",
+			"path": "golang.org/x/text/secure/bidirule",
+			"revision": "4e4a3210bb54bb31f6ab2cdca2edcc0b50c420c1",
+			"revisionTime": "2018-02-04T03:07:25Z"
 		},
 		{
 			"checksumSHA1": "ziMb9+ANGRJSSIuxYdRbA+cDRBQ=",
