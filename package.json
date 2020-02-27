@@ -4,11 +4,15 @@
   "description": "CSS and Javascript assets for developer.beta.ons.gov.uk",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm run build:css",
+    "test": "jest --config ./jest.config.json",
+    "build": "npm run build:css && npm run build:js",
     "build:css": "./node_modules/node-sass/bin/node-sass --output-style compressed scss/main.scss -o assets/assets/css",
-    "watch": "npm run watch:css",
+    "build:js": "npm run lint:fix && webpack --mode=production --config ./webpack.config.js",
+    "watch": "npm run watch:css && npm run watch:js",
+    "watch:js": "webpack --mode=development --config ./webpack.config.js --watch",
     "watch:css": "./node_modules/node-sass/bin/node-sass -w scss --source-map-embed --output-style expanded scss/main.scss -o assets/assets/css",
+    "lint": "eslint \"**/*.js\" --ignore-path .gitignore .",
+    "lint:fix": "eslint \"**/*.js\" --ignore-path .gitignore . --fix",
     "postinstall": "npm run build"
   },
   "repository": {
@@ -22,6 +26,25 @@
   },
   "homepage": "https://github.com/ONSdigital/dp-developer-site#readme",
   "dependencies": {
+    "@babel/polyfill": "^7.7.0",
+    "code-prettify": "^0.1.0",
+    "highcharts": "^8.0.0",
+    "jest": "^25.1.0",
     "node-sass": "^4.9.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "babel-eslint": "^10.0.3",
+    "babel-jest": "^25.1.0",
+    "babel-loader": "^8.0.6",
+    "babel-preset": "^1.1.1",
+    "eslint": "^6.1.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-loader": "^3.0.3",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-jest": "^23.6.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
   }
 }

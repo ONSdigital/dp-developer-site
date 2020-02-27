@@ -12,7 +12,7 @@ watch:
 watch-templates:
 	make build
 	go get github.com/cespare/reflex
-	reflex -v -R node_modules -R assets -R vendor -R logs -r '^(main\.go|renderer/.*|templates/.*\.tmpl|static/.*\.md)$$' go run main.go
+	reflex -v -R node_modules -R assets -R vendor -R logs -r '^(main\.go|renderer/.*|templates/.*\.tmpl|static/.*\.md|static/.*\.html)$$' go run main.go
 
 watch-assets:
 	npm run build

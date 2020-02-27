@@ -2,10 +2,10 @@ package main
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
 	"html/template"
 	"io/ioutil"
-	"log"
 	"os"
 	"path/filepath"
 	"sort"
@@ -13,10 +13,10 @@ import (
 
 	"github.com/sourcegraph/syntaxhighlight"
 
-	"github.com/PuerkitoBio/goquery"
-
 	"github.com/ONSdigital/dp-developer-site/renderer"
 	"github.com/ONSdigital/dp-developer-site/spec"
+	"github.com/ONSdigital/log.go/log"
+	"github.com/PuerkitoBio/goquery"
 	blackfriday "gopkg.in/russross/blackfriday.v2"
 
 	openAPI "github.com/go-openapi/spec"
@@ -44,6 +44,7 @@ type Nav []NavItem
 type NavItem struct {
 	Name    string
 	SiteURL string
+	JSOnly  bool
 }
 
 func (n NavItem) IsActive(currentPath string) bool {
@@ -96,6 +97,7 @@ type PathMethod struct {
 type MethodResponse struct {
 	Status int
 	openAPI.ResponseProps
+	ExampleResponse string
 }
 
 type tags struct {
@@ -120,37 +122,38 @@ func main() {
 	}
 
 	if err := sources.Load(); err != nil {
-		log.Fatal(err)
+		log.Event(nil, "Failed to load sources", log.Error(err))
 	}
 
 	siteModel := generateModel(sources)
-	fmt.Println("Creating files...")
+	log.Event(nil, "Creating assets directories and HTML files")
 	for key, value := range siteModel {
 		if err := os.MkdirAll("assets/"+key, 0755); err != nil {
-			log.Fatal(err)
+			log.Event(nil, "Failed to create directories", log.Error(err))
 		}
 
 		file, err := os.Create("assets/" + key + "/index.html")
 		if err != nil {
-			log.Fatal(err)
+			log.Event(nil, "Failed to create HTML files", log.Error(err))
 		}
 		defer file.Close()
 
 		if err = renderer.Render(file, value.templateName, value); err != nil {
-			log.Fatal(err)
+			log.Event(nil, "Failed to render templates", log.Error(err))
 		}
 	}
 
-	fmt.Println("Files created")
-	fmt.Println("Finished!")
+	log.Event(nil, "Files created.")
 }
 
 func generateModel(APIs spec.APIs) site {
 	var siteModel = make(site)
 	var orderedNav = &Nav{}
-	orderedNav.appendNavItem("Introduction", "")
-	orderedNav.appendNavItem("Guide to requesting specific observation", "observations")
-	orderedNav.appendNavItem("Guide to filtering a dataset", "filters")
+	orderedNav.appendNavItem("Introduction", "", false)
+	// FIXME need to handle static content
+	orderedNav.appendNavItem("Take a tour of the API", "tour/getting-started", true)
+	orderedNav.appendNavItem("Guide to requesting specific observation", "observations", false)
+	orderedNav.appendNavItem("Guide to filtering a dataset", "filters", false)
 
 	siteModel.generateDynamicPages(APIs, orderedNav)
 	siteModel.generateStaticPages(orderedNav)
@@ -158,10 +161,11 @@ func generateModel(APIs spec.APIs) site {
 	return siteModel
 }
 
-func (n *Nav) appendNavItem(title string, url string) {
+func (n *Nav) appendNavItem(title string, url string, requiresJS bool) {
 	*n = append(*n, NavItem{
 		Name:    title,
 		SiteURL: url,
+		JSOnly:  requiresJS,
 	})
 }
 
@@ -170,7 +174,7 @@ func (s site) generateDynamicPages(a spec.APIs, orderedNav *Nav) {
 		var orderedPaths []APIPath
 		apiDir := strings.TrimSuffix(api.ID, "-api")
 
-		orderedNav.appendNavItem(api.Spec.Info.Title, apiDir)
+		orderedNav.appendNavItem(api.Spec.Info.Title, apiDir, false)
 
 		for key, path := range api.Spec.Paths.Paths {
 			// generateMethods() only includes public methods so checking the length
@@ -286,9 +290,18 @@ func generateMethods(path openAPI.PathItem) (methods []PathMethod) {
 
 func generateResponses(responses *openAPI.Responses) (orderedResponses []MethodResponse) {
 	for status, response := range responses.StatusCodeResponses {
+
+		json, err := json.MarshalIndent(response.ResponseProps.Schema, "", "  ")
+
+		if err != nil {
+			log.Event(nil, "Failed to marshall API responses to json", log.Error(err))
+			json = []byte{}
+		}
+
 		orderedResponses = append(orderedResponses, MethodResponse{
-			Status:        status,
-			ResponseProps: response.ResponseProps,
+			Status:          status,
+			ResponseProps:   response.ResponseProps,
+			ExampleResponse: string(json),
 		})
 	}
 
@@ -313,6 +326,7 @@ func contains(sl []string, s string) (b bool) {
 func (s site) generateStaticPages(orderedNav *Nav) {
 	err := filepath.Walk("static", func(path string, info os.FileInfo, err error) error {
 		if err != nil {
+
 			fmt.Printf("prevent panic by handling failure accessing a path %q: %v\n", "static", err)
 			return err
 		}
@@ -323,7 +337,7 @@ func (s site) generateStaticPages(orderedNav *Nav) {
 		if strings.HasSuffix(path, "index.md") {
 			bytes, err := ioutil.ReadFile(path)
 			if err != nil {
-				log.Fatal(err)
+				log.Event(nil, "Failed to read index.md file", log.Error(err))
 			}
 
 			templateBytes, metadata := generateStaticMetadata(bytes)
@@ -338,10 +352,28 @@ func (s site) generateStaticPages(orderedNav *Nav) {
 				templateName: "static",
 			}
 		}
+
+		if strings.HasSuffix(path, "index.html") {
+			bytes, err := ioutil.ReadFile(path)
+			if err != nil {
+				log.Event(nil, "Failed to read index.html", log.Error(err))
+			}
+
+			templateBytes, metadata := generateStaticMetadata(bytes)
+			fileDir := strings.TrimSuffix(strings.TrimPrefix(path, "static/"), "index.html")
+			s[fileDir] = Page{
+				Title:        metadata["title"],
+				Path:         fileDir,
+				Data:         template.HTML(templateBytes),
+				nav:          orderedNav,
+				templateName: "html",
+			}
+		}
+
 		return nil
 	})
 	if err != nil {
-		log.Fatal(err)
+		log.Event(nil, "Failed to generate static files", log.Error(err))
 	}
 }
 
@@ -390,20 +422,20 @@ func generateStaticMetadata(md []byte) (b []byte, metadata map[string]string) {
 func generateStyledCodeHTML(html []byte) []byte {
 	doc, err := goquery.NewDocumentFromReader(bytes.NewReader(html))
 	if err != nil {
-		log.Fatal(err)
+		log.Event(nil, "Failed to read html file", log.Error(err))
 	}
 
 	doc.Find("code[class*=\"language-\"]").Each(func(i int, s *goquery.Selection) {
 		formattedCode, err := syntaxhighlight.AsHTML([]byte(s.Text()))
 		if err != nil {
-			log.Fatal(err)
+			log.Event(nil, "Failed to format HTML code blocks", log.Error(err))
 		}
 		s.SetHtml(string(formattedCode))
 	})
 
 	formattedHTML, err := doc.Html()
 	if err != nil {
-		log.Fatal()
+		log.Event(nil, "Failed to find formatted HTML", log.Error(err))
 	}
 
 	formattedHTML = strings.Replace(formattedHTML, "<html><head></head><body>", "", 1)

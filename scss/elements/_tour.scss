@@ -1,0 +1,33 @@
+.tour {
+    &__results-container {
+        max-height: 400px; 
+        overflow-y: scroll;
+    }
+
+    &__json-container {
+        max-height: 300px;
+        overflow-y: scroll;
+    }
+
+    &__chart-container {
+        max-height: 600px;
+    }
+
+    &__endpoint-text {
+        word-break: break-word;
+    }
+
+    &__tabs {
+        padding: .3rem 0;
+    }
+
+    &__tab {
+        &[aria-selected=true] {
+            background-color: #222;
+        }
+    }
+
+    &__try-it-out {
+        margin-top: 2rem;
+    }
+}

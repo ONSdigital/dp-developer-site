@@ -156,7 +156,7 @@ func (s SchemaOrStringArray) MarshalJSON() ([]byte, error) {
 	if s.Schema != nil {
 		return json.Marshal(s.Schema)
 	}
-	return []byte("null"), nil
+	return nil, nil
 }
 
 // UnmarshalJSON converts this schema object or array from a JSON structure

@@ -35,9 +35,12 @@
     
     <h3>Responses</h3>
     {{range .OrderedResponses}}
-        <h4>{{.Status}}</h4>
-        <p>{{.Description}}</p>
-        {{if .Schema}}
+        <h4 class="font-size--21">{{.Status}}: <span class="font-size--14">{{.Description}}</span></h4>
+        {{if .ExampleResponse}}
+            <h5>Example value</h5>
+            <div class="markdown">
+                <pre><code class="language-json">{{.ExampleResponse}}</code></pre>
+            </div>
         {{end}}
     {{end}}
 {{end}}
