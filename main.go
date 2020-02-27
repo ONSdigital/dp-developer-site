@@ -44,6 +44,7 @@ type Nav []NavItem
 type NavItem struct {
 	Name    string
 	SiteURL string
+	JSOnly  bool
 }
 
 func (n NavItem) IsActive(currentPath string) bool {
@@ -148,10 +149,11 @@ func main() {
 func generateModel(APIs spec.APIs) site {
 	var siteModel = make(site)
 	var orderedNav = &Nav{}
-	orderedNav.appendNavItem("Introduction", "")
-	orderedNav.appendNavItem("Take a tour of the API", "tour/getting-started")
-	orderedNav.appendNavItem("Guide to requesting specific observation", "observations")
-	orderedNav.appendNavItem("Guide to filtering a dataset", "filters")
+	orderedNav.appendNavItem("Introduction", "", false)
+	// FIXME need to handle static content
+	orderedNav.appendNavItem("Take a tour of the API", "tour/getting-started", true)
+	orderedNav.appendNavItem("Guide to requesting specific observation", "observations", false)
+	orderedNav.appendNavItem("Guide to filtering a dataset", "filters", false)
 
 	siteModel.generateDynamicPages(APIs, orderedNav)
 	siteModel.generateStaticPages(orderedNav)
@@ -159,10 +161,11 @@ func generateModel(APIs spec.APIs) site {
 	return siteModel
 }
 
-func (n *Nav) appendNavItem(title string, url string) {
+func (n *Nav) appendNavItem(title string, url string, requiresJS bool) {
 	*n = append(*n, NavItem{
 		Name:    title,
 		SiteURL: url,
+		JSOnly:  requiresJS,
 	})
 }
 
@@ -171,7 +174,7 @@ func (s site) generateDynamicPages(a spec.APIs, orderedNav *Nav) {
 		var orderedPaths []APIPath
 		apiDir := strings.TrimSuffix(api.ID, "-api")
 
-		orderedNav.appendNavItem(api.Spec.Info.Title, apiDir)
+		orderedNav.appendNavItem(api.Spec.Info.Title, apiDir, false)
 
 		for key, path := range api.Spec.Paths.Paths {
 			// generateMethods() only includes public methods so checking the length
@@ -339,6 +342,24 @@ func (s site) generateStaticPages(orderedNav *Nav) {
 				templateName: "static",
 			}
 		}
+
+		if strings.HasSuffix(path, "index.html") {
+			bytes, err := ioutil.ReadFile(path)
+			if err != nil {
+				log.Fatal(err)
+			}
+
+			templateBytes, metadata := generateStaticMetadata(bytes)
+			fileDir := strings.TrimSuffix(strings.TrimPrefix(path, "static/"), "index.html")
+			s[fileDir] = Page{
+				Title:        metadata["title"],
+				Path:         fileDir,
+				Data:         template.HTML(templateBytes),
+				nav:          orderedNav,
+				templateName: "html",
+			}
+		}
+
 		return nil
 	})
 	if err != nil {

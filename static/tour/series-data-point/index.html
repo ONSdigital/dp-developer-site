@@ -1,0 +1,61 @@
+---
+title: Take a tour of the API
+---
+
+<h2 class="break-word margin-top-sm--3 margin-bottom-sm--3">
+    <strong> Get a series of data points</strong>
+</h2>
+<section data-tour-endpoint="/datasets/cpih01/editions/time-series/versions/6/observations?time=*&geography=K02000001&aggregate=cpih1dim1A0" class="static section__content--static-markdown">
+    <p>You can also get a series of data points using the <a
+            href="../../dataset/datasets-{id}-editions-{edition}-versions-{version}-observations/">get observation</a>
+        endpoint.</p>
+
+    <p>By making one of the dimensions values a wildcard, multiple data points are returned.</p>
+
+    <p>You can use this to fetch a time series or data for multiple geographic areas.</p>
+
+    <section>
+        <h3>Example</h3>
+        <p>
+            Make a <tt>GET</tt> request to
+            <tt class="tour__endpoint-text">https://api.beta.ons.gov.uk/v1/datasets/cpih01/editions/time-series/versions/6/observations?time=*&geography=K02000001&aggregate=cpih1dim1A0</tt>
+        </p>
+        <p class="margin-top--0">
+            <a href="#" data-tour-example>
+                Show JavaScript example
+            </a>
+        </p>
+        <div class="markdown hidden" data-tour-example-block>
+            <!-- Code block injected via buildCodeExample() method in CodeExamples.js -->
+        </div>
+        <div class="tour__try-it-out">
+            <button class="btn btn--primary" data-tour-tryitout="observation" data-page="series-data-point">Try it out</button>
+        </div>
+
+        <div class="hidden margin-top--2" data-tour="error" role="alert">
+            <div class="font-size--16 form-error filter-overview__error-message margin-top--1 margin-bottom--1">
+                An error occurred when trying to display results. Please try again.
+            </div>
+        </div>
+
+        <div class="hidden margin-top--2" data-tour-tryitout="results">
+            <div class="btn-group tour__tabs" role="tablist">
+                <a type="button" id="json-tab" role="tab" tabindex="0" aria-controls="json" class="btn btn--secondary btn--chart-control tour__tab" aria-selected="true" data-tour-results-tab="json">JSON</a>
+                <a type="button" id="results-tab" role="tab" tabindex="0" aria-controls="results" class="btn btn--secondary btn--chart-control tour__tab" data-tour-results-tab="results">Content</a>
+            </div>
+            <div id="json" data-tour-results-view="json" tabindex="0" class="tour__results-container" role="tabpanel" aria-labelledby="json-tab" aria-hidden="false">
+                <div class="markdown">
+                    <pre class="tour__json-container"></pre>
+                </div>
+            </div>
+            <div id="results" data-tour-results-view="results" tabindex="0" class="tour__results-container" role="tabpanel" aria-labelledby="results-tab" aria-hidden="true" data-tour-results-type="chart">
+                <!-- Highcharts plugin implemented -->
+            </div>
+        </div>
+    </section>
+    <hr class="margin-top--3">
+    <nav class="margin-top--2">
+        <a class="float-left" href="../single-data-point/">Previous: Get a single data point</a>
+        <a class="float-right" href="../finished/">Next: Finished</a>
+    </nav>
+</section>

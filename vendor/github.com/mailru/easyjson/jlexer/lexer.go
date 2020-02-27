@@ -6,14 +6,15 @@ package jlexer
 
 import (
 	"encoding/base64"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"io"
+	"reflect"
 	"strconv"
 	"unicode"
 	"unicode/utf16"
 	"unicode/utf8"
+	"unsafe"
 )
 
 // tokenKind determines type of a token.
@@ -49,8 +50,8 @@ type Lexer struct {
 	wantSep      byte // A comma or a colon character, which need to occur before a token.
 
 	UseMultipleErrors bool          // If we want to use multiple errors.
-	fatalError        error         // Fatal error occurred during lexing. It is usually a syntax error.
-	multipleErrors    []*LexerError // Semantic errors occurred during lexing. Marshalling will be continued after finding this errors.
+	fatalError        error         // Fatal error occured during lexing. It is usually a syntax error.
+	multipleErrors    []*LexerError // Semantic errors occured during lexing. Marshalling will be continued after finding this errors.
 }
 
 // FetchToken scans the input for the next token.
@@ -202,6 +203,17 @@ func (r *Lexer) fetchFalse() {
 		r.pos -= 5
 		r.errSyntax()
 	}
+}
+
+// bytesToStr creates a string pointing at the slice to avoid copying.
+//
+// Warning: the string returned by the function should be used with care, as the whole input data
+// chunk may be either blocked from being freed by GC because of a single string or the buffer.Data
+// may be garbage-collected even when the string exists.
+func bytesToStr(data []byte) string {
+	h := (*reflect.SliceHeader)(unsafe.Pointer(&data))
+	shdr := reflect.StringHeader{h.Data, h.Len}
+	return *(*string)(unsafe.Pointer(&shdr))
 }
 
 // fetchNumber scans a number literal token.
@@ -583,11 +595,11 @@ func (r *Lexer) Consumed() {
 
 	for _, c := range r.Data[r.pos:] {
 		if c != ' ' && c != '\t' && c != '\r' && c != '\n' {
-			r.AddError(&LexerError{
+			r.fatalError = &LexerError{
 				Reason: "invalid character '" + string(c) + "' after top-level value",
 				Offset: r.pos,
 				Data:   string(r.Data[r.pos:]),
-			})
+			}
 			return
 		}
 
@@ -616,12 +628,6 @@ func (r *Lexer) unsafeString() (string, []byte) {
 // the input buffer. Intended pattern of usage is as an argument to a switch statement.
 func (r *Lexer) UnsafeString() string {
 	ret, _ := r.unsafeString()
-	return ret
-}
-
-// UnsafeBytes returns the byte slice if the token is a string literal.
-func (r *Lexer) UnsafeBytes() []byte {
-	_, ret := r.unsafeString()
 	return ret
 }
 
@@ -904,10 +910,6 @@ func (r *Lexer) UintStr() uint {
 	return uint(r.Uint64Str())
 }
 
-func (r *Lexer) UintptrStr() uintptr {
-	return uintptr(r.Uint64Str())
-}
-
 func (r *Lexer) Int8Str() int8 {
 	s, b := r.unsafeString()
 	if !r.Ok() {
@@ -997,22 +999,6 @@ func (r *Lexer) Float32() float32 {
 	return float32(n)
 }
 
-func (r *Lexer) Float32Str() float32 {
-	s, b := r.unsafeString()
-	if !r.Ok() {
-		return 0
-	}
-	n, err := strconv.ParseFloat(s, 32)
-	if err != nil {
-		r.addNonfatalError(&LexerError{
-			Offset: r.start,
-			Reason: err.Error(),
-			Data:   string(b),
-		})
-	}
-	return float32(n)
-}
-
 func (r *Lexer) Float64() float64 {
 	s := r.number()
 	if !r.Ok() {
@@ -1025,22 +1011,6 @@ func (r *Lexer) Float64() float64 {
 			Offset: r.start,
 			Reason: err.Error(),
 			Data:   s,
-		})
-	}
-	return n
-}
-
-func (r *Lexer) Float64Str() float64 {
-	s, b := r.unsafeString()
-	if !r.Ok() {
-		return 0
-	}
-	n, err := strconv.ParseFloat(s, 64)
-	if err != nil {
-		r.addNonfatalError(&LexerError{
-			Offset: r.start,
-			Reason: err.Error(),
-			Data:   string(b),
 		})
 	}
 	return n
@@ -1078,31 +1048,6 @@ func (r *Lexer) addNonfatalError(err *LexerError) {
 
 func (r *Lexer) GetNonFatalErrors() []*LexerError {
 	return r.multipleErrors
-}
-
-// JsonNumber fetches and json.Number from 'encoding/json' package.
-// Both int, float or string, contains them are valid values
-func (r *Lexer) JsonNumber() json.Number {
-	if r.token.kind == tokenUndef && r.Ok() {
-		r.FetchToken()
-	}
-	if !r.Ok() {
-		r.errInvalidToken("json.Number")
-		return json.Number("")
-	}
-
-	switch r.token.kind {
-	case tokenString:
-		return json.Number(r.String())
-	case tokenNumber:
-		return json.Number(r.Raw())
-	case tokenNull:
-		r.Null()
-		return json.Number("")
-	default:
-		r.errSyntax()
-		return json.Number("")
-	}
 }
 
 // Interface fetches an interface{} analogous to the 'encoding/json' package.
