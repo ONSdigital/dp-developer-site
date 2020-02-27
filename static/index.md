@@ -4,7 +4,7 @@ title: Introduction
 
 The Office for National Statistics API makes datasets and other data available programmatically using HTTP. It allows you to filter datasets and directly access specific data points.
 
-<p style="font-size: 21px">The API is available at `https://api.beta.ons.gov.uk/v1`</p>
+<p style="font-size: 21px">The API is available at <code>https://api.beta.ons.gov.uk/v1</code></p>
 
 The API is open and unrestricted - no API keys are required, so you can start using it immediately.
 
