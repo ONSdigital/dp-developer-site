@@ -1,9 +1,18 @@
 PORT=23600
 
+.PHONY: all
+all: audit build watch
+
+.PHONY: audit
+audit:
+	nancy go.sum
+
+.PHONY: build
 build:
 	go run main.go
 	npm install --unsafe-perm
 
+.PHONY: watch
 watch:
 	mkdir -p logs
 	trap 'kill %1;' SIGINT
