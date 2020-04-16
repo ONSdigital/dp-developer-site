@@ -11,8 +11,5 @@ image_resource:
 inputs:
   - name: dp-developer-site
 
-outputs:
-  - name: build
-
 run:
   path: dp-developer-site/ci/scripts/audit.sh
