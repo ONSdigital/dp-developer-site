@@ -1,0 +1,13 @@
+.banner {
+    &--blue {
+        background: #3B7A9E;
+    }
+
+    &__text {
+        color: #fff;
+
+        a {
+            color: #fff;
+        }
+    }
+}

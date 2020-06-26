@@ -11,36 +11,12 @@
         </title>
         <link rel="preload" as="font"  type="font/woff2" href="https://cdn.ons.gov.uk/assets/fonts/open-sans-regular/OpenSans-Regular-webfont.woff2" crossorigin>
         <link rel="preload" as="font"  type="font/woff2" href="https://cdn.ons.gov.uk/assets/fonts/open-sans-bold/OpenSans-Bold-webfont.woff2" crossorigin>
-        <link rel="stylesheet" href="https://cdn.ons.gov.uk/sixteens/eb938ca/css/main.css">
+        <link rel="stylesheet" href="https://cdn.ons.gov.uk/sixteens/60c47e5/css/main.css">
         <link rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
         <link rel="stylesheet" href="{{$rootPath}}assets/css/main.css">
-        <!-- Google Tag Manager -->
-        <script>
-            (function (w, d, s, l, i) {
-                w[l] = w[l] || [];
-                w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
-                var f = d.getElementsByTagName(s)[0],
-                    j = d.createElement(s),
-                    dl = l != 'dataLayer'
-                        ? '&l=' + l
-                        : '';
-                j.async = true;
-                j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-                f
-                    .parentNode
-                    .insertBefore(j, f);
-            })(window, document, 'script', 'dataLayer', 'GTM-MBCBVQS');
-        </script>
-        <!-- End Google Tag Manager -->
     </head>
-    <body class="adjust-font-size--16 link-adjust sticky-footer">
-        <header class="border-bottom--iron-sm border-bottom--iron-md">
-            <!-- Google Tag Manager (noscript) -->
-            <noscript>
-                <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MBCBVQS"
-                            height="0" width="0" style="display:none;visibility:hidden"></iframe>
-            </noscript>
-            <!-- End Google Tag Manager (noscript) -->
+    <body class="link-adjust sticky-footer">
+        <header class="adjust-font-size--16 border-bottom--iron-sm border-bottom--iron-md">
             <a class="skiplink" href="#main" tabindex="0">Skip to main content</a>
             <div class="wrapper">
                 <div class="header col-wrap">
@@ -54,19 +30,19 @@
                     </div>
                 </div>
             </div>
-            <div class="banner">
+            <div class="banner banner--blue">
                 <div class="wrapper">
                     <div class="col col--md-40 col--lg-44">
                         <span class="banner__text-icon">Beta</span>
                         <div class="banner__body">
-                            <p>This is a new way of getting data - your <a href="/feedback?service=dev">feedback</a> will help
+                            <p class="banner__text">This is a new way of getting data - your <a href="/feedback?service=dev">feedback</a> will help
                             us to improve it.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </header>
-        <main id="main" role="main" tabindex="-1">
+        <main class="adjust-font-size--16" id="main" role="main" tabindex="-1">
             <div class="wrapper margin-bottom-sm--3 margin-bottom-md--6">
                 <div class="col-wrap">
                     <div class="col col--md-one-half col--lg-one-third sticky sticky--lg-only">
@@ -155,9 +131,14 @@
                                     <li class="footer-nav__item">
                                         <a href="/help/accessibility">Accessibility</a>
                                     </li>
+
                                     <li class="footer-nav__item">
-                                        <a href="/help/cookiesandprivacy">Cookies and privacy</a>
+                                        <a href="/cookies">Cookies</a>
                                     </li>
+                                    <li class="footer-nav__item">
+                                        <a href="/help/privacy">Privacy</a>
+                                    </li>
+
                                     <li class="footer-nav__item">
                                         <a href="/help/termsandconditions">Terms and conditions</a>
                                     </li>
@@ -217,6 +198,6 @@
         <script>
             window.feedbackOrigin = "https://beta.ons.gov.uk"
         </script>
-        <script src="https://cdn.ons.gov.uk/sixteens/eb938ca/js/main.js"></script>
+        <script src="https://cdn.ons.gov.uk/sixteens/60c47e5/js/main.js"></script>
     </body>
 </html>
