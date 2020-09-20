@@ -13,6 +13,10 @@ build:
 	go run main.go
 	npm install --unsafe-perm
 
+.PHONY: test
+test:
+	npm test
+
 .PHONY: watch
 watch:
 	mkdir -p logs

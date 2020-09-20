@@ -1,5 +1,5 @@
 ---
-title: Requesting from filter API
+title: Guide to filtering a dataset
 ---
 
 The ['Filter a dataset'](../filter/) service allows any combination of dimension options to be requested. This is aimed at more complicated queries than the ['Explore our dataset'](../dataset/) service and requires a POST containing dataset ID, edition, version and details of dimensions.
@@ -7,7 +7,7 @@ The ['Filter a dataset'](../filter/) service allows any combination of dimension
 Any dimensions not filtered on will return all available dimension items for that dataset.
 If you want everything in a dataset for a specific geographic location, you only need to provide the option for that geography, for example;
 
-```json
+```
 {
     "dataset": {
         "id": "cpih01",
@@ -27,7 +27,7 @@ If you want everything in a dataset for a specific geographic location, you only
 
 This example body can be sent via post to create a filter, with the response giving you a unique ID. As shown in this example under `filter_id`:
 
-```json
+```
 {
     "dataset": {
         "edition": "time-series",
@@ -67,19 +67,19 @@ Futher PUT requests can be made to `/filter/{filter-ID}` to update the dimension
 
 For example;
 
-```json
+```
 /filters/d9645c21-0baa-4a58-834e-feb1919b14bb?submitted=true
 ```
 
 **Note**: `?submitted=true` can be added to the initial POST request and the job will start immediately.
 
-```json
+```
 /filters?submitted=true
 ```
 
 Once submitted, you will get the following response:
 
-```json
+```
 {
     "dataset": {
         "id": "cpih01",
@@ -120,7 +120,7 @@ Once submitted, you will get the following response:
 
 This creates a 'filter output' which will contain the files once generated. This is available in the response and follows this format;
 
-```json
+```
 "filter_output": {
     "id": "9dd04dd7-07e9-4ce9-90bb-a4205b743027",
     "href": "https://api.beta.ons.gov.uk/v1/filter-outputs/9dd04dd7-07e9-4ce9-90bb-a4205b743027"
@@ -129,7 +129,7 @@ This creates a 'filter output' which will contain the files once generated. This
 
 A GET on the filter-output will return the following;
 
-```json
+```
 {
 "dataset": {
     "edition": "time-series",

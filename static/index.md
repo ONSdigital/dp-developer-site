@@ -8,11 +8,16 @@ The Office for National Statistics API makes datasets and other data available p
 
 The API is open and unrestricted - no API keys are required, so you can start using it immediately.
 
+<div class="markdown-warning-box--container margin-bottom-sm--3 margin-bottom-md--4">
+<span aria-label="Warning text" class="markdown-warning-box--icon">!</span>
+<div class="markdown-warning-box--text padding-left--4">
+<p>This API is currently in Beta and still being developed. Please be aware that as a result of this there may occasionally be breaking changes as we enhance functionality and respond to feedback.</p>
+</div>
+</div>
+
 <div>
     <a class = "btn btn--primary btn--bold margin-bottom-md--2" href="tour/getting-started/">Take a tour of the API</a>
 </div>
-
-**This API is currently in Beta and still being developed. Please be aware that as a result of this there may occasionally be breaking changes as we enhance functionality and respond to feedback.**
 
 ## Getting data from ONS Beta API
 

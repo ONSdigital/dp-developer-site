@@ -6,27 +6,27 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>ONS developer site{{if .Title}} - {{.Title}}
+        <title>ONS developer Hub{{if .Title}} - {{.Title}}
             {{end}}
         </title>
         <link rel="preload" as="font"  type="font/woff2" href="https://cdn.ons.gov.uk/assets/fonts/open-sans-regular/OpenSans-Regular-webfont.woff2" crossorigin>
         <link rel="preload" as="font"  type="font/woff2" href="https://cdn.ons.gov.uk/assets/fonts/open-sans-bold/OpenSans-Bold-webfont.woff2" crossorigin>
-        <link rel="stylesheet" href="https://cdn.ons.gov.uk/sixteens/60c47e5/css/main.css">
+        <link rel="stylesheet" href="https://cdn.ons.gov.uk/sixteens/cf2e1ea/css/main.css">
         <link rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
         <link rel="stylesheet" href="{{$rootPath}}assets/css/main.css">
     </head>
     <body class="link-adjust sticky-footer">
-        <header class="adjust-font-size--16 border-bottom--iron-sm border-bottom--iron-md">
+        <header class="adjust-font-size--6 border-bottom--iron-sm border-bottom--iron-md">
             <a class="skiplink" href="#main" tabindex="0">Skip to main content</a>
             <div class="wrapper">
                 <div class="header col-wrap">
                     <div class="col col--lg-one-third col--md-half">
                         <a class="inline-block" href="{{$rootPath}}">
-                            <img class="logo" src="https://cdn.ons.gov.uk/assets/images/ons-logo.svg" alt="Office for National Statistics">
+                            <img class="logo" src="https://cdn.ons.gov.uk/assets/images/ons-logo.svg" alt="Office for National Statistics logo - Developer Hub Homepage">
                         </a>
                     </div>
                     <div class="col col--lg-two-thirds col--md-half header-title">
-                        <strong>Developer site</strong>
+                        <strong>Developer Hub</strong>
                     </div>
                 </div>
             </div>
@@ -42,15 +42,14 @@
                 </div>
             </div>
         </header>
-        <main class="adjust-font-size--16" id="main" role="main" tabindex="-1">
-            <div class="wrapper margin-bottom-sm--3 margin-bottom-md--6">
+            <div class="wrapper margin-bottom-sm--3 margin-bottom-md--6 adjust-font-size--18">
                 <div class="col-wrap">
                     <div class="col col--md-one-half col--lg-one-third sticky sticky--lg-only">
                         <div class="margin-top-sm--4 margin-top-md--5 margin-right-lg--2 padding-top--1 padding-right--1 padding-bottom--1 padding-left--1 background--iron-light">
-                            <h2 class="margin-top--2">
-                                <strong>Contents:</strong>
-                            </h2>
-                            <nav>
+                            <nav aria-labelledby="contents-label">
+                                <h2 id="contents-label" class="margin-top--2 adjust-font-size--30 line-height--40">
+                                    <strong>Contents:</strong>
+                                </h2>
                                 <ul class="list--neutral">
                                     {{range .Nav}}
                                         <li {{if .JSOnly}} class="nojs--hide" {{end}}>
@@ -67,8 +66,9 @@
                             </nav>
                         </div>
                     </div>
-                    <div class="col col--md-one-half col--lg-two-thirds">
-                        <h1 class="break-word margin-top-sm--3 margin-bottom-sm--3">
+                    <main id="main" role="main" tabindex="-1" aria-labelledby="main-label">
+                    <div id="main-label" class="col col--md-one-half col--lg-two-thirds">
+                        <h1 class="break-word margin-top-sm--3 margin-bottom-sm--3 font-weight--700">
                             <strong>{{.Title}}</strong>
                         </h1>
                         {{yield}}
@@ -95,7 +95,7 @@
                         <a href="#" id="feedback-form-close" class="improve-this-page__close js-toggle">Close</a>
                         <form id="feedback-form-container">
                             <input name="feedback-form-type" value="footer" type="hidden">
-                            <input name="url" id="feedback-form-url" value="https://developer.beta.ons.gov.uk{{.Path}}" type="hidden">
+                            <input name="url" id="feedback-form-url" value="https://developer.ons.gov.uk{{.Path}}" type="hidden">
                             <div class="form-group">
                                 <label class="form-label-bold" id="description-field-label" for="description-field">
                             How should we improve this page?
@@ -123,7 +123,7 @@
             <h2 class="visuallyhidden">Footer links</h2>
             <div class="footer">
                 <div class="wrapper">
-                    <nav>
+                    <nav aria-label="Footer links">
                         <div class="footer-nav col-wrap">
                             <div class="col col--lg-one-third col--md-one-third">
                                 <h3 class="footer-nav__heading">Help</h3>
@@ -195,6 +195,6 @@
         <script>
             window.feedbackOrigin = "https://beta.ons.gov.uk"
         </script>
-        <script src="https://cdn.ons.gov.uk/sixteens/60c47e5/js/main.js"></script>
+        <script src="https://cdn.ons.gov.uk/sixteens/cf2e1ea/js/main.js"></script>
     </body>
 </html>

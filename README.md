@@ -1,9 +1,9 @@
 dp-developer-site
 ================
 
-A Go application that generates the HTML pages for the developer site for ons.gov.uk. 
+A Go application that generates the HTML pages for the developer hub for ons.gov.uk.
 
-Available at [developer.beta.ons.gov.uk](https://developer.beta.ons.gov.uk).
+Available at [developer.ons.gov.uk](https://developer.ons.gov.uk).
 
 ### Getting started
 
@@ -15,7 +15,7 @@ make
 
 #### Development
 
-The templates that make up the developer site are available in `/templates`.
+The templates that make up the developer hub are available in `/templates`.
 
 Static pages, such as the introduction are in `/static`.
 
@@ -45,9 +45,9 @@ make watch-serve PORT=8000
 
 ### Configuration
 
-| Environment variable        | Default                                | Description
-| --------------------------- | ---------------------------------------| -----------
-| PORT                        | 23600                                  | The port to serve the files on
+| Environment variable | Default | Description                    |
+| -------------------- | ------- | ------------------------------ |
+| PORT                 | 23600   | The port to serve the files on |
 
 ### Contributing
 

@@ -1,5 +1,5 @@
 ---
-title: Requesting data
+title: Guide to requesting specific observations
 ---
 
 Using the ['Explore our data'](../dataset/) services you can request data from a specific version of a dataset. This is done with a GET request providing a single dimension option for each dimension. The URL follows the following structure:

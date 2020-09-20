@@ -17,7 +17,7 @@ import (
 	"github.com/ONSdigital/dp-developer-site/spec"
 	"github.com/ONSdigital/log.go/log"
 	"github.com/PuerkitoBio/goquery"
-	blackfriday "gopkg.in/russross/blackfriday.v2"
+	blackfriday "github.com/russross/blackfriday/v2"
 
 	openAPI "github.com/go-openapi/spec"
 )
@@ -152,7 +152,7 @@ func generateModel(APIs spec.APIs) site {
 	orderedNav.appendNavItem("Introduction", "", false)
 	// FIXME need to handle static content
 	orderedNav.appendNavItem("Take a tour of the API", "tour/getting-started", true)
-	orderedNav.appendNavItem("Guide to requesting specific observation", "observations", false)
+	orderedNav.appendNavItem("Guide to requesting specific observations", "observations", false)
 	orderedNav.appendNavItem("Guide to filtering a dataset", "filters", false)
 
 	siteModel.generateDynamicPages(APIs, orderedNav)
@@ -424,6 +424,10 @@ func generateStyledCodeHTML(html []byte) []byte {
 	if err != nil {
 		log.Event(nil, "Failed to read html file", log.Error(err))
 	}
+
+	doc.Find("pre").Each(func(i int, s *goquery.Selection) {
+		s.SetAttr("tabindex", "0")
+	})
 
 	doc.Find("code[class*=\"language-\"]").Each(func(i int, s *goquery.Selection) {
 		formattedCode, err := syntaxhighlight.AsHTML([]byte(s.Text()))

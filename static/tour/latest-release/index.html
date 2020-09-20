@@ -5,7 +5,7 @@ title: Take a tour of the API
 <h2 class="break-word margin-top-sm--3 margin-bottom-sm--3">
     <strong> Find the latest release</strong>
 </h2>
-<section data-tour-endpoint="/datasets/cpih01" class="static section__content--static-markdown">
+<section data-tour-endpoint="/datasets/cpih01" class="static section__content--markdown">
 
     <p>Once you have a dataset ID, you can find the latest release of a dataset using the <a
             href="../../dataset/datasets-id/">get dataset</a> endpoint.</p>
@@ -15,16 +15,22 @@ title: Take a tour of the API
     <div>
         <h3>Example</h3>
         <p>
-            Make a <tt>GET</tt> request to <tt class="tour__endpoint-text">https://api.beta.ons.gov.uk/v1/datasets/cpih01</tt>
+            Make a <tt>GET</tt> request to <tt
+                class="tour__endpoint-text">https://api.beta.ons.gov.uk/v1/datasets/cpih01</tt>
         </p>
-        <p class="margin-top--0">
-            <a href="#" data-tour-example>Show JavaScript example</a>
-        </p>
-        <div class="markdown hidden" data-tour-example-block>
-            <!-- Code block injected via buildCodeExample() method in CodeExamples.js -->
-        </div>
+        <details class="margin-bottom--4" data-tour-example>
+            <summary class="summary">
+                <span class="underline-link" data-tour-example-label>Show JavaScript example</span>
+            </summary>
+            <div class="panel padding-top--1 padding-bottom--1 margin-bottom-2">
+                <div class="markdown" data-tour-example-block>
+                    <!-- Code block injected via buildCodeExample() method in CodeExamples.js -->
+                </div>
+            </div>
+        </details>
         <div class="tour__try-it-out">
-            <button class="btn btn--primary" data-tour-tryitout="observation" data-page="latest-release">Try it out</button>
+            <button class="btn btn--primary btn--bold margin-bottom-md--2" data-tour-tryitout="button"><span
+                    class="line-height--32">Run this JavaScript example</span></button>
         </div>
 
         <div class="hidden margin-top--2" data-tour="error" role="alert">
@@ -35,15 +41,20 @@ title: Take a tour of the API
 
         <div class="hidden margin-top--2" data-tour-tryitout="results">
             <div class="btn-group tour__tabs" role="tablist">
-                <a type="button" id="json-tab" role="tab" tabindex="0" aria-controls="json" class="btn btn--secondary btn--chart-control tour__tab" aria-selected="true" data-tour-results-tab="json">JSON</a>
-                <a type="button" id="results-tab" role="tab" tabindex="0" aria-controls="results" class="btn btn--secondary btn--chart-control tour__tab" data-tour-results-tab="results">Content</a>
+                <a type="button" id="json-tab" role="tab" tabindex="0" aria-controls="json"
+                    class="btn btn--secondary btn--chart-control tour__tab" aria-selected="true"
+                    data-tour-results-tab="json">JSON</a>
+                <a type="button" id="results-tab" role="tab" tabindex="0" aria-controls="results"
+                    class="btn btn--secondary btn--chart-control tour__tab" data-tour-results-tab="results">Content</a>
             </div>
-            <div id="json" data-tour-results-view="json" tabindex="0" class="tour__results-container" role="tabpanel" aria-labelledby="json-tab" aria-hidden="false">
+            <div id="json" data-tour-results-view="json" class="tour__results-container" role="tabpanel"
+                aria-labelledby="json-tab" aria-hidden="false">
                 <div class="markdown">
-                    <pre class="tour__json-container"></pre>
+                    <pre class="tour__json-container" tabIndex="0"></pre>
                 </div>
             </div>
-            <p id="results" data-tour-results-view="results" data-tour-results-type="latestRelease" tabindex="0" class="tour__results-container" role="tabpanel" aria-labelledby="results-tab" aria-hidden="true"></p>
+            <p id="results" data-tour-results-view="results" data-tour-results-type="latestRelease" tabindex="0"
+                class="tour__results-container" role="tabpanel" aria-labelledby="results-tab" aria-hidden="true"></p>
         </div>
 
         <hr class="margin-top--3">

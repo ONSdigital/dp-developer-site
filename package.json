@@ -1,7 +1,7 @@
 {
   "name": "dp-developer-site",
   "version": "0.0.1",
-  "description": "CSS and Javascript assets for developer.beta.ons.gov.uk",
+  "description": "CSS and Javascript assets for developer.ons.gov.uk",
   "main": "index.js",
   "scripts": {
     "test": "jest --config ./jest.config.json",

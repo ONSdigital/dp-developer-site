@@ -58,7 +58,7 @@ const buildChart = (chartContainer, data) => {
 
   data.observations
       .map(function(data) {
-        // create a new field from the date to allow it to be ordered
+      // create a new field from the date to allow it to be ordered
         const sort = new Date('1-' + data.dimensions.time.label.replace('-', ' '));
         // build an array with the 3 values we need and convert the value to a number
         const chartdata = [
