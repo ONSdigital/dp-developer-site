@@ -14,11 +14,13 @@ title: Take a tour of the API
 
     <p>You need to specify a value for each of the available dimensions using query string parameters.</p>
 
-    <section>
-        <h3>Example</h3>
+    <section aria-labelledby="example-heading">
+        <h3 id="example-heading">Example</h3>
         <p>
             Make a <code>GET</code> request to
-            <code class="tour__endpoint-text">https://api.beta.ons.gov.uk/v1/datasets/cpih01/editions/time-series/versions/6/observations?time=Aug-16&geography=K02000001&aggregate=cpih1dim1A0</code>
+            <code class="tour__endpoint-text">
+                https://api.beta.ons.gov.uk/v1/datasets/cpih01/editions/time-series/versions/6/observations?time=Aug-16&geography=K02000001&aggregate=cpih1dim1A0
+            </code>
         </p>
         <details class="margin-bottom--4" data-tour-example>
             <summary class="summary">
@@ -35,29 +37,35 @@ title: Take a tour of the API
                     class="line-height--32">Run this JavaScript example</span></button>
         </div>
 
-        <div class="hidden margin-top--2" data-tour="error" role="alert">
-            <div class="font-size--16 form-error filter-overview__error-message margin-top--1 margin-bottom--1">
-                An error occurred when trying to display results. Please try again.
-            </div>
-        </div>
-
-        <div class="hidden margin-top--2" data-tour-tryitout="results">
-            <div class="btn-group tour__tabs" role="tablist">
-                <a type="button" id="json-tab" role="tab" tabindex="0" aria-controls="json"
-                    class="btn btn--secondary btn--chart-control tour__tab" aria-selected="true"
-                    data-tour-results-tab="json">JSON</a>
-                <a type="button" id="results-tab" role="tab" tabindex="0" aria-controls="results"
-                    class="btn btn--secondary btn--chart-control tour__tab" data-tour-results-tab="results">Content</a>
-            </div>
-            <div id="json" data-tour-results-view="json" class="tour__results-container" role="tabpanel"
-                aria-labelledby="json-tab" aria-hidden="false">
-                <div class="markdown">
-                    <pre class="tour__json-container" tabindex="0"></pre>
+        <section id="results-section" class="hidden" tabindex="-1" aria-labelledby="results-heading"
+            data-tour-tryitout-results>
+            <h4 id="results-heading">Results</h4>
+            <div class="hidden margin-top--2" data-tour="error" role="alert">
+                <div class="font-size--16 form-error filter-overview__error-message margin-top--1 margin-bottom--1">
+                    An error occurred when trying to display results. Please try again.
                 </div>
             </div>
-            <p id="results" data-tour-results-view="results" tabindex="0" data-tour-results-type="singlePoint"
-                class="tour__results-container" role="tabpanel" aria-labelledby="results-tab" aria-hidden="true"></p>
-        </div>
+
+            <div class="hidden margin-top--2" data-tour-tryitout="results">
+                <div class="btn-group tour__tabs" role="tablist">
+                    <a type="button" id="json-tab" role="tab" tabindex="0" aria-controls="json"
+                        class="btn btn--secondary btn--chart-control tour__tab" aria-selected="true"
+                        data-tour-results-tab="json">JSON</a>
+                    <a type="button" id="results-tab" role="tab" tabindex="0" aria-controls="results"
+                        class="btn btn--secondary btn--chart-control tour__tab"
+                        data-tour-results-tab="results">Content</a>
+                </div>
+                <div id="json" data-tour-results-view="json" class="tour__results-container" role="tabpanel"
+                    aria-labelledby="json-tab" aria-hidden="false">
+                    <div class="markdown">
+                        <pre class="tour__json-container" tabindex="0"></pre>
+                    </div>
+                </div>
+                <p id="results" data-tour-results-view="results" tabindex="0" data-tour-results-type="singlePoint"
+                    class="tour__results-container" role="tabpanel" aria-labelledby="results-tab" aria-hidden="true">
+                </p>
+            </div>
+        </section>
     </section>
     <hr class="margin-top--3">
     <nav class="margin-top--2">

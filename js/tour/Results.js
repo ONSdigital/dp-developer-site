@@ -22,6 +22,7 @@ const buildResultsView = (el, response, resultType) => {
     case 'jsonOnly':
       return;
   }
+  window.location.hash = 'results-section';
 };
 
 const buildTableBody = (resultsContainer, data) => {
