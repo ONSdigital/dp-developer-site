@@ -46,9 +46,9 @@ const buildText = (resultsContainer, text) => {
   const resultType = resultsContainer.dataset.tourResultsType;
 
   if (resultType === 'latestRelease') {
-    paragraph.innerHTML = `The latest release can be found at <tt>${text}</tt>`;
+    paragraph.innerHTML = `The latest release can be found at <code>${text}</code>`;
   } else if (resultType === 'singlePoint') {
-    paragraph.innerHTML = `The value of CPIH for the United Kingdom in August 2016 was <tt>${text}</tt>`;
+    paragraph.innerHTML = `The value of CPIH for the United Kingdom in August 2016 was <code>${text}</code>`;
   }
 };
 

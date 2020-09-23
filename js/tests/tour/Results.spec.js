@@ -41,7 +41,7 @@ describe('building the results view', () => {
     };
     test('that the latest release text is rendered', () => {
       buildResultsView(el, response, resultType);
-      expect(el.innerHTML).toBe(`The latest release can be found at <tt>${response.links.latest_version.href}</tt>`);
+      expect(el.innerHTML).toBe(`The latest release can be found at <code>${response.links.latest_version.href}</code>`);
     });
   });
   describe('building the single point results view', () => {
@@ -58,7 +58,7 @@ describe('building the results view', () => {
     test('that the single point text is rendered', () => {
       buildResultsView(el, response, resultType);
       expect(el.innerHTML)
-          .toBe(`The value of CPIH for the United Kingdom in August 2016 was <tt>${response.observations[0].observation}</tt>`);
+          .toBe(`The value of CPIH for the United Kingdom in August 2016 was <code>${response.observations[0].observation}</code>`);
     });
   });
   describe('building the chart results view', () => {
