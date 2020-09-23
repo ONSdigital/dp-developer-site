@@ -30,7 +30,7 @@ If you need information from the ONS Developer Hub in a different format, please
 * your name and email address
 * the format you need, for example, accessible PDF
 
-We will consider your request and get back to you in 20 days.
+We will reply within five days to let you know when we will be able to provide the information. We will consider each request, but may not be able to provide an alternative accessible format on every occasion.
 
 ## Reporting accessibility problems
 
@@ -48,8 +48,8 @@ We plan to review the ONS Developer Hub periodically to ensure that we remain co
 
 ## Preparation of this accessibility statement
 
-This statement was prepared on 21 September 2020. It was last reviewed on 21 September 2020.
+This statement was prepared on 21 September 2020. It was last reviewed on 23 September 2020.
 
 The ONS Developer Hub was last tested on 10 September 2020. The test was carried out with an internal audit. We tested using Axe, VoiceOver and NVDA.
 
-Last Updated: 21 September 2020
+Last Updated: 23 September 2020
