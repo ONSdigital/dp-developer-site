@@ -1,0 +1,20 @@
+{{ define "table-of-contents" }}
+    <nav aria-labelledby="contents-label">
+        <h2 id="contents-label" class="margin-top--2 line-height--40">
+            <strong>Contents:</strong>
+        </h2>
+        <ul class="list--neutral">
+            {{range .Nav}}
+                <li {{if .JSOnly}} class="nojs--hide" {{end}}>
+                    <a href="/{{.GetRelativePath $.Path}}">
+                        {{if .IsActive $.Path}}
+                            <strong>{{.Name}}</strong>
+                        {{else}}
+                            {{.Name}}
+                        {{end}}
+                    </a>
+                </li>
+            {{end}}
+        </ul>
+    </nav>
+{{ end }}

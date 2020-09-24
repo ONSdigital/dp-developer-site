@@ -1,0 +1,30 @@
+{{ define "header" }}
+    {{$firstNavItem := index .Nav 0}}
+    {{$rootPath := $firstNavItem.GetRelativePath .Path}}
+    <header class="adjust-font-size--18 border-bottom--iron-sm border-bottom--iron-md">
+        <a class="skiplink" href="#main" tabindex="0">Skip to main content</a>
+        <div class="wrapper">
+            <div class="header col-wrap">
+                <div class="col col--lg-one-third col--md-half">
+                    <a class="inline-block" href="{{$rootPath}}">
+                        <img class="logo" src="https://cdn.ons.gov.uk/assets/images/ons-logo.svg" alt="Office for National Statistics logo - Developer Hub Homepage">
+                    </a>
+                </div>
+                <div class="col col--lg-two-thirds col--md-half header-title">
+                    <strong>Developer Hub</strong>
+                </div>
+            </div>
+        </div>
+        <div class="banner banner--blue">
+            <div class="wrapper">
+                <div class="col col--md-40 col--lg-44">
+                    <span class="banner__text-icon">Beta</span>
+                    <div class="banner__body">
+                        <p class="banner__text">This is a new way of getting data - your <a href="https://www.ons.gov.uk/feedback?service=dev">feedback</a> will help
+                            us to improve it.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+{{ end }}

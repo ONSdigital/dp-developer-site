@@ -16,54 +16,14 @@
         <link rel="stylesheet" href="{{$rootPath}}assets/css/main.css">
     </head>
     <body class="link-adjust sticky-footer">
-        <header class="adjust-font-size--18 border-bottom--iron-sm border-bottom--iron-md">
-            <a class="skiplink" href="#main" tabindex="0">Skip to main content</a>
-            <div class="wrapper">
-                <div class="header col-wrap">
-                    <div class="col col--lg-one-third col--md-half">
-                        <a class="inline-block" href="{{$rootPath}}">
-                            <img class="logo" src="https://cdn.ons.gov.uk/assets/images/ons-logo.svg" alt="Office for National Statistics logo - Developer Hub Homepage">
-                        </a>
-                    </div>
-                    <div class="col col--lg-two-thirds col--md-half header-title">
-                        <strong>Developer Hub</strong>
-                    </div>
-                </div>
-            </div>
-            <div class="banner banner--blue">
-                <div class="wrapper">
-                    <div class="col col--md-40 col--lg-44">
-                        <span class="banner__text-icon">Beta</span>
-                        <div class="banner__body">
-                            <p class="banner__text">This is a new way of getting data - your <a href="https://www.ons.gov.uk/feedback?service=dev">feedback</a> will help
-                            us to improve it.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
+        <script>document.body.className = ((document.body.className) ? document.body.className + ' js' : 'js');</script>
+        {{ template "cookies-banner" . }}
+        {{ template "header" . }}
             <div class="wrapper margin-bottom-sm--3 margin-bottom-md--6 adjust-font-size--18">
                 <div class="col-wrap">
                     <div class="col col--md-one-half col--lg-one-third sticky sticky--lg-only">
                         <div class="margin-top-sm--4 margin-top-md--5 margin-right-lg--2 padding-top--1 padding-right--1 padding-bottom--1 padding-left--1 background--iron-light">
-                            <nav aria-labelledby="contents-label">
-                                <h2 id="contents-label" class="margin-top--2 line-height--40">
-                                    <strong>Contents:</strong>
-                                </h2>
-                                <ul class="list--neutral">
-                                    {{range .Nav}}
-                                        <li {{if .JSOnly}} class="nojs--hide" {{end}}>
-                                            <a href="/{{.GetRelativePath $.Path}}">
-                                                {{if .IsActive $.Path}}
-                                                    <strong>{{.Name}}</strong>
-                                                {{else}}
-                                                    {{.Name}}
-                                                {{end}}
-                                            </a>
-                                        </li>
-                                    {{end}}
-                                </ul>
-                            </nav>
+                            {{ template "table-of-contents" .}}
                         </div>
                     </div>
                     <main id="main" role="main" tabindex="-1" aria-labelledby="main-label">
@@ -76,122 +36,7 @@
                 </div>
             </div>
         </main>
-        <footer>
-            <div class="wrapper">
-                <div class="improve-this-page" data-module="improve-this-page">
-                    <div class="improve-this-page__prompt clearfix" id="feedback-form-header" tabindex="-1">
-                        <h3 class="improve-this-page__is-useful-question">Is this page useful?</h3>
-                        <a id="feedback-form-yes" class="improve-this-page__page-is-useful-button" href="https://beta.ons.gov.uk/feedback/thanks">
-                Yes
-                </a>
-                        <a id="feedback-form-no" class="js-toggle" href="https://beta.ons.gov.uk/feedback?service=dev">
-                No
-                </a>
-                        <a id="feedback-form-anything-wrong" class="js-toggle improve-this-page__anything-wrong" href="https://beta.ons.gov.uk/feedback?service=dev">
-                Can't find what you're looking for?
-                </a>
-                    </div>
-                    <div id="feedback-form" class="improve-this-page__form js-hidden">
-                        <a href="#" id="feedback-form-close" class="improve-this-page__close js-toggle">Close</a>
-                        <form id="feedback-form-container">
-                            <input name="feedback-form-type" value="footer" type="hidden">
-                            <input name="url" id="feedback-form-url" value="https://developer.ons.gov.uk{{.Path}}" type="hidden">
-                            <div class="form-group">
-                                <label class="form-label-bold" id="description-field-label" for="description-field">
-                            How should we improve this page?
-                            </label>
-                                <textarea id="description-field" class="form-control" name="description" rows="5"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label-bold" for="name-field">
-                            Name (optional)
-                                <span class="form-hint">Include your name and email address if you'd like us to get back to you.</span>
-                                </label>
-                                <input id="name-field" class="form-control" name="name" type="text">
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label-bold" id="email-field-label" for="email-field">Email (optional)</label>
-                                <input id="email-field" class="form-control" name="email" type="text">
-                            </div>
-                            <div>
-                                <input id="feedback-form-submit" class="btn btn--primary font-weight-700" value="Send feedback" type="submit">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <h2 class="visuallyhidden">Footer links</h2>
-            <div class="footer">
-                <div class="wrapper">
-                    <nav aria-label="Footer links">
-                        <div class="footer-nav col-wrap">
-                            <div class="col col--lg-one-third col--md-one-third">
-                                <h3 class="footer-nav__heading">Help</h3>
-                                <ul class="footer-nav__list">
-                                    <li class="footer-nav__item">
-                                        <a href="/help/accessibility/">Accessibility</a>
-                                    </li>
-
-                                    <li class="footer-nav__item">
-                                        <a href="https://www.ons.gov.uk/cookies">Cookies</a>
-                                    </li>
-                                    <li class="footer-nav__item">
-                                        <a href="https://www.ons.gov.uk/help/privacynotice">Privacy</a>
-                                    </li>
-
-                                    <li class="footer-nav__item">
-                                        <a href="https://www.ons.gov.uk/help/termsandconditions">Terms and conditions</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col col--lg-one-third col--md-one-third">
-                                <h3 class="footer-nav__heading">About ONS</h3>
-                                <ul class="footer-nav__list">
-                                    <li class="footer-nav__item">
-                                        <a href="https://www.ons.gov.uk/aboutus/whatwedo">What we do</a>
-                                    </li>
-                                    <li class="footer-nav__item">
-                                        <a href="https://www.ons.gov.uk/aboutus/careers">Careers</a>
-                                    </li>
-                                    <li class="footer-nav__item">
-                                        <a href="https://www.ons.gov.uk/aboutus/contactus">Contact us</a>
-                                    </li>
-                                    <li class="footer-nav__item">
-                                        <a href="https://www.ons.gov.uk/aboutus/transparencyandgovernance/freedomofinformationfoi">Freedom of Information</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col col--lg-one-third col--md-one-third">
-                                <h3 class="footer-nav__heading">Connect with us</h3>
-                                <ul class="footer-nav__list">
-                                    <li class="footer-nav__item">
-                                        <a href="https://twitter.com/ONS" class="icon--hide">Twitter</a>
-                                    </li>
-                                    <li class="footer-nav__item">
-                                        <a href="https://www.facebook.com/ONS" class="icon--hide">Facebook</a>
-                                    </li>
-                                    <li class="footer-nav__item">
-                                        <a href="https://www.linkedin.com/company/office-for-national-statistics" class="icon--hide">LinkedIn</a>
-                                    </li>
-                                    <li class="footer-nav__item">
-                                        <a href="https://public.govdelivery.com/accounts/UKONS/subscribers/new" class="icon--hide">Email alerts</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
-                </div>
-                <div class="wrapper">
-                    <div class="footer-license">
-                        <img class="footer-license__img" alt="OGL" width="60" src="https://www.ons.gov.uk/img/ogl.png">
-                        <p class="footer-license__text margin-left-sm--0">
-                        All content is available under the <a class="icon--hide" href="http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/">Open Government Licence v3.0</a>
-                            <span class="icon icon-external--light-small"></span>, except where otherwise stated
-                    </p>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        {{ template "footer" . }}
         <script>
             window.feedbackOrigin = "https://beta.ons.gov.uk"
         </script>
