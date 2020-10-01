@@ -1,4 +1,4 @@
-import { toggleCodeExample } from '../../tour/CodeExamples';
+import {toggleCodeExample} from '../../tour/CodeExamples';
 
 describe('displaying the code example', () => {
   const exampleContainer = document.createElement('div');

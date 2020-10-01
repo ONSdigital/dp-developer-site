@@ -29,4 +29,4 @@ const buildCodeExample = (container, url) => {
   container.appendChild(codeBlock);
 };
 
-export { toggleCodeExample, buildCodeExample };
+export {toggleCodeExample, buildCodeExample};
