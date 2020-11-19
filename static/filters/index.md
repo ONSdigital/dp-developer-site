@@ -63,7 +63,7 @@ This example body can be sent via post to create a filter, with the response giv
 }
 ```
 
-Futher PUT requests can be made to `/filter/{filter-ID}` to update the dimensions required and once the request is complete it can be submitted by adding `?state=submitted`.
+Futher PUT requests can be made to `/filters/{filter-ID}` to update the dimensions required and once the request is complete it can be submitted by adding `?state=submitted`.
 
 For example;
 
