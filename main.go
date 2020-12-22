@@ -118,7 +118,7 @@ func main() {
 		{"filter-api", "https://raw.githubusercontent.com/ONSdigital/dp-filter-api/master/swagger.yaml", nil, nil},
 		{"code-list-api", "https://raw.githubusercontent.com/ONSdigital/dp-code-list-api/master/swagger.yaml", nil, nil},
 		{"hierarchy-api", "https://raw.githubusercontent.com/ONSdigital/dp-hierarchy-api/master/swagger.yaml", nil, nil},
-		{"search-api", "https://raw.githubusercontent.com/ONSdigital/dp-search-api/master/swagger.yaml", nil, nil},
+		{"dimension-search-api", "https://raw.githubusercontent.com/ONSdigital/dp-dimension-search-api/master/swagger.yaml", nil, nil},
 	}
 
 	if err := sources.Load(); err != nil {
