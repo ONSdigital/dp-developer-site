@@ -33,6 +33,15 @@ For more complicated queries the ['Filter a dataset'](filter/) service will be t
 
 [Guide to filtering a dataset](filters/)
 
+### Rate Limiting Rules
+The following rate limiting rules have been implemented on the API
+
+* 120 requests per 10 seconds
+
+* 200 requests per 1 minute
+
+If requests are made that reach these limits the IP address of the client will be blocked for 1 minute. 
+
 ## Terminology
 
 Descriptions for some terms used within this API.
