@@ -34,13 +34,23 @@ For more complicated queries the ['Filter a dataset'](filter/) service will be t
 [Guide to filtering a dataset](filters/)
 
 ### Rate Limiting Rules
-The following rate limiting rules have been implemented on the API
+
+Rate limiting rules have been implemented to limit the number of requests a client can make to The Office for National Statistics API. This is to protect the service against excessive use and denial of service attacks. 
+
+The following rate limiting rules have been implemented on the API. 
 
 * 120 requests per 10 seconds
 
 * 200 requests per 1 minute
 
-If requests are made that reach these limits the IP address of the client will be blocked for 1 minute. 
+They have been applied to following domains. 
+
+* api.ons.gov.uk
+
+* api.beta.ons.gov.uk
+
+If requests are made that reach these limits the IP address of the client will be blocked for 1 minute. The client will receive a 429 response, the retry-header contains the seconds remaining until a retry can be made.  
+
 
 ## Terminology
 
