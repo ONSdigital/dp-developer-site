@@ -33,7 +33,7 @@ For more complicated queries the ['Filter a dataset'](filter/) service will be t
 
 [Guide to filtering a dataset](filters/)
 
-### Rate Limiting Rules
+### Rate limiting rules
 
 Rate limiting has been implemented to contain the number of requests a client can make to our API. This is to protect the service against excessive use and denial of service attacks. 
 
