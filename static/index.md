@@ -49,7 +49,7 @@ They have been applied to following domains:
 
 * api.beta.ons.gov.uk
 
-If requests are made that reach these limits the IP address of the client will be blocked for 1 minute. The client will receive a JSON response with a 429 error code, the Retry-After header shows the seconds remaining until a retry can be made.  
+If requests are made that reach these limits the IP address of the client will be blocked for 1 minute. The client will receive a JSON response with a 429 error code. The Retry-After header shows the seconds remaining until a retry can be made.  
 
 
 ## Terminology
