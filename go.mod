@@ -30,5 +30,5 @@ require (
 	github.com/unrolled/render v0.0.0-20161003175327-526faf80cd4b
 	golang.org/x/text v0.3.1-0.20180208041248-4e4a3210bb54 // indirect
 	gopkg.in/check.v1 v1.0.0-20200227125254-8fa46927fb4f // indirect
-	gopkg.in/yaml.v2 v2.2.2
+	gopkg.in/yaml.v2 v2.2.8
 )
