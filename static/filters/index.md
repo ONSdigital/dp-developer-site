@@ -63,7 +63,7 @@ This example body can be sent via post to create a filter, with the response giv
 }
 ```
 
-Futher PUT requests can be made to `/filters/{filter-ID}` to update the dimensions required and once the request is complete it can be submitted by adding `?state=submitted`.
+For CMD datasets, futher PUT requests can be made to `/filters/{filter-ID}` to update the dimensions required and once the request is complete it can be submitted by adding `?state=submitted`.
 
 For example;
 
@@ -76,6 +76,13 @@ For example;
 ```
 /filters?submitted=true
 ```
+
+For Census 2021 datasets, to complete the filter journey the `/submit` endpoint should be used, e.g.:
+
+```
+/filters/c595f58f-1359-4472-b1a9-0e02c30fca7f/submit
+```
+
 
 Once submitted, you will get the following response:
 

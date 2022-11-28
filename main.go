@@ -115,7 +115,9 @@ var Tags = tags{
 func main() {
 	sources := spec.APIs{
 		{"dataset-api", "https://raw.githubusercontent.com/ONSdigital/dp-dataset-api/master/swagger.yaml", nil, nil},
+		{"population-types-api", "https://raw.githubusercontent.com/ONSdigital/dp-population-types-api/master/swagger.yaml", nil, nil},
 		{"filter-api", "https://raw.githubusercontent.com/ONSdigital/dp-filter-api/master/swagger.yaml", nil, nil},
+		{"cantabular-filter-flex-api", "https://raw.githubusercontent.com/ONSdigital/dp-cantabular-filter-flex-api/master/swagger.yaml", nil, nil},
 		{"code-list-api", "https://raw.githubusercontent.com/ONSdigital/dp-code-list-api/master/swagger.yaml", nil, nil},
 		{"hierarchy-api", "https://raw.githubusercontent.com/ONSdigital/dp-hierarchy-api/master/swagger.yaml", nil, nil},
 		{"dimension-search-api", "https://raw.githubusercontent.com/ONSdigital/dp-dimension-search-api/master/swagger.yaml", nil, nil},
