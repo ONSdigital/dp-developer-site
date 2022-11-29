@@ -115,7 +115,9 @@ var Tags = tags{
 func main() {
 	sources := spec.APIs{
 		{"dataset-api", "https://raw.githubusercontent.com/ONSdigital/dp-dataset-api/master/swagger.yaml", nil, nil},
+		{"population-types-api", "https://raw.githubusercontent.com/ONSdigital/dp-population-types-api/master/swagger.yaml", nil, nil},
 		{"filter-api", "https://raw.githubusercontent.com/ONSdigital/dp-filter-api/master/swagger.yaml", nil, nil},
+		{"cantabular-filter-flex-api", "https://raw.githubusercontent.com/ONSdigital/dp-cantabular-filter-flex-api/master/swagger.yaml", nil, nil},
 		{"code-list-api", "https://raw.githubusercontent.com/ONSdigital/dp-code-list-api/master/swagger.yaml", nil, nil},
 		{"hierarchy-api", "https://raw.githubusercontent.com/ONSdigital/dp-hierarchy-api/master/swagger.yaml", nil, nil},
 		{"dimension-search-api", "https://raw.githubusercontent.com/ONSdigital/dp-dimension-search-api/master/swagger.yaml", nil, nil},
@@ -153,7 +155,8 @@ func generateModel(APIs spec.APIs) site {
 	// FIXME need to handle static content
 	orderedNav.appendNavItem("Take a tour of the API", "tour/getting-started", true)
 	orderedNav.appendNavItem("Guide to requesting specific observations", "observations", false)
-	orderedNav.appendNavItem("Guide to filtering a dataset", "filters", false)
+	orderedNav.appendNavItem("Guide to filtering a CMD dataset", "filters", false)
+	orderedNav.appendNavItem("Guide to filtering a Census 2021 dataset", "censusfilters", false)
 
 	siteModel.generateDynamicPages(APIs, orderedNav)
 	siteModel.generateStaticPages(orderedNav)
