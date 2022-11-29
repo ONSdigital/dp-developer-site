@@ -155,7 +155,8 @@ func generateModel(APIs spec.APIs) site {
 	// FIXME need to handle static content
 	orderedNav.appendNavItem("Take a tour of the API", "tour/getting-started", true)
 	orderedNav.appendNavItem("Guide to requesting specific observations", "observations", false)
-	orderedNav.appendNavItem("Guide to filtering a dataset", "filters", false)
+	orderedNav.appendNavItem("Guide to filtering a CMD dataset", "filters", false)
+	orderedNav.appendNavItem("Guide to filtering a Census 2021 dataset", "censusfilters", false)
 
 	siteModel.generateDynamicPages(APIs, orderedNav)
 	siteModel.generateStaticPages(orderedNav)

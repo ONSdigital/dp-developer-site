@@ -1,5 +1,5 @@
 ---
-title: Guide to filtering a dataset
+title: Guide to filtering a CMD dataset
 ---
 
 The ['Filter a dataset'](../filter/) service allows any combination of dimension options to be requested. This is aimed at more complicated queries than the ['Explore our dataset'](../dataset/) service and requires a POST containing dataset ID, edition, version and details of dimensions.
@@ -63,26 +63,11 @@ This example body can be sent via post to create a filter, with the response giv
 }
 ```
 
-For CMD datasets, futher PUT requests can be made to `/filters/{filter-ID}` to update the dimensions required and once the request is complete it can be submitted by adding `?state=submitted`.
-
-For example;
-
-```
-/filters/d9645c21-0baa-4a58-834e-feb1919b14bb?submitted=true
-```
-
-**Note**: `?submitted=true` can be added to the initial POST request and the job will start immediately.
+**Note**:  `?submitted=true` can be added to the initial POST request and the job will start immediately.
 
 ```
 /filters?submitted=true
 ```
-
-For Census 2021 datasets, to complete the filter journey the `/submit` endpoint should be used, e.g.:
-
-```
-/filters/c595f58f-1359-4472-b1a9-0e02c30fca7f/submit
-```
-
 
 Once submitted, you will get the following response:
 
