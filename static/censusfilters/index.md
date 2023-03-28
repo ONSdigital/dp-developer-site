@@ -2,7 +2,7 @@
 title: Guide to filtering a Census 2021 dataset
 ---
 
-If you require download files for Census 2021 data to be generated via the API then the filter service should be used.  Otherwise, the ['Observations'](../observations/) service may be more appropriate for instant access to data.
+If you require download files for Census 2021 data to be generated via the API then the filter service should be used.  Otherwise, the ['Observations'](../observations/census) service may be more appropriate for instant access to data.
 
 Using the filter service for Census 2021 data is similar to the ['CMD Filter'](../filters/) filter journey, but more fields are required to begin the filter process.
 
