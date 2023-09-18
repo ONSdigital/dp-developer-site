@@ -33,19 +33,6 @@ For more complicated queries the ['Filter a dataset'](filter/) service will be t
 
 [Guide to filtering a dataset](filters/)
 
-### Rate limiting
-
-The ONS API applies rate limiting to ensure a high quality service is delivered to all users and to protect client applications from unexpected loops. 
-
-The following rate limits have been implemented: 
-
-* 120 requests per 10 seconds
-
-* 200 requests per 1 minute
-
-If you exceed these limits the API will return a 429 Too Many Requests HTTP status code and a Retry-After header containing the number of seconds until you may try your request again. 
-
-
 ## Terminology
 
 Descriptions for some terms used within this API.

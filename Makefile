@@ -5,7 +5,7 @@ all: audit build watch
 
 .PHONY: audit
 audit:
-	nancy go.sum
+	go list -json -m all | nancy sleuth
 	npm audit --audit-level=high
 
 .PHONY: build
@@ -26,7 +26,7 @@ watch:
 .PHONY: watch-templates
 watch-templates:
 	make build
-	go get github.com/cespare/reflex
+	go install github.com/cespare/reflex
 	reflex -v -R node_modules -R assets -R vendor -R logs -r '^(main\.go|renderer/.*|templates/.*\.tmpl|static/.*\.md|static/.*\.html)$$' go run main.go
 
 .PHONY: watch-assets
@@ -42,5 +42,5 @@ watch-serve:
 
 .PHONY: serve
 serve:
-	go get github.com/fogleman/serve
+	go install github.com/fogleman/serve
 	serve -port=${PORT} -dir="assets"
