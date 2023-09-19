@@ -1,34 +1,34 @@
 ---
-title: Bots
+title: Guide to rate limiting and bot development
 ---
 
-Hello world 3
-
-When creating a bot, scrapper or automation to programmatically get data from the ONS site and APIs please read the following guidance.
+When creating a bot, scraper or automation to programmatically get data from the ONS site and APIs, please read the following guidance.
 
 ## Rate limiting
 
-The ONS API applies rate limiting to ensure a high quality service is delivered to all users and to protect client applications from unexpected loops.
+The ONS dissemination sites and API apply rate limiting to ensure a high-quality service is delivered to all users.
 
-The following rate limits have been implemented:
+The following rate limits have been applied:
 
-* 120 requests per 10 seconds - All site and API assets
+* 120 requests per 10 seconds - all site and API assets
 
-* 200 requests per 1 minute - All site and API assets
+* 200 requests per 1 minute - all site and API assets
 
-* 15 requests per 10 seconds - High demand site assets
+* 15 requests per 10 seconds - high demand site assets
 
-The time for which you will be blocked varies and is dynamically changed by ONS depending on release schedules and observed demand.
+The time for which you will be blocked varies and is dynamically changed by the ONS, depending on release schedules and observed demand.
 
-If you exceed these limits the API will return a 429 Too Many Requests HTTP status code and a Retry-After header containing the number of seconds until you may try your request again.
+If you exceed these limits, the API will return a `429 Too Many Requests` HTTP status code and a `Retry-After` header containing the number of seconds until you may try your request again.
 
-ONS expect that you programmatically respect the Retry-After header and back off your polling accordingly. If this is not respected our algorithms will automatically impose a total block to our services for anything up to 24hrs.
+The ONS expects that you programmatically respect the Retry-After header and back-off your polling accordingly. If this is not respected, our algorithms will automatically impose a total block to our services for anything up to 24 hours.
 
-## Constructing a good user-agent for Bot usage
+Read more in our [fair usage policy](TODO)
+
+## Constructing a good user-agent for bot usage
 
 The `user-agent` header informs us of the characteristics of the requesting user agent.
 
-### Naming your Bot and versioning
+### Naming your bot and versioning
 
 Naming your bot and providing a version makes it easier for us to identify and work with you should there be any problems.
 
@@ -36,17 +36,11 @@ Naming your bot and providing a version makes it easier for us to identify and w
 botName/Version1.0.0
 ```
 
-### Don't leak personally identifying information in the user agent
+### If you are writing a bot include a URL or contact information
 
-Do not include your name, username or personal email in the user-agent. It is not necessary to provide us such information and not the intention of the `user-agent` header.
+When writing bots it is best practice to include a means of contacting the bot owner if necessary. The best method is to include a URL to a page detailing the owner of the bot, the purpose of the bot and providing a means of contacting you. Alternatively, you can include a company email address (do not use a personal email) we can use to contact you for further information.
 
-Your company name is acceptable if you have one.
-
-Anything you provide will be stored in our logs as per our [data retention policy](https://www.ons.gov.uk/aboutus/transparencyandgovernance/dataprotection/dataprotectionpolicy)
-
-### If you're writing a bot, make sure to include some kind of url/contact info
-
-This can be an company email address (not a personal one) or a url to a page you host to define your bots intentions or contact information:
+Examples:
 
 All the information
 
@@ -66,20 +60,26 @@ Just contact information
 botName/Version1.0.0 (organisation-name contact@organisation.com)
 ```
 
-### Don't use HTML tags
+### Do not use personally identifying information in the `user-agent` header
 
-Using the example of providing a URL to you bot information please refrain from using the HTML tags as the following;
+Do not include your name, username or personal email in the `user-agent`. Your company name is acceptable if you have one.
+
+Anything you provide will be stored in our logs as per our [data retention policy](https://www.ons.gov.uk/aboutus/transparencyandgovernance/dataprotection/dataprotectionpolicy)
+
+### Do not use HTML tags
+
+When providing a URL as your bot information please refrain from using the HTML tags as follows:
 
 ```shell
 botName/Version1.0.0 (organisation-name <a href="http://www.organisation-site.com/bot.html>My Bot</a>)
 ```
 
-Instead use;
+Instead use:
 
 ```shell
 botName/Version1.0.0 (organisation-name +http://www.organisation-site.com/bot.html)
 ```
 
-### Keep it simple no UTF8 or emojis
+### Keep it simple; do not include UTF8 or emojis
 
-We have no problems processing UTF8 or even emojis, but its not necessary, it's a better practice to keep your `user-agent`` as simple as possible - only use letters, numbers and basic symbols (brackets, hypens, slashes etc).
+It is best practice to keep your `user-agent` as simple as possible - only use letters, numbers and basic symbols (brackets, hyphens and slashes).

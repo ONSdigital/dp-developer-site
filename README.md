@@ -10,7 +10,7 @@ To run this app you'll need certain versions installed:
 
 | Language | version   |
 |----------|-----------|
-| Go       | >= 1.21.1 |
+| Go       | >= 1.20.3 |
 | Node     | = 14.21.3 |
 | Python   | >= 3.9.2  |
 
@@ -68,6 +68,6 @@ See [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ### License
 
-Copyright © 2017-2018, Office for National Statistics (<https://www.ons.gov.uk>)
+Copyright © 2017-2023, Office for National Statistics (<https://www.ons.gov.uk>)
 
 Released under MIT license, see [LICENSE](LICENSE.md) for details.
