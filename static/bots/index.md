@@ -22,7 +22,7 @@ If you exceed these limits, the API will return a `429 Too Many Requests` HTTP s
 
 Your tooling should respect the `Retry-After` header and pause your requests for the specified duration. If this is not respected our algorithms may impose a block to our services for up to 1 hour.
 
-We reserve the right to change our rate limits at any time and without prior notice. Read more in our [fair usage policy](TODO)
+We reserve the right to change our rate limits at any time and without prior notice. Read more in our [fair usage policy](https://www.ons.gov.uk/help/fairusepolicy)
 
 ## Constructing a good User-Agent for bot usage
 
