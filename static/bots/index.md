@@ -20,11 +20,9 @@ The time for which you will be blocked varies and is dynamically changed by the 
 
 If you exceed these limits, the API will return a `429 Too Many Requests` HTTP status code and a `Retry-After` header containing the number of seconds until you may try your request again.
 
-The ONS expects that you programmatically respect the Retry-After header and back-off your polling accordingly. If this is not respected, our algorithms will automatically impose a total block to our services for anything up to 24 hours.
-
 Your tooling should respect the `Retry-After` header and pause your requests for the specified duration. If this is not respected our algorithms may impose a block to our services for up to 1 hour.
 
-Read more in our [fair usage policy](TODO)
+We reserve the right to change our rate limits at any time and without prior notice. Read more in our [fair usage policy](TODO)
 
 ## Constructing a good User-Agent for bot usage
 
@@ -54,7 +52,7 @@ botName/Version1.0.0 (organisation-name contact@organisation.com)
 
 Do not include your name, username or personal email in the `User-Agent`. Your company name is acceptable if you have one.
 
-Anything you provide will be stored in our logs as per our [data retention policy](https://www.ons.gov.uk/aboutus/transparencyandgovernance/dataprotection/dataprotectionpolicy)
+Anything you provide will be stored in our logs as per our [terms and conditions](https://www.ons.gov.uk/help/termsandconditions).
 
 ### Do not use HTML tags
 
