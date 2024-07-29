@@ -26,8 +26,7 @@ watch:
 .PHONY: watch-templates
 watch-templates:
 	make build
-	go install github.com/cespare/reflex
-	reflex -v -R node_modules -R assets -R vendor -R logs -r '^(main\.go|renderer/.*|templates/.*\.tmpl|static/.*\.md|static/.*\.html)$$' go run main.go
+	reflex -d none -c ./reflex
 
 .PHONY: watch-assets
 watch-assets:
@@ -42,5 +41,5 @@ watch-serve:
 
 .PHONY: serve
 serve:
-	go install github.com/fogleman/serve
+	go install github.com/fogleman/serve@latest
 	serve -port=${PORT} -dir="assets"

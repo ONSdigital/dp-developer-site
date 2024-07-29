@@ -1,0 +1,3 @@
+# Watch all main.go and .go files in renderer, as well as any .md files in templates or static
+# & run `go run main.go` when any matching file is changed
+-R node_modules -R assets -R vendor -R logs -r '^(main\.go|renderer/.*|templates/.*\.tmpl|static/.*\.md|static/.*\.html)$$' go run main.go
