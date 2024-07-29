@@ -6,11 +6,11 @@
   "scripts": {
     "test": "jest --config ./jest.config.json",
     "build": "npm run build:css && npm run build:js",
-    "build:css": "./node_modules/node-sass/bin/node-sass --output-style compressed scss/main.scss -o assets/assets/css",
+    "build:css": "sass scss/main.scss assets/assets/css/main.css --style=compressed",
     "build:js": "npm run lint:fix && webpack --mode=production --config ./webpack.config.js",
     "watch": "npm run watch:css && npm run watch:js",
     "watch:js": "webpack --mode=development --config ./webpack.config.js --watch",
-    "watch:css": "./node_modules/node-sass/bin/node-sass -w scss --source-map-embed --output-style expanded scss/main.scss -o assets/assets/css",
+    "watch:css": "sass -w --embed-source-map --style=expanded scss/main.scss ./assets/assets/css/main.css",
     "lint": "eslint \"**/*.js\" --ignore-path .gitignore .",
     "lint:fix": "eslint \"**/*.js\" --ignore-path .gitignore . --fix",
     "postinstall": "npm run build"
@@ -30,7 +30,7 @@
     "code-prettify": "^0.1.0",
     "highcharts": "^8.2.0",
     "jest": "^25.5.4",
-    "node-sass": "^4.14.1"
+    "sass": "^1.77.8"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
