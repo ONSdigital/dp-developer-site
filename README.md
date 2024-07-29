@@ -10,11 +10,13 @@ To run this app you'll need certain versions installed:
 
 | Language | version   |
 |----------|-----------|
-| Go       | >= 1.20.3 |
-| Node     | = 14.21.3 |
+| Go       | >= 1.21.7 |
+| Node     | = 20.1.3  |
 | Python   | >= 3.9.2  |
 
 These versions are what the pipeline will build with.
+
+You can use `nvm use` to set your Node version to the current compatible one.
 
 ## Development
 
