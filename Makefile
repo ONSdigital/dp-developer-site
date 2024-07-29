@@ -9,12 +9,15 @@ audit:
 	npm audit --audit-level=high
 
 .PHONY: build
-build:
+build: deps-javascript
 	go run main.go
+	
+.PHONY: deps-javascript
+deps-javascript:
 	npm install --unsafe-perm
 
 .PHONY: test
-test:
+test: deps-javascript
 	npm test
 
 .PHONY: watch

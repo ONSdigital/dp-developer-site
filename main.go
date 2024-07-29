@@ -168,7 +168,6 @@ func generateModel(APIs spec.APIs) site {
 	orderedNav.appendNavItem("Guide to requesting CMD observations", "cmdobservations", false)
 	orderedNav.appendNavItem("Guide to filtering a CMD dataset", "filters", false)
 	orderedNav.appendNavItem("Guide to filtering a Census 2021 dataset", "censusfilters", false)
-	orderedNav.appendNavItem("Guide to retirement of API endpoints", "retirement", false)
 	siteModel.generateDynamicPages(APIs, orderedNav)
 	siteModel.generateStaticPages(orderedNav)
 
