@@ -18,7 +18,7 @@ Endpoints, systems or features can be phased out or retired due to:
 
 ## Timeline of the end of life process
 
-1. Formal agreement is put in place internally that an API is due to reach it's end of life and should be sunsetted
+1. Formal agreement is put in place internally that an API is due to reach its end of life and should be sunsetted
 2. Migration guide and/or blog post detailing sunset and retirement published
 3. [Sunset headers](#how-will-users-know-an-endpoint-is-being-sunsetted) are put on API endpoints that are affected
 4. End of life date is reached
@@ -39,10 +39,10 @@ In the response headers to clients, we will issue three additional headers when 
 
 For example:
 
-```sh
-< Deprecation: Thu, 7 Mar 2024 09:00:00 GMT
-< Link: https://developer.ons.gov.uk/retirement
-< Sunset: Wed, 11 May 2024 23:59:59 GMT
+```txt
+Deprecation: Thu, 7 Mar 2024 09:00:00 GMT
+Link: https://developer.ons.gov.uk/retirement
+Sunset: Wed, 11 May 2024 23:59:59 GMT
 ```
 
 ## What can users do when their endpoint is being sunsetted?
