@@ -18,6 +18,12 @@ These versions are what the pipeline will build with.
 
 You can use `nvm use` to set your Node version to the current compatible one.
 
+You'll also need `github.com/fogleman/serve@latest` which you can install using:
+
+```sh
+    make install-prereqs
+```
+
 ## Development
 
 The templates that make up the developer hub are available in `/templates`.
@@ -70,6 +76,6 @@ See [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ### License
 
-Copyright © 2017-2023, Office for National Statistics (<https://www.ons.gov.uk>)
+Copyright © 2017-2024, Office for National Statistics (<https://www.ons.gov.uk>)
 
 Released under MIT license, see [LICENSE](LICENSE.md) for details.

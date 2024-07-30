@@ -16,6 +16,10 @@ build: deps-javascript
 deps-javascript:
 	npm install --unsafe-perm
 
+.PHONY: install-prereqs
+install-prereqs:
+	go install github.com/fogleman/serve@latest
+
 .PHONY: test
 test: deps-javascript
 	npm test
@@ -44,5 +48,4 @@ watch-serve:
 
 .PHONY: serve
 serve:
-	go install github.com/fogleman/serve@latest
 	serve -port=${PORT} -dir="assets"
