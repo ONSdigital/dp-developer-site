@@ -307,7 +307,7 @@ func generateResponses(responses *openAPI.Responses) (orderedResponses []MethodR
 		json, err := json.MarshalIndent(response.ResponseProps.Schema, "", "  ")
 
 		if err != nil {
-			log.Error(context.TODO(), "Creating assets directories and HTML files", err)
+			log.Error(context.TODO(), "creating assets directories and HTML files", err)
 			json = []byte{}
 		}
 
@@ -350,7 +350,7 @@ func (s site) generateStaticPages(orderedNav *Nav) {
 		if strings.HasSuffix(path, "index.md") {
 			bytes, err := ioutil.ReadFile(path)
 			if err != nil {
-				log.Error(context.TODO(), "Failed to read index.md file", err)
+				log.Error(context.TODO(), "failed to read index.md file", err)
 			}
 
 			templateBytes, metadata := generateStaticMetadata(bytes)
@@ -369,7 +369,7 @@ func (s site) generateStaticPages(orderedNav *Nav) {
 		if strings.HasSuffix(path, "index.html") {
 			bytes, err := ioutil.ReadFile(path)
 			if err != nil {
-				log.Error(context.TODO(), "Failed to read index.html", err)
+				log.Error(context.TODO(), "failed to read index.html", err)
 			}
 
 			templateBytes, metadata := generateStaticMetadata(bytes)
@@ -386,7 +386,7 @@ func (s site) generateStaticPages(orderedNav *Nav) {
 		return nil
 	})
 	if err != nil {
-		log.Error(context.TODO(), "Failed to generate static files", err)
+		log.Error(context.TODO(), "failed to generate static files", err)
 	}
 }
 
@@ -435,7 +435,7 @@ func generateStaticMetadata(md []byte) (b []byte, metadata map[string]string) {
 func generateStyledCodeHTML(html []byte) []byte {
 	doc, err := goquery.NewDocumentFromReader(bytes.NewReader(html))
 	if err != nil {
-		log.Error(context.TODO(), "Failed to read html file", err)
+		log.Error(context.TODO(), "failed to read html file", err)
 	}
 
 	doc.Find("pre").Each(func(i int, s *goquery.Selection) {
@@ -445,14 +445,14 @@ func generateStyledCodeHTML(html []byte) []byte {
 	doc.Find("code[class*=\"language-\"]").Each(func(i int, s *goquery.Selection) {
 		formattedCode, err := syntaxhighlight.AsHTML([]byte(s.Text()))
 		if err != nil {
-			log.Error(context.TODO(), "Failed to format HTML code blocks", err)
+			log.Error(context.TODO(), "failed to format HTML code blocks", err)
 		}
 		s.SetHtml(string(formattedCode))
 	})
 
 	formattedHTML, err := doc.Html()
 	if err != nil {
-		log.Error(context.TODO(), "Failed to find formatted HTML", err)
+		log.Error(context.TODO(), "failed to find formatted HTML", err)
 	}
 
 	formattedHTML = strings.Replace(formattedHTML, "<html><head></head><body>", "", 1)
