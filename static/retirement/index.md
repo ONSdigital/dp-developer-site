@@ -2,7 +2,7 @@
 title: Guide to our approach to the retirement of API endpoints 
 ---
 
-This guide documents our approach to the retirement API endpoints and what users can expect when an endpoint is going to be retired.
+This guide documents our approach to the retirement of API endpoints and what users can expect when an endpoint is going to be retired.
 
 ## Why are endpoints retired?
 
