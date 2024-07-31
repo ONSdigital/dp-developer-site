@@ -1,0 +1,223 @@
+---
+title: Retirement of API POC Server
+---
+
+## Background
+
+In line with our [approach to the retirement of API endpoints](../) has been decided that ONS will retire our 'API POC server' due to the following reasons:
+
+- out of date technology
+- built as a proof of concept
+- strategic technology direction is elsewhere
+- cost of upkeep is too high with similar services available
+
+This application provides the following API endpoints:
+
+- /dataset
+- /dataset/{dataset_id}
+- /dataset/{dataset_id}/timeseries
+- /dataset/{dataset_id}/timeseries/{timeseries_id}
+- /dataset/{dataset_id}/timeseries/{timeseries_id}/data
+- /timeseries
+- /timeseries/{timeseries_id}/dataset
+- /search
+
+These are for the following domains:
+
+- api.beta.ons.gov.uk
+- api.ons.gov.uk
+
+This is not the case for our v1 beta API can be accessed at:
+
+- api.beta.ons.gov.uk/v1
+
+Which has, for example, endpoints for:
+
+- /search
+- /datasets
+
+## Migration guide
+
+Below you can find detailed ways that you can still get the same data from the ONS using our latest services which will benefit from continued enhancement and investment.
+
+### /dataset
+
+| Old URI            | New URI                                 |
+|--------------------|-----------------------------------------|
+| `<domain>/dataset` | `https://api.beta.ons.gov.uk/v1/search?content_type=dataset` |
+
+Parameters:
+
+| Old parameter | New Parameter |
+|---------------|---------------|
+| start         | offset        |
+| limit         | limit         |
+
+You will need to add a new parameter to the request to just return the `dataset` content type:
+
+`content_type=dataset`
+
+See the [search response mapping](#search-response-mapping) for the overall response mapping and [search item data mapping](#search-item-data-mapping) for the mappings for individual items.
+
+### /dataset/{dataset_id}
+
+| Old URI                         | New URI    |
+|---------------------------------|------------|
+| `<domain>/dataset/{dataset_id}` | Deprecated |
+
+This endpoint currently returns a 404 for all `dataset_id` provided and so can already be considered deprecated.
+
+In order to get at similar data, you could still use our Search API:
+
+```txt
+https://api.beta.ons.gov.uk/v1/search?content_type=dataset_landing_page&q={dataset_id}
+```
+
+See the [search response mapping](#search-response-mapping) for the overall response mapping and [search item data mapping](#search-item-data-mapping) for the mappings for individual items.
+
+### /dataset/{dataset_id}/timeseries
+
+| Old URI                                    | New URI                                                                        |
+|--------------------------------------------|--------------------------------------------------------------------------------|
+| `<domain>/dataset/{dataset_id}/timeseries` | `https://api.beta.ons.gov.uk/v1/search?content_type=timeseries&q={dataset_id}` |
+
+See the [search response mapping](#search-response-mapping) for the overall response mapping and [search item data mapping](#search-item-data-mapping) for the mappings for individual items.
+
+### /dataset/{dataset_id}/timeseries/{timeseries_id} and /dataset/{dataset_id}/timeseries/{timeseries_id}/data
+
+| Old URI                                                    | New URI                                                                           |
+|------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| `<domain>/dataset/{dataset_id}/timeseries/{timeseries_id}` | `https://api.beta.ons.gov.uk/v1/search?content_type=timeseries&q={timeseries_id}` |
+
+`/dataset/{dataset_id}/timeseries/{timeseries_id}` is a subset of what is retrieved via `/dataset/{dataset_id}/timeseries/{timeseries_id}/data`.
+
+After getting the response from our search service, you can get the `uri` parameter of the `item` that matches your `timeseries_id` to it's `cdid`. Using that `uri` you can then submit that to our data endpoint, for example:
+
+```txt
+https://api.beta.ons.gov.uk/v1/data?uri=/economy/nationalaccounts/uksectoraccounts/timeseries/mm23/capstk
+```
+
+These uris are currently evergreen and so won't change between editions.
+
+### /timeseries
+
+| Old URI               | New URI                                                          |
+|-----------------------|------------------------------------------------------------------|
+| `<domain>/timeseries` | `https://api.beta.ons.gov.uk/v1/search?&content_type=timeseries` |
+
+OLD URI: `https://api.ons.gov.uk/timeseries`
+NEW URI: `https://api.beta.ons.gov.uk/v1/search`
+
+Parameters:
+
+| Old parameter | New Parameter |
+|---------------|---------------|
+| start         | offset        |
+| limit         | limit         |
+
+You will need to add a new parameter to the request to just return the `dataset` content type:
+
+`content_type=dataset`
+
+See the [search response mapping](#search-response-mapping) for the overall response mapping and [search item data mapping](#search-item-data-mapping) for the mappings for individual items.
+
+GOT TO HERE.
+
+### /timeseries/{timeseries_id}
+
+OLD URI: `https://api.ons.gov.uk/timeseries/{timeseries_id}`
+
+There is not a direct replacement for this URI but the URIs for timeseries pages can be derived from search:
+
+```txt
+https://api.beta.ons.gov.uk/v1/search?q={timeseries_id}&content_type=timeseries
+```
+
+Using the `uri` parameter of the `item` that matches `timeseries_id` to `cdid` you can then submit that to our data endpoint, for example:
+
+```txt
+https://api.beta.ons.gov.uk/v1/data?uri=/economy/nationalaccounts/uksectoraccounts/timeseries/mm23/capstk
+```
+
+These uris are currently evergreen and so won't change between releases.
+
+### /timeseries/{timeseries_id}/dataset
+
+OLD URI: `https://api.ons.gov.uk/timeseries/{timeseries_id}/dataset`
+
+This endpoint currently returns a 404 for all `timeseries_id` provided and so can already be considered deprecated.
+
+To get a result to what might be expected for this endpoint, you can go to:
+
+```txt
+https://api.beta.ons.gov.uk/v1/search?q={timeseries_id}&content_type=timeseries
+```
+
+See the [search response mapping](#search-response-mapping) for the overall response mapping and [search item data mapping](#search-item-data-mapping) for the mappings for individual items.
+
+OLD URI: `https://api.ons.gov.uk/search`
+NEW URI: `https://api.beta.ons.gov.uk/v1/search`
+
+Params:
+
+`start` -> `offset`
+`limit` -> `limit`
+`q` -> `q`
+
+Add new params:
+
+`content_type=timeseries,dataset`
+
+See the [search response mapping](#search-response-mapping) for the overall response mapping and [search item data mapping](#search-item-data-mapping) for the mappings for individual items.
+
+## Search response mapping
+
+| Old JSON attribute | New JSON attribute |
+|--------------------|--------------------|
+| startIndex         | N/A                |
+| itemsPerPage       | N/A                |
+| totalItems         | count              |
+| items              | items              |
+
+## Search item data mapping
+
+| Old JSON attribute            | New JSON attribute |
+|-------------------------------|--------------------|
+| description.cdid              | cdid               |
+| description.contact.email     | N/A*               |
+| description.contact.name      | N/A*               |
+| description.contact.telephone | N/A*               |
+| description.datasetId         | dataset_id         |
+| description.datasetUri        | N/A*               |
+| description.date              | N/A*               |
+| description.edition           | edition            |
+| description.keyNote           | N/A*               |
+| description.keywords          | keywords           |
+| description.metaDescription   | meta_description   |
+| description.nationalStatistic | N/A*               |
+| description.nextRelease       | N/A*               |
+| description.number            | N/A*               |
+| description.preUnit           | N/A*               |
+| description.releaseDate       | release_date       |
+| description.sampleSize        | N/A*               |
+| description.source            | N/A*               |
+| description.title             | title              |
+| description.summary           | summary            |
+| description.unit              | N/A*               |
+| searchBoost                   | N/A                |
+| type                          | type               |
+| uri                           | uri                |
+
+*Remaining content (with the exception of `searchBoost`) can be retrieved by using our `data` endpoint at:
+
+```txt
+https://api.beta.ons.gov.uk/v1/data
+```
+
+and using the `uri` from the search response as a query parameter. For example:
+
+```txt
+https://api.beta.ons.gov.uk/v1/data?uri=/economy
+```
+
+The response attributes there directly correspond to the items in the table above.
