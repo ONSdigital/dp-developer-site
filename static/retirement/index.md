@@ -50,3 +50,32 @@ Sunset: Wed, 11 May 2024 23:59:59 GMT
 For any API endpoint that is being sunsetted, we will provide a migration guide to using new services if there is one available.
 
 If this is not sufficient, users can provide feedback via our [Feedback Service](https://www.ons.gov.uk/feedback) which we will review at the end of every stage of the timeline before progressing to the next stage.
+
+## What endpoints are currently reaching end of life?
+
+### API POC Server
+
+It has been decided that ONS will retire our 'API POC server' due to the following reasons:
+
+- out of date technology
+- built as a proof of concept
+- strategic technology direction is elsewhere
+- cost of upkeep is too high with similar services available
+
+This application provides the following API endpoints:
+
+- `/dataset`
+- `/dataset/{dataset_id}`
+- `/dataset/{dataset_id}/timeseries`
+- `/dataset/{dataset_id}/timeseries/{timeseries_id}`
+- `/dataset/{dataset_id}/timeseries/{timeseries_id}/data`
+- `/timeseries`
+- `/timeseries/{timeseries_id}/dataset`
+- `/search`
+
+These are for the following domains:
+
+- `api.beta.ons.gov.uk`
+- `api.ons.gov.uk`
+
+To migrate to one of our new services, please read our [migration guide](./apipocserver/).
