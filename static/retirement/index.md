@@ -83,3 +83,30 @@ These are for the following domains:
 - `ons.gov.uk`
 
 To migrate to one of our new services, please read our [migration guide](./aggregatedsearch/).
+
+### API POC Server
+
+It has been decided that ONS will retire our 'API POC server' due to the following reasons:
+
+- out of date technology
+- built as a proof of concept
+- strategic technology direction is elsewhere
+- cost of upkeep is too high with similar services available
+
+This application provides the following API endpoints:
+
+- `/dataset`
+- `/dataset/{dataset_id}`
+- `/dataset/{dataset_id}/timeseries`
+- `/dataset/{dataset_id}/timeseries/{timeseries_id}`
+- `/dataset/{dataset_id}/timeseries/{timeseries_id}/data`
+- `/timeseries`
+- `/timeseries/{timeseries_id}/dataset`
+- `/search`
+
+These are for the following domains:
+
+- `api.beta.ons.gov.uk`
+- `api.ons.gov.uk`
+
+To migrate to one of our new services, please read our [migration guide](./apipocserver/).
