@@ -122,13 +122,14 @@ func main() {
 	ctx := context.Background()
 
 	sources := spec.APIs{
-		{"dataset-api", "https://raw.githubusercontent.com/ONSdigital/dp-dataset-api/master/swagger.yaml", nil, nil},
-		{"population-types-api", "https://raw.githubusercontent.com/ONSdigital/dp-population-types-api/master/swagger.yaml", nil, nil},
-		{"filter-api", "https://raw.githubusercontent.com/ONSdigital/dp-filter-api/master/swagger.yaml", nil, nil},
-		{"cantabular-filter-flex-api", "https://raw.githubusercontent.com/ONSdigital/dp-cantabular-filter-flex-api/master/swagger.yaml", nil, nil},
-		{"code-list-api", "https://raw.githubusercontent.com/ONSdigital/dp-code-list-api/master/swagger.yaml", nil, nil},
-		{"hierarchy-api", "https://raw.githubusercontent.com/ONSdigital/dp-hierarchy-api/master/swagger.yaml", nil, nil},
-		{"dimension-search-api", "https://raw.githubusercontent.com/ONSdigital/dp-dimension-search-api/master/swagger.yaml", nil, nil},
+		{"dataset-api", "https://raw.githubusercontent.com/ONSdigital/dp-dataset-api/master/swagger.yaml", nil, nil, false},
+		{"population-types-api", "https://raw.githubusercontent.com/ONSdigital/dp-population-types-api/master/swagger.yaml", nil, nil, false},
+		{"filter-api", "https://raw.githubusercontent.com/ONSdigital/dp-filter-api/master/swagger.yaml", nil, nil, false},
+		{"cantabular-filter-flex-api", "https://raw.githubusercontent.com/ONSdigital/dp-cantabular-filter-flex-api/master/swagger.yaml", nil, nil, false},
+		{"code-list-api", "https://raw.githubusercontent.com/ONSdigital/dp-code-list-api/master/swagger.yaml", nil, nil, false},
+		{"hierarchy-api", "https://raw.githubusercontent.com/ONSdigital/dp-hierarchy-api/master/swagger.yaml", nil, nil, false},
+		{"dimension-search-api", "https://raw.githubusercontent.com/ONSdigital/dp-dimension-search-api/master/swagger.yaml", nil, nil, false},
+		{"search-api", "/Users/rhysstromaine/src/github.com/ONSdigital/dp-search-api/swagger.yaml", nil, nil, true},
 	}
 
 	if err := sources.Load(); err != nil {
