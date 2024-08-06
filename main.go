@@ -129,7 +129,7 @@ func main() {
 		{"code-list-api", "https://raw.githubusercontent.com/ONSdigital/dp-code-list-api/master/swagger.yaml", nil, nil},
 		{"hierarchy-api", "https://raw.githubusercontent.com/ONSdigital/dp-hierarchy-api/master/swagger.yaml", nil, nil},
 		{"dimension-search-api", "https://raw.githubusercontent.com/ONSdigital/dp-dimension-search-api/master/swagger.yaml", nil, nil},
-		{"search-api", "/Users/rhysstromaine/src/github.com/ONSdigital/dp-search-api/swagger.yaml", nil, nil},
+		{"search-api", "https://raw.githubusercontent.com/ONSdigital/dp-search-api/master/swagger.yaml", nil, nil},
 	}
 
 	if err := sources.Load(); err != nil {
@@ -189,6 +189,8 @@ func (s site) generateDynamicPages(a spec.APIs, orderedNav *Nav) {
 		var orderedPaths []APIPath
 		apiDir := strings.TrimSuffix(api.ID, "-api")
 
+		fmt.Println("Generating pages for", apiDir)
+		fmt.Println("api.Spec.Info.Title", api.Spec.Info.Title)
 		orderedNav.appendNavItem(api.Spec.Info.Title, apiDir, false)
 
 		for key, path := range api.Spec.Paths.Paths {
