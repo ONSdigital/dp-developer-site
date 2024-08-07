@@ -189,8 +189,6 @@ func (s site) generateDynamicPages(a spec.APIs, orderedNav *Nav) {
 		var orderedPaths []APIPath
 		apiDir := strings.TrimSuffix(api.ID, "-api")
 
-		fmt.Println("Generating pages for", apiDir)
-		fmt.Println("api.Spec.Info.Title", api.Spec.Info.Title)
 		orderedNav.appendNavItem(api.Spec.Info.Title, apiDir, false)
 
 		for key, path := range api.Spec.Paths.Paths {
