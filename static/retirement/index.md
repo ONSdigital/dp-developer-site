@@ -50,3 +50,35 @@ Sunset: Wed, 11 May 2024 23:59:59 GMT
 For any API endpoint that is being sunsetted, we will provide a migration guide to using new services if there is one available.
 
 If this is not sufficient, users can provide feedback via our [Feedback Service](https://www.ons.gov.uk/feedback) which we will review at the end of every stage of the timeline before progressing to the next stage.
+
+## What endpoints are currently reaching end of life?
+
+### Data endpoints for aggregated search pages
+
+Tt has been decided that ONS will retire the data endpoints for our aggregated search pages due to the following reasons:
+
+- out of date technology
+- built as a proof of concept
+- strategic technology direction is elsewhere
+- cost of upkeep is too high with similar services available
+
+The UI for these pages has already been moved to using our Search API and it is the intention of ONS to separate data and UI endpoints by domain in future. Data in JSON format will be accessible via our API found at <https://api.beta.ons.gov.uk/v1/search>
+
+The endpoints to be decommissioned will be:
+
+- `/alladhocs/data`
+- `/allmethodologies/data`
+- `*/datalist/data`
+- `*/publications/data`
+- `/publishedrequests/data`
+- `*/staticlist/data`
+- `/timeseriestool/data`
+- `*/topicspecificmethodology/data`
+
+Items marked with a * can appear at any url path on the ONS website, with the others only appearing at the root level.
+
+These are for the following domains:
+
+- `ons.gov.uk`
+
+To migrate to one of our new services, please read our [migration guide](./aggregatedsearch/).
