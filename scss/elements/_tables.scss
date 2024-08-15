@@ -36,3 +36,37 @@
         border-top: 3px solid $iron;
     }
 }
+
+// For generic markdown tables
+table {
+    min-width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+    margin: 0 0 24px;
+
+    thead {
+        tr {
+            border-bottom: 3px solid #D0D2D3;
+            vertical-align: top;
+            padding-top: 5px;
+            text-align: left;
+        }
+
+        th {
+            padding: 7px 0 1px;
+        }
+    }
+
+    tbody {
+        tr {
+            &:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+        }
+
+        td {
+            padding: 6px 1px 2px;
+            min-width: 72px;
+        }
+    }
+}
