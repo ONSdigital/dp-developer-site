@@ -74,6 +74,7 @@ The endpoints to be decommissioned will be:
 - `*/staticlist/data`
 - `/timeseriestool/data`
 - `*/topicspecificmethodology/data`
+- `/releasecalendar/data`
 
 Items marked with a * can appear at any url path on the ONS website, with the others only appearing at the root level.
 
