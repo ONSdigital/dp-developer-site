@@ -84,9 +84,9 @@ These are for the following domains:
 
 To migrate to one of our new services, please read our [migration guide](./aggregatedsearch/).
 
-### API POC Server
+### v0 API
 
-It has been decided that ONS will retire our 'API POC server' due to the following reasons:
+It has been decided that ONS will retire our 'v0 API' due to the following reasons:
 
 - out of date technology
 - built as a proof of concept
@@ -109,4 +109,4 @@ These are for the following domains:
 - `api.beta.ons.gov.uk`
 - `api.ons.gov.uk`
 
-To migrate to one of our new services, please read our [migration guide](./apipocserver/).
+To migrate to one of our new services, please read our [migration guide](./v0api/).

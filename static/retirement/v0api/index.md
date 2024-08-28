@@ -1,10 +1,10 @@
 ---
-title: Retirement of API POC Server
+title: Retirement of v0 API
 ---
 
 ## Background
 
-In line with our [approach to the retirement of API endpoints](../), it has been decided that ONS will retire our 'API POC server' due to the following reasons:
+In line with our [approach to the retirement of API endpoints](../), it has been decided that ONS will retire our 'v0 API' due to the following reasons:
 
 - out of date technology
 - built as a proof of concept
