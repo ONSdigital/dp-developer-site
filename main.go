@@ -130,6 +130,7 @@ func main() {
 		{"hierarchy-api", "https://raw.githubusercontent.com/ONSdigital/dp-hierarchy-api/master/swagger.yaml", nil, nil},
 		{"dimension-search-api", "https://raw.githubusercontent.com/ONSdigital/dp-dimension-search-api/master/swagger.yaml", nil, nil},
 		{"search-api", "https://raw.githubusercontent.com/ONSdigital/dp-search-api/master/swagger.yaml", nil, nil},
+		{"topic-api", "https://raw.githubusercontent.com/ONSdigital/dp-topic-api/master/swagger.yaml", nil, nil},
 	}
 
 	if err := sources.Load(); err != nil {

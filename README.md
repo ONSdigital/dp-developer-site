@@ -44,7 +44,7 @@ or, with a custom port:
 make watch-serve PORT=8000
 ```
 
-### Using Local Paths for Development
+### Using Local Paths
 
 You can also load API specs from your local machine. 
 Just provide the file path instead of a URL, and the app will figure out if it's local or remote.
