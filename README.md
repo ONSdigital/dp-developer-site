@@ -44,6 +44,20 @@ or, with a custom port:
 make watch-serve PORT=8000
 ```
 
+### Using Local Paths for Development
+
+You can also load API specs from your local machine. 
+Just provide the file path instead of a URL, and the app will figure out if it's local or remote.
+
+Example:
+
+```go
+sources := spec.APIs{
+    {"dataset-api", "https://raw.githubusercontent.com/ONSdigital/dp-dataset-api/master/swagger.yaml", nil, nil},
+    {"local-api", "/path/to/your/local/swagger.yaml", nil, nil},
+}
+```
+
 ### Other notable commands are as follows
 
 To watch and automatically rebuild the site on any changes to any `.go`, `.md` or `.tmpl` file run:
