@@ -55,7 +55,7 @@ If this is not sufficient, users can provide feedback via our [Feedback Service]
 
 ### Data endpoints for aggregated search pages
 
-Tt has been decided that ONS will retire the data endpoints for our aggregated search pages due to the following reasons:
+It has been decided that ONS will retire the data endpoints for our aggregated search pages due to the following reasons:
 
 - out of date technology
 - built as a proof of concept
