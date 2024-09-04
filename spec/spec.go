@@ -46,7 +46,7 @@ func (a *API) getJSON() error {
 	if strings.HasPrefix(a.URL, "http://") || strings.HasPrefix(a.URL, "https://") {
 		// Remote URL
 
-		// TODO should be using timeouts etc, consider go-ns library instead
+		// TODO should be using timeouts etc, consider using dp-net
 		res, err := http.Get(a.URL)
 		if err != nil {
 			return err
