@@ -62,7 +62,7 @@ It has been decided that ONS will retire the data endpoints for our aggregated s
 - strategic technology direction is elsewhere
 - cost of upkeep is too high with similar services available
 
-The UI for these pages has already been moved to using our Search API and it is the intention of ONS to separate data and UI endpoints by domain in future. Data in JSON format will be accessible via our API found at <https://api.beta.ons.gov.uk/v1/search>
+The UI for these pages has already been moved to use our Search API and it is the intention of ONS to separate data and UI endpoints by domain in future. Data in JSON format will be accessible via our API found at <https://api.beta.ons.gov.uk/v1/search>
 
 The endpoints to be decommissioned will be:
 
