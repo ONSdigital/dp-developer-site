@@ -40,18 +40,31 @@ func (a *APIs) Load() error {
 
 func (a *API) getJSON() error {
 	// TODO check the URL is JSON or YAML first and error if not
+	var data []byte
+	var err error
 
-	// TODO should be using timeouts etc, consider go-ns library instead
-	res, err := http.Get(a.URL)
-	if err != nil {
-		return err
-	}
-	defer res.Body.Close()
+	if strings.HasPrefix(a.URL, "http://") || strings.HasPrefix(a.URL, "https://") {
+		// Remote URL
 
-	a.Data, err = ioutil.ReadAll(res.Body)
-	if err != nil {
-		return err
+		// TODO should be using timeouts etc, consider using dp-net
+		res, err := http.Get(a.URL)
+		if err != nil {
+			return err
+		}
+		defer res.Body.Close()
+		data, err = ioutil.ReadAll(res.Body)
+		if err != nil {
+			return err
+		}
+	} else {
+		// Local file path
+		data, err = ioutil.ReadFile(a.URL)
+		if err != nil {
+			return err
+		}
 	}
+
+	a.Data = data
 
 	if strings.HasSuffix(strings.ToLower(a.URL), ".json") {
 		return nil
