@@ -36,6 +36,8 @@ Which has, for example, endpoints for:
 - `/search`
 - `/datasets`
 
+You can also browse the [full Search API Swagger specification](../../search/search/).
+
 ## Migration guide
 
 Below you can find detailed ways that you can still get the same data from the ONS using our latest services which will benefit from continued enhancement and investment.
