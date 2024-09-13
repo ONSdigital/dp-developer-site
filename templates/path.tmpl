@@ -1,4 +1,5 @@
 {{range .Data.Methods}}
+    {{ $hasEnums := hasEnums .Parameters }}
     <h2>{{.Method}}</h2>
     <p>{{.Description}}</p>
 
@@ -11,6 +12,9 @@
                         <th class="table-cell table-cell--header" align="left">Name</th>
                         <th class="table-cell table-cell--header" align="left">Type</th>
                         <th class="table-cell table-cell--header" align="left">Description</th>
+                        {{if $hasEnums}}
+                            <th class="table-cell table-cell--header" align="left">Possible Values</th>
+                        {{end}}
                     </tr>
                 </thead>
                 <tbody>
@@ -19,6 +23,9 @@
                             <td class="table-cell" align="left">{{.Name}}</td>
                             <td class="table-cell" align="left">{{.In}}</td>
                             <td class="table-cell" align="left">{{.Description}}</td>
+                            {{if $hasEnums}}
+                                <td class="table-cell" align="left">{{join .Enum}}</td>
+                            {{end}}
                         </tr>
                     {{end}}
                     {{range $.Data.Parameters}}
@@ -26,6 +33,9 @@
                             <td class="table-cell" align="left">{{.Name}}</td>
                             <td class="table-cell" align="left">{{.In}}</td>
                             <td class="table-cell" align="left">{{.Description}}</td>
+                            {{if $hasEnums}}
+                                <td class="table-cell" align="left">{{join .Enum}}</td>
+                            {{end}}
                         </tr>
                     {{end}}
                 </tbody>
