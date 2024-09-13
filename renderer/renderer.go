@@ -1,16 +1,26 @@
 package renderer
 
 import (
+	"html/template"
 	"io"
 
+	"github.com/ONSdigital/dp-developer-site/utils"
 	"github.com/unrolled/render"
 )
 
 var renderer *render.Render
 
+var funcMap = template.FuncMap{
+	"hasEnums": utils.HasEnums,
+	"join":     utils.Join,
+}
+
 func init() {
 	renderer = render.New(render.Options{
 		Layout: "layout",
+		Funcs: []template.FuncMap{
+			funcMap,
+		},
 	})
 }
 
