@@ -159,8 +159,8 @@ See the [search response mapping](#search-response-mapping) for the overall resp
 
 | Version | URI                                                                     |
 |---------|-------------------------------------------------------------------------|
-| Old     | `https://api.beta.ons.gov.uk/v1/search?content_type=timeseries,dataset` |
-| New     | Deprecated                                                              |
+| Old     | `{domain}/search` |
+| New     | `https://api.beta.ons.gov.uk/v1/search?&content_type=timeseries,dataset`                                                              |
 
 Parameters:
 
