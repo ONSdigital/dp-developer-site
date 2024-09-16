@@ -125,10 +125,10 @@ See the [search response mapping](#search-response-mapping) for the overall resp
 
 ### /timeseries/{timeseries\_id}
 
-| Version | URI                                           |
-|---------|-----------------------------------------------|
+| Version | URI                                   |
+|---------|---------------------------------------|
 | Old     | `{domain}/timeseries/{timeseries_id}` |
-| New     | Deprecated                                    |
+| New     | Deprecated                            |
 
 There is not a direct replacement for this URI but the URIs for timeseries pages can be derived from search:
 
@@ -157,10 +157,10 @@ See the [search response mapping](#search-response-mapping) for the overall resp
 
 ### /search
 
-| Version | URI                                                                     |
-|---------|-------------------------------------------------------------------------|
-| Old     | `{domain}/search` |
-| New     | `https://api.beta.ons.gov.uk/v1/search?&content_type=timeseries,dataset`                                                              |
+| Version | URI                                                                      |
+|---------|--------------------------------------------------------------------------|
+| Old     | `{domain}/search`                                                        |
+| New     | `https://api.beta.ons.gov.uk/v1/search?&content_type=timeseries,dataset` |
 
 Parameters:
 
