@@ -40,7 +40,7 @@ You can also browse the [full Search API Swagger specification](../../search/sea
 
 ## Migration guide
 
-Below you can find detailed ways that you can still get the same data from the ONS using our latest services which will benefit from continued enhancement and investment.
+Below you can find detailed ways to access the same data from the ONS using our latest services which will benefit from continued enhancement and investment.
 
 ### /dataset
 
@@ -117,9 +117,9 @@ Parameters:
 | start         | offset        |
 | limit         | limit         |
 
-You will need to add a new parameter to the request to just return the `dataset` content type:
+You will need to add a new parameter to the request to just return the `timeseries` content type:
 
-`content_type=dataset`
+`content_type=timeseries`
 
 See the [search response mapping](#search-response-mapping) for the overall response mapping and [search item data mapping](#search-item-data-mapping) for the mappings for individual items.
 
