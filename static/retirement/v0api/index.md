@@ -4,7 +4,8 @@ title: Retirement of v0 API
 
 ## Background
 
-In line with our [approach to the retirement of API endpoints](../), it has been decided that ONS will retire our 'v0 API' due to the following reasons:
+In line with our [approach to the retirement of API endpoints](../), it has been decided that ONS will retire our 'v0
+API' due to the following reasons:
 
 - out of date technology
 - built as a proof of concept
@@ -40,7 +41,8 @@ You can also browse the [full Search API Swagger specification](../../search/sea
 
 ## Migration guide
 
-Below you can find detailed ways to access the same data from the ONS using our latest services which will benefit from continued enhancement and investment.
+Below you can find detailed ways to access the same data from the ONS using our latest services which will benefit from
+continued enhancement and investment.
 
 ### /dataset
 
@@ -60,7 +62,8 @@ You will need to add a new parameter to the request to just return the `dataset`
 
 `content_type=dataset`
 
-See the [search response mapping](#search-response-mapping) for the overall response mapping and [search item data mapping](#search-item-data-mapping) for the mappings for individual items.
+See the [search response mapping](#search-response-mapping) for the overall response mapping
+and [search item data mapping](#search-item-data-mapping) for the mappings for individual items.
 
 ### /dataset/{dataset\_id}
 
@@ -74,30 +77,40 @@ This endpoint currently returns a 404 for all `dataset_id` provided and so can a
 In order to get at similar data, you could still use our Search API:
 
 ```txt
-https://api.beta.ons.gov.uk/v1/search?content_type=dataset_landing_page&q={dataset_id}
+https://api.beta.ons.gov.uk/v1/search?content_type=dataset&dataset_ids={dataset_id}
 ```
 
-See the [search response mapping](#search-response-mapping) for the overall response mapping and [search item data mapping](#search-item-data-mapping) for the mappings for individual items.
+You also have the option of filtering for multiple dataset ids at once
+
+```txt
+https://api.beta.ons.gov.uk/v1/search?content_type=dataset&dataset_ids={dataset_id1,dataset_id2}
+```
+
+See the [search response mapping](#search-response-mapping) for the overall response mapping
+and [search item data mapping](#search-item-data-mapping) for the mappings for individual items.
 
 ### /dataset/{dataset\_id}/timeseries
 
-| Version | URI                                                                            |
-|---------|--------------------------------------------------------------------------------|
-| Old     | `{domain}/dataset/{dataset_id}/timeseries`                                     |
-| New     | `https://api.beta.ons.gov.uk/v1/search?content_type=timeseries&q={dataset_id}` |
+| Version | URI                                                                                     |
+|---------|-----------------------------------------------------------------------------------------|
+| Old     | `{domain}/dataset/{dataset_id}/timeseries`                                              |
+| New     | `https://api.beta.ons.gov.uk/v1/search?content_type=timeseries&dataset_ids={datasetID}` |
 
-See the [search response mapping](#search-response-mapping) for the overall response mapping and [search item data mapping](#search-item-data-mapping) for the mappings for individual items.
+See the [search response mapping](#search-response-mapping) for the overall response mapping
+and [search item data mapping](#search-item-data-mapping) for the mappings for individual items.
 
 ### /dataset/{dataset\_id}/timeseries/{timeseries\_id} and /dataset/{dataset\_id}/timeseries/{timeseries\_id}/data
 
-| Version | URI                                                                               |
-|---------|-----------------------------------------------------------------------------------|
-| Old     | `{domain}/dataset/{dataset_id}/timeseries/{timeseries_id}`                        |
-| New     | `https://api.beta.ons.gov.uk/v1/search?content_type=timeseries&q={timeseries_id}` |
+| Version | URI                                                                          |
+|---------|------------------------------------------------------------------------------|
+| Old     | `{domain}/dataset/{dataset_id}/timeseries/{timeseries_id}`                   |
+| New     | `https://api.beta.ons.gov.uk/v1/search?content_type=timeseries&cdids={cdid}` |
 
-`/dataset/{dataset_id}/timeseries/{timeseries_id}` is a subset of what is retrieved via `/dataset/{dataset_id}/timeseries/{timeseries_id}/data`.
+`/dataset/{dataset_id}/timeseries/{timeseries_id}` is a subset of what is retrieved
+via `/dataset/{dataset_id}/timeseries/{timeseries_id}/data`.
 
-After getting the response from our search service, you can get the `uri` parameter of the `item` that matches your `timeseries_id` to it's `cdid`. Using that `uri` you can then submit that to our data endpoint, for example:
+After getting the response from our search service, you can get the `uri` parameter of the `item` that matches
+your `timeseries_id` to it's `cdids`. Using that `uri` you can then submit that to our data endpoint, for example:
 
 `https://api.beta.ons.gov.uk/v1/data?uri=/economy/nationalaccounts/uksectoraccounts/timeseries/mm23/capstk`
 
@@ -121,7 +134,8 @@ You will need to add a new parameter to the request to just return the `timeseri
 
 `content_type=timeseries`
 
-See the [search response mapping](#search-response-mapping) for the overall response mapping and [search item data mapping](#search-item-data-mapping) for the mappings for individual items.
+See the [search response mapping](#search-response-mapping) for the overall response mapping
+and [search item data mapping](#search-item-data-mapping) for the mappings for individual items.
 
 ### /timeseries/{timeseries\_id}
 
@@ -132,9 +146,14 @@ See the [search response mapping](#search-response-mapping) for the overall resp
 
 There is not a direct replacement for this URI but the URIs for timeseries pages can be derived from search:
 
-`https://api.beta.ons.gov.uk/v1/search?q={timeseries_id}&content_type=timeseries`
+`https://api.beta.ons.gov.uk/v1/search?content_type=timeseries&cdids={timeseries_id}`
 
-Using the `uri` parameter of the `item` that matches `timeseries_id` to `cdid` you can then submit that to our data endpoint, for example:
+You can also filter by multiple timeseries IDs:
+
+`https://api.beta.ons.gov.uk/v1/search?content_type=timeseries&cdids={timeseries_id1,timeseries_id2}`
+
+Using the `uri` parameter of the `item` that matches `timeseries_id` to `cdid` you can then submit that to our data
+endpoint, for example:
 
 `https://api.beta.ons.gov.uk/v1/data?uri=/economy/nationalaccounts/uksectoraccounts/timeseries/mm23/capstk`
 
@@ -151,9 +170,10 @@ This endpoint currently returns a 404 for all `timeseries_id` provided and so ca
 
 To get a result to what might be expected for this endpoint, you can go to:
 
-`https://api.beta.ons.gov.uk/v1/search?q={timeseries_id}&content_type=timeseries`
+`https://api.beta.ons.gov.uk/v1/search?cdids={timeseries_id}&content_type=timeseries`
 
-See the [search response mapping](#search-response-mapping) for the overall response mapping and [search item data mapping](#search-item-data-mapping) for the mappings for individual items.
+See the [search response mapping](#search-response-mapping) for the overall response mapping
+and [search item data mapping](#search-item-data-mapping) for the mappings for individual items.
 
 ### /search
 
@@ -174,7 +194,8 @@ Add new parameters:
 
 `content_type=timeseries,dataset`
 
-See the [search response mapping](#search-response-mapping) for the overall response mapping and [search item data mapping](#search-item-data-mapping) for the mappings for individual items.
+See the [search response mapping](#search-response-mapping) for the overall response mapping
+and [search item data mapping](#search-item-data-mapping) for the mappings for individual items.
 
 ## Search response mapping
 
