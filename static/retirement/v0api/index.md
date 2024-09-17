@@ -91,10 +91,10 @@ and [search item data mapping](#search-item-data-mapping) for the mappings for i
 
 ### /dataset/{dataset\_id}/timeseries
 
-| Version | URI                                                                                     |
-|---------|-----------------------------------------------------------------------------------------|
-| Old     | `{domain}/dataset/{dataset_id}/timeseries`                                              |
-| New     | `https://api.beta.ons.gov.uk/v1/search?content_type=timeseries&dataset_ids={datasetID}` |
+| Version | URI                                                                                      |
+|---------|------------------------------------------------------------------------------------------|
+| Old     | `{domain}/dataset/{dataset_id}/timeseries`                                               |
+| New     | `https://api.beta.ons.gov.uk/v1/search?content_type=timeseries&dataset_ids={dataset_id}` |
 
 See the [search response mapping](#search-response-mapping) for the overall response mapping
 and [search item data mapping](#search-item-data-mapping) for the mappings for individual items.
@@ -104,7 +104,7 @@ and [search item data mapping](#search-item-data-mapping) for the mappings for i
 | Version | URI                                                                          |
 |---------|------------------------------------------------------------------------------|
 | Old     | `{domain}/dataset/{dataset_id}/timeseries/{timeseries_id}`                   |
-| New     | `https://api.beta.ons.gov.uk/v1/search?content_type=timeseries&cdids={cdid}` |
+| New     | `https://api.beta.ons.gov.uk/v1/search?content_type=timeseries&cdids={timeseries_id}` |
 
 `/dataset/{dataset_id}/timeseries/{timeseries_id}` is a subset of what is retrieved
 via `/dataset/{dataset_id}/timeseries/{timeseries_id}/data`.
@@ -170,7 +170,7 @@ This endpoint currently returns a 404 for all `timeseries_id` provided and so ca
 
 To get a result to what might be expected for this endpoint, you can go to:
 
-`https://api.beta.ons.gov.uk/v1/search?cdids={timeseries_id}&content_type=timeseries`
+`https://api.beta.ons.gov.uk/v1/search?content_type=timeseries&cdids={timeseries_id}`
 
 See the [search response mapping](#search-response-mapping) for the overall response mapping
 and [search item data mapping](#search-item-data-mapping) for the mappings for individual items.
