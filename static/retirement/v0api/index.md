@@ -39,6 +39,8 @@ Which has, for example, endpoints for:
 
 You can also browse the [full Search API Swagger specification](../../search/search/).
 
+If you wish to discuss the retirement of the V0 API with us or would like assistance using this migration guide, please email us at <apiservice@ons.gov.uk>
+
 ## Migration guide
 
 Below you can find detailed ways to access the same data from the ONS using our latest services which will benefit from
