@@ -11,7 +11,8 @@ import (
 )
 
 const (
-	serviceName = "dp-developer-site"
+	serviceName   = "dp-developer-site"
+	staticRootDir = "static"
 )
 
 func main() {
@@ -37,7 +38,7 @@ func main() {
 
 	// Generate site model
 	orderedNav := createNav()
-	siteModel := site.NewSite(orderedNav, sources)
+	siteModel := site.NewSite(orderedNav, sources, staticRootDir)
 
 	// Generate static HTML site
 	log.Info(ctx, "creating assets directories and HTML files")
