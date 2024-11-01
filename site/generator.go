@@ -22,17 +22,17 @@ import (
 	openAPI "github.com/go-openapi/spec"
 )
 
-func NewSite(nav *Nav, APIs spec.APIs) *Site {
+type Site map[string]Page
+
+func NewSite(nav *Nav, APIs spec.APIs, staticRootDir string) *Site {
 	siteModel := &Site{}
-	siteModel.generateDynamicPages(APIs, nav)
-	siteModel.generateStaticPages(nav)
+	siteModel.addAPISpecPages(nav, APIs)
+	siteModel.addStaticPages(nav, staticRootDir)
 
 	return siteModel
 }
 
-type Site map[string]Page
-
-func (s Site) generateDynamicPages(a spec.APIs, orderedNav *Nav) {
+func (s Site) addAPISpecPages(orderedNav *Nav, a spec.APIs) {
 	for _, api := range a {
 		var orderedPaths []APIPath
 		apiDir := strings.TrimSuffix(api.ID, "-api")
@@ -42,7 +42,7 @@ func (s Site) generateDynamicPages(a spec.APIs, orderedNav *Nav) {
 		for key, path := range api.Spec.Paths.Paths {
 			// generateMethods() only includes public methods so checking the length
 			// so we don't add a path if none of it's methods are public
-			pathMethods := generateMethods(path)
+			pathMethods := getPublicMethodsList(path)
 			if len(pathMethods) == 0 {
 				continue
 			}
@@ -94,7 +94,7 @@ func (s Site) generateDynamicPages(a spec.APIs, orderedNav *Nav) {
 	}
 }
 
-func generateMethods(path openAPI.PathItem) (methods []PathMethod) {
+func getPublicMethodsList(path openAPI.PathItem) (methods []PathMethod) {
 	//FIXME We're checking for the lack of 'Private' or 'Private user' tag on a method at the point
 	// it'd be safer to check for 'Public' but the hierarchy API is currently missing that tag,
 	// so this fixes that until the APIs spec is updated.
@@ -102,56 +102,56 @@ func generateMethods(path openAPI.PathItem) (methods []PathMethod) {
 		methods = append(methods, PathMethod{
 			Method:           "GET",
 			OperationProps:   path.Get.OperationProps,
-			OrderedResponses: generateResponses(path.Get.Responses),
+			OrderedResponses: getResponsesList(path.Get.Responses),
 		})
 	}
 	if path.Head != nil && !contains(path.Head.Tags, Tags.Private) && !contains(path.Head.Tags, Tags.PrivateUser) {
 		methods = append(methods, PathMethod{
 			Method:           "HEAD",
 			OperationProps:   path.Head.OperationProps,
-			OrderedResponses: generateResponses(path.Head.Responses),
+			OrderedResponses: getResponsesList(path.Head.Responses),
 		})
 	}
 	if path.Post != nil && !contains(path.Post.Tags, Tags.Private) && !contains(path.Post.Tags, Tags.PrivateUser) {
 		methods = append(methods, PathMethod{
 			Method:           "POST",
 			OperationProps:   path.Post.OperationProps,
-			OrderedResponses: generateResponses(path.Post.Responses),
+			OrderedResponses: getResponsesList(path.Post.Responses),
 		})
 	}
 	if path.Put != nil && !contains(path.Put.Tags, Tags.Private) && !contains(path.Put.Tags, Tags.PrivateUser) {
 		methods = append(methods, PathMethod{
 			Method:           "PUT",
 			OperationProps:   path.Put.OperationProps,
-			OrderedResponses: generateResponses(path.Put.Responses),
+			OrderedResponses: getResponsesList(path.Put.Responses),
 		})
 	}
 	if path.Delete != nil && !contains(path.Delete.Tags, Tags.Private) && !contains(path.Delete.Tags, Tags.PrivateUser) {
 		methods = append(methods, PathMethod{
 			Method:           "DELETE",
 			OperationProps:   path.Delete.OperationProps,
-			OrderedResponses: generateResponses(path.Delete.Responses),
+			OrderedResponses: getResponsesList(path.Delete.Responses),
 		})
 	}
 	if path.Options != nil && !contains(path.Options.Tags, Tags.Private) && !contains(path.Options.Tags, Tags.PrivateUser) {
 		methods = append(methods, PathMethod{
 			Method:           "OPTIONS",
 			OperationProps:   path.Options.OperationProps,
-			OrderedResponses: generateResponses(path.Options.Responses),
+			OrderedResponses: getResponsesList(path.Options.Responses),
 		})
 	}
 	if path.Patch != nil && !contains(path.Patch.Tags, Tags.Private) && !contains(path.Patch.Tags, Tags.PrivateUser) {
 		methods = append(methods, PathMethod{
 			Method:           "PATCH",
 			OperationProps:   path.Patch.OperationProps,
-			OrderedResponses: generateResponses(path.Patch.Responses),
+			OrderedResponses: getResponsesList(path.Patch.Responses),
 		})
 	}
 
 	return
 }
 
-func generateResponses(responses *openAPI.Responses) (orderedResponses []MethodResponse) {
+func getResponsesList(responses *openAPI.Responses) (orderedResponses []MethodResponse) {
 	for status, response := range responses.StatusCodeResponses {
 		example, err := generateResponseExample(response.Schema, "")
 		if err != nil {
@@ -297,8 +297,8 @@ func contains(sl []string, s string) (b bool) {
 	return
 }
 
-func (s Site) generateStaticPages(orderedNav *Nav) {
-	err := filepath.Walk("static", func(path string, info os.FileInfo, err error) error {
+func (s Site) addStaticPages(orderedNav *Nav, rootDir string) {
+	err := filepath.Walk(rootDir, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 
 			fmt.Printf("prevent panic by handling failure accessing a path %q: %v\n", "static", err)
@@ -314,9 +314,9 @@ func (s Site) generateStaticPages(orderedNav *Nav) {
 				log.Error(context.TODO(), "failed to read index.md file", err)
 			}
 
-			templateBytes, metadata := generateStaticMetadata(bytes)
+			templateBytes, metadata := getStaticMetadata(bytes)
 			html := blackfriday.Run(templateBytes, blackfriday.WithExtensions(blackfriday.AutoHeadingIDs|blackfriday.FencedCode|blackfriday.Tables))
-			styledHTML := generateStyledCodeHTML(html)
+			styledHTML := formatHTMLCodeBlocks(html)
 			fileDir := strings.TrimSuffix(strings.TrimPrefix(path, "static/"), "index.md")
 			s[fileDir] = Page{
 				Title:        metadata["title"],
@@ -333,7 +333,7 @@ func (s Site) generateStaticPages(orderedNav *Nav) {
 				log.Error(context.TODO(), "failed to read index.html", err)
 			}
 
-			templateBytes, metadata := generateStaticMetadata(bytes)
+			templateBytes, metadata := getStaticMetadata(bytes)
 			fileDir := strings.TrimSuffix(strings.TrimPrefix(path, "static/"), "index.html")
 			s[fileDir] = Page{
 				Title:        metadata["title"],
@@ -351,7 +351,7 @@ func (s Site) generateStaticPages(orderedNav *Nav) {
 	}
 }
 
-func generateStaticMetadata(md []byte) (b []byte, metadata map[string]string) {
+func getStaticMetadata(md []byte) (b []byte, metadata map[string]string) {
 	metadata = make(map[string]string)
 	s := string(md)
 	lines := strings.Split(s, "\n")
@@ -393,7 +393,7 @@ func generateStaticMetadata(md []byte) (b []byte, metadata map[string]string) {
 	return
 }
 
-func generateStyledCodeHTML(html []byte) []byte {
+func formatHTMLCodeBlocks(html []byte) []byte {
 	doc, err := goquery.NewDocumentFromReader(bytes.NewReader(html))
 	if err != nil {
 		log.Error(context.TODO(), "failed to read html file", err)
