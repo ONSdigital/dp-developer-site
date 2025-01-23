@@ -9,6 +9,8 @@
         <title>ONS developer Hub{{if .Title}} - {{.Title}}
             {{end}}
         </title>
+        <link rel="preload" as="font"  type="font/woff2" href="https://cdn.ons.gov.uk/assets/fonts/open-sans-regular/OpenSans-Regular-webfont.woff2" crossorigin>
+        <link rel="preload" as="font"  type="font/woff2" href="https://cdn.ons.gov.uk/assets/fonts/open-sans-bold/OpenSans-Bold-webfont.woff2" crossorigin>
         <link rel="stylesheet" href="https://cdn.ons.gov.uk/sixteens/fa4e02c/css/main.css">
         <link rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
         <link rel="stylesheet" href="{{$rootPath}}assets/css/main.css">
@@ -24,7 +26,7 @@
                             {{ template "table-of-contents" .}}
                         </div>
                     </div>
-                    <main id="main" role="main" tabindex="-1">
+                    <main id="main" role="main" tabindex="-1" aria-labelledby="main-label">
                     <div class="col col--md-one-half col--lg-two-thirds">
                         <h1 id="main-label" class="break-word margin-top-sm--3 margin-bottom-sm--3 font-weight--700">
                             <strong>{{.Title}}</strong>
