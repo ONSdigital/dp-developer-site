@@ -1,5 +1,6 @@
 {{ define "footer" }}
-    <footer>
+    <footer class="print--hide padding-top--13">
+    <section>
         <div class="wrapper">{{ template "feedback-form" . }}</div>
         <h2 class="visuallyhidden">Footer links</h2>
         <div class="footer">
@@ -32,11 +33,14 @@
                                     <a href="https://www.ons.gov.uk/aboutus/whatwedo">What we do</a>
                                 </li>
                                 <li class="footer-nav__item">
-                                    <a href="https://www.ons.gov.uk/aboutus/careers">Careers</a>
+                                    <a href="https://careers.ons.gov.uk">Careers</a>
                                 </li>
                                 <li class="footer-nav__item">
                                     <a href="https://www.ons.gov.uk/aboutus/contactus">Contact us</a>
                                 </li>
+                                <li class="footer-nav__item">
+                                    <a href="https://www.ons.gov.uk/news">News</a>
+                                 </li>
                                 <li class="footer-nav__item">
                                     <a href="https://www.ons.gov.uk/aboutus/transparencyandgovernance/freedomofinformationfoi">Freedom of Information</a>
                                 </li>
@@ -49,10 +53,19 @@
                                     <a href="https://twitter.com/ONS" class="icon--hide">Twitter</a>
                                 </li>
                                 <li class="footer-nav__item">
+                                    <a href="https://www.instagram.com/officefornationalstatistics/" class="icon--hide" target="_blank">Instagram</a>
+                                </li>
+                                <li class="footer-nav__item">
                                     <a href="https://www.facebook.com/ONS" class="icon--hide">Facebook</a>
                                 </li>
                                 <li class="footer-nav__item">
                                     <a href="https://www.linkedin.com/company/office-for-national-statistics" class="icon--hide">LinkedIn</a>
+                                </li>
+                                <li class="footer-nav__item">
+                                    <a href="https://consultations.ons.gov.uk/" class="icon--hide" target="_blank">Consultations</a>
+                                </li>
+                                <li class="footer-nav__item">
+                                    <a href="https://www.statsusernet.org.uk/login" class="icon--hide" target="_blank">Discussion forums</a>
                                 </li>
                                 <li class="footer-nav__item">
                                     <a href="https://public.govdelivery.com/accounts/UKONS/subscribers/new" class="icon--hide">Email alerts</a>
@@ -72,5 +85,6 @@
                 </div>
             </div>
         </div>
+    </section>
     </footer>
 {{end}}
