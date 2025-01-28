@@ -27,8 +27,9 @@
             <div class="ons-col-8@m">
                 <form id="feedback-form-container" name="feedback-form">
                     <input type="hidden" name="feedback-form-type" value="footer">
-                    <input type="hidden" name="url" id="feedback-form-url" value="https://developer.ons.gov.uk{{.Path}}">
                     <input type="hidden" name="type" value="A specific page">
+                    <input type="hidden" name="url" id="feedback-api-enabled" value="true">
+                    <input type="hidden" name="url" id="feedback-api-url" value="https://api.beta.ons.gov.uk/v1/feedback">
                 <div class="form-group">
                     <label class="form-label-bold" id="description-field-label" for="description-field">
                         How should we improve this page?
