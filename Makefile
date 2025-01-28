@@ -19,6 +19,7 @@ deps-javascript:
 .PHONY: install-prereqs
 install-prereqs:
 	go install github.com/fogleman/serve@latest
+	go install github.com/cespare/reflex@latest
 
 .PHONY: test
 test: deps-javascript
