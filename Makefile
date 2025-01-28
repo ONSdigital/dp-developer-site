@@ -1,12 +1,19 @@
 PORT=23600
 
+NVM_SOURCE_PATH ?= $(HOME)/.nvm/nvm.sh
+
+ifneq ("$(wildcard $(NVM_SOURCE_PATH))","")
+	NVM_EXEC = source $(NVM_SOURCE_PATH) && nvm exec --
+endif
+NPM = $(NVM_EXEC) npm
+
 .PHONY: all
 all: audit build watch
 
 .PHONY: audit
 audit:
 	go list -json -m all | nancy sleuth
-	npm audit --audit-level=high
+	$(NPM) audit --audit-level=high
 
 .PHONY: build
 build: deps-javascript
@@ -14,7 +21,7 @@ build: deps-javascript
 	
 .PHONY: deps-javascript
 deps-javascript:
-	npm install --unsafe-perm
+	$(NPM) install --unsafe-perm
 
 .PHONY: install-prereqs
 install-prereqs:
@@ -23,7 +30,7 @@ install-prereqs:
 
 .PHONY: test
 test: deps-javascript
-	npm test
+	$(NPM) test
 
 .PHONY: watch
 watch:
@@ -38,8 +45,8 @@ watch-templates:
 
 .PHONY: watch-assets
 watch-assets:
-	npm run build
-	npm run watch
+	$(NPM) run build
+	$(NPM) run watch
 
 .PHONY: watch-serve
 watch-serve:
