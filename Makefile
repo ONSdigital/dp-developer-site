@@ -18,7 +18,7 @@ audit:
 .PHONY: build
 build: deps-javascript
 	go run main.go
-	
+
 .PHONY: deps-javascript
 deps-javascript:
 	$(NPM) install --unsafe-perm
@@ -57,3 +57,7 @@ watch-serve:
 .PHONY: serve
 serve:
 	serve -port=${PORT} -dir="assets"
+
+.PHONY: clean
+clean:
+	rm -rf assets/ logs/ node_modules/

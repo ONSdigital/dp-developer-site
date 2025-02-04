@@ -306,18 +306,25 @@ func generateMethods(path openAPI.PathItem) (methods []PathMethod) {
 
 func generateResponses(responses *openAPI.Responses) (orderedResponses []MethodResponse) {
 	for status, response := range responses.StatusCodeResponses {
-
-		json, err := json.MarshalIndent(response.ResponseProps.Schema, "", "  ")
-
+		example, err := generateResponseExample(response.Schema, "")
 		if err != nil {
-			log.Error(context.TODO(), "creating assets directories and HTML files", err)
-			json = []byte{}
+			log.Error(context.TODO(), "failed to generate response example", err)
+		}
+
+		exampleFormatted := []byte{}
+		if example != nil {
+			exampleFormatted, err = json.MarshalIndent(example, "", "  ")
+
+			if err != nil {
+				log.Error(context.TODO(), "creating assets directories and HTML files", err)
+				exampleFormatted = []byte{}
+			}
 		}
 
 		orderedResponses = append(orderedResponses, MethodResponse{
 			Status:          status,
 			ResponseProps:   response.ResponseProps,
-			ExampleResponse: string(json),
+			ExampleResponse: string(exampleFormatted),
 		})
 	}
 
@@ -326,6 +333,110 @@ func generateResponses(responses *openAPI.Responses) (orderedResponses []MethodR
 	})
 
 	return
+}
+
+func generateResponseExample(schema *openAPI.Schema, property string) (interface{}, error) {
+	if schema == nil {
+		return nil, nil
+	}
+
+	// If there is an example provided, return it
+	if schema.Example != nil {
+		return schema.Example, nil
+	} else if schema.Default != nil {
+		return schema.Default, nil
+	} else if schema.Enum != nil && len(schema.Enum) > 0 {
+		return schema.Enum[0], nil
+	}
+
+	// If allOf is used then process each of the allOf array items and merge the resulting example
+	if len(schema.AllOf) > 0 {
+		return generateAllOfExample(&schema.AllOf, property)
+	}
+
+	// If the type is nil, we will try to guess it is an object to be able to proceed
+	if schema.Type == nil {
+		schema.Type = make([]string, 1)
+		schema.Type[0] = "object"
+	} else if len(schema.Type) != 1 {
+		// The type is always singular, but for some reason is modelled as an array.
+		// Checking the length just in case
+		return nil, fmt.Errorf("unexpected error: 'type' attribute for '%s' should be singular, but wasn't", property)
+	}
+
+	switch schema.Type[0] {
+	case "object":
+		objExample := make(map[string]interface{})
+		for k, v := range schema.SchemaProps.Properties {
+			example, err := generateResponseExample(&v, k)
+			if err != nil {
+				return nil, err
+			}
+			objExample[k] = example
+		}
+		return objExample, nil
+	case "array":
+		example, err := generateResponseExample(schema.Items.Schema, fmt.Sprintf("%s array", property))
+		if err != nil {
+			return nil, err
+		}
+		arr := make([]interface{}, 1)
+		arr[0] = example
+		return arr, nil
+	case "boolean":
+		return true, nil
+	case "integer", "number":
+		return 0, nil
+	case "string":
+		if schema.Format != "" {
+			switch schema.Format {
+			case "date":
+				return "2025-02-05", nil
+			case "date-time":
+				return "2025-02-05T17:12:13.877Z", nil
+			case "password":
+				return "shhSecret123", nil
+			case "byte":
+				return "aW1hZ2luZSB0aGVzZSBhcmUgcmFuZG9tIGJ5dGVzCg==", nil
+			case "binary":
+				return "0101101101001", nil
+			}
+		}
+	}
+	return string(schema.Type[0]), nil
+}
+
+func generateAllOfExample(allOf *[]openAPI.Schema, property string) (map[string]interface{}, error) {
+	example := make(map[string]interface{})
+	for _, s := range *allOf {
+		// If the type is nil, we will assume it is an object to be able to proceed
+		if s.Type == nil {
+			s.Type = make([]string, 1)
+			s.Type[0] = "object"
+		} else if len(s.Type) != 1 {
+			// The type is always singular, but for some reason is modelled as an array.
+			// Checking the length just in case
+			return nil, fmt.Errorf("failed to generate example: 'type' has %d item(s) for allOf item of '%s'", len(s.Type), property)
+		}
+		if s.Type[0] != "object" {
+			return nil, fmt.Errorf("failed to generate example: unexpected 'type' for allOf item for '%s'", property)
+		}
+
+		ex, err := generateResponseExample(&s, property)
+		if err != nil {
+			return nil, err
+		}
+
+		// Convert to map with string keys so we can merge the maps from the various allOf items
+		exMap, ok := ex.(map[string]interface{})
+		if !ok {
+			return nil, fmt.Errorf("failed to generate example: failed to cast map for allOf item for '%s'", property)
+		}
+		for k, v := range exMap {
+			example[k] = v
+		}
+	}
+	return example, nil
 }
 
 func contains(sl []string, s string) (b bool) {
