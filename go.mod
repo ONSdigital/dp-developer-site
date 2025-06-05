@@ -1,8 +1,6 @@
 module github.com/ONSdigital/dp-developer-site
 
-go 1.23.0
-
-toolchain go1.24.1
+go 1.24
 
 require (
 	github.com/ONSdigital/log.go/v2 v2.4.3
