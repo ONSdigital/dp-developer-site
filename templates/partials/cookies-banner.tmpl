@@ -1,20 +1,23 @@
 {{ define "cookies-banner" }}
     <section>
         <form action="/cookies/accept-all" method="GET" id="global-cookie-message" class="cookies-banner cookies-banner--hidden js-cookies-banner-form clearfix"
-                aria-label="cookie banner">
-            <div class="cookies-banner__wrapper wrapper js-cookies-banner-inform">
+                    aria-label="cookie banner">
+            <div class="cookies-banner__wrapper wrapper js-cookies-banner-inform" role="region" aria-label="Cookies banner">
                 <div>
                     <div class="cookies-banner__message adjust-font-size--18">
-                        <h1 class="cookies-banner__heading font-size--h3">Tell us whether you accept cookies</h1>
-                        <p class="cookies-banner__body">We would like to <a href="https://www.ons.gov.uk/cookies">use cookies to collect information</a> about how you use <strong>ons.gov.uk</strong>.</p>
-                        <p class="cookies-banner__body">We use this information to make the website work as well as possible and improve our services.</p>
+                        <h2 class="cookies-banner__heading font-size--h3">Cookies on ons.gov.uk</h2>
+                        <p class="cookies-banner__body">Cookies are small files stored on your device when you visit a website. We use some essential cookies to make this website work.</p>
+                        <p class="cookies-banner__body">We would like to set <a href="https://www.ons.gov.uk/cookies">additional cookies</a> to remember your settings and understand how you use the site. This helps us to improve our services.</p>
                     </div>
                     <div class="cookies-banner__buttons">
                         <div class="nojs--hide cookies-banner__button cookies-banner__button--accept">
-                            <button class="btn btn--full-width btn--primary btn--focus margin-right--2 font-weight-700 font-size--17 text-wrap js-accept-cookies" data-gtm-accept-cookies="true" type="submit">Accept all cookies</button>
+                            <button class="btn btn--full-width btn--primary btn--focus margin-right--2 font-weight-700 font-size--17 text-wrap js-accept-cookies" data-gtm-accept-cookies="true" type="submit" data-action="accept" tabindex="0">Accept additional cookies</button>
+                        </div>
+                        <div class="nojs--hide cookies-banner__button cookies-banner__button--reject">
+                            <button class="btn btn--full-width btn--primary btn--focus margin-right--2 font-weight-700 font-size--17 text-wrap js-reject-cookies" data-gtm-accept-cookies="false" type="submit" data-action="reject" tabindex="0">Reject additional cookies</button>
                         </div>
                         <div class="cookies-banner__button">
-                            <a role="button" href="https://www.ons.gov.uk/cookies" class="btn btn--full-width btn--primary btn--focus margin-right--2 font-weight-700 font-size--17 text-wrap js-accept-cookies">Set cookie preferences</a>
+                            <a href="https://www.ons.gov.uk/cookies">Manage settings</a>
                         </div>
                     </div>
                 </div>
@@ -24,8 +27,10 @@
                     <div class="col">
                         <div class="cookies-banner__message adjust-font-size--18">
                             <p class="cookies-banner__confirmation-message">
-                            You’ve accepted all cookies. You can <a href="https://www.ons.gov.uk/cookies">change your cookie settings</a> at any time.
-                            <button type="button" class="cookies-banner__button--hide js-hide-cookies-banner">Hide</button>
+                                <span class="hidden ons-js-accepted-text">You have accepted all additional cookies.</span>
+                                <span class="hidden ons-js-rejected-text">You have rejected all additional cookies.</span>
+                                <span>You can <a href="https://www.ons.gov.uk/cookies">change your cookie preferences</a> at any time.</span>
+                                <button type="button" class="cookies-banner__button--hide js-hide-cookies-banner">Hide</button>
                             </p>
                         </div>
                     </div>
