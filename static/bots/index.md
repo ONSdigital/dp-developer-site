@@ -14,7 +14,7 @@ The following rate limits have been applied:
 
 * 200 requests per 1 minute - all site and API assets
 
-* 15 requests per 10 seconds - high demand site assets
+* 5 requests per 10 seconds - high demand site assets
 
 The time for which you will be blocked varies and is dynamically changed by the ONS, depending on release schedules and observed demand.
 
