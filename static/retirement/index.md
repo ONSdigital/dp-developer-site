@@ -110,3 +110,55 @@ These are for the following domains:
 - `api.ons.gov.uk`
 
 To migrate to one of our new services, please read our [migration guide](./v0api/).
+
+### Data endpoints for content pages
+
+It has been decided that ONS will retire the data endpoints for our content pages due to the following reasons:
+
+- lack of clear and obvious need for content pages to be consumed in this way
+- cost of upkeep
+
+This update will only impact those endpoints that do not pertain to the timeseries or dataset content types.
+
+The specific types of pages affected are:
+
+| Label                       | Content Type                  |
+|-----------------------------|-------------------------------|
+| Article                     | `article`                     |
+| Article Download            | `article_download`            |
+| Bulletin                    | `bulletin`                    |
+| Chart                       | `chart`                       |
+| Compendium Chapter          | `compendium_chapter`          |
+| Compendium Data             | `compendium_data`             |
+| Compendium Landing Page     | `compendium_landing_page`     |
+| Equation                    | `equation`                    |
+| Home Page                   | `home_page`                   |
+| Home Page Census            | `home_page_census`            |
+| Image                       | `image`                       |
+| Product Page                | `product_page`                |
+| Reference Tables            | `reference_tables`            |
+| Release                     | `release`                     |
+| Static Adhoc                | `static_adhoc`                |
+| Static Article              | `static_article`              |
+| Static FOI                  | `static_foi`                  |
+| Static Landing Page         | `static_landing_page`         |
+| Static Methodology          | `static_methodology`          |
+| Static Methodology Download | `static_methodology_download` |
+| Static Page                 | `static_page`                 |
+| Static QMI                  | `static_qmi`                  |
+| Table                       | `table`                       |
+| Taxonomy Landing Page       | `taxonomy_landing_page`       |
+| Visualisation               | `visualisation`               |
+
+The following types of pages are not affected:
+
+| Label                              | Content Type                        |
+|------------------------------------|-------------------------------------|
+| API Dataset                        | `api_dataset`                       |
+| API Dataset Landing Page           | `api_dataset_landing_page`          |
+| Dataset                            | `dataset`                           |
+| Dataset Landing Page               | `dataset_landing_page`              |
+| Data Slice                         | `data_slice`                        |
+| Timeseries                         | `timeseries`                        |
+| Timeseries Dataset                 | `timeseries_dataset`                |
+| Timeseries Landing Page            | `timeseries_landing_page`           |
