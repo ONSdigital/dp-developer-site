@@ -12,7 +12,7 @@ all: audit build watch
 
 .PHONY: audit
 audit:
-	go list -json -m all | nancy sleuth
+	dis-vulncheck
 	$(NPM) audit --audit-level=high
 
 .PHONY: build
