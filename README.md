@@ -90,6 +90,6 @@ See [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ### License
 
-Copyright © 2017-2024, Office for National Statistics (<https://www.ons.gov.uk>)
+Copyright © 2017-2026, Office for National Statistics (<https://www.ons.gov.uk>)
 
-Released under MIT license, see [LICENSE](LICENSE.md) for details. 
+Released under MIT license, see [LICENSE](LICENSE.md) for details.

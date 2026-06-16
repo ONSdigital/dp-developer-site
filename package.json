@@ -11,8 +11,8 @@
     "watch": "npm run watch:css && npm run watch:js",
     "watch:js": "webpack --mode=development --config ./webpack.config.js --watch",
     "watch:css": "sass -w --embed-source-map --style=expanded scss/main.scss ./assets/assets/css/main.css",
-    "lint": "eslint \"**/*.js\" --ignore-path .gitignore .",
-    "lint:fix": "eslint \"**/*.js\" --ignore-path .gitignore . --fix",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "postinstall": "npm run build"
   },
   "repository": {
@@ -35,17 +35,16 @@
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/preset-env": "^7.11.5",
-    "babel-eslint": "^10.0.3",
-    "babel-jest": "^29.7.0",
+    "@babel/eslint-parser": "^7.25.0",
+    "babel-jest": "^30.4.1",
     "babel-loader": "^8.1.0",
     "babel-preset": "^1.1.6",
-    "eslint": "^6.1.0",
+    "eslint": "^9.0.0",
     "eslint-config-google": "^0.14.0",
-    "eslint-loader": "^3.0.4",
-    "eslint-plugin-import": "^2.22.0",
-    "eslint-plugin-jest": "^23.20.0",
-    "jest": "^29.7.0",
-    "jest-environment-jsdom": "^29.7.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jest": "^29.15.2",
+    "jest": "^30.4.1",
+    "jest-environment-jsdom": "^30.4.1",
     "webpack": "^5.94.0",
     "webpack-cli": "^5.1.4"
   }

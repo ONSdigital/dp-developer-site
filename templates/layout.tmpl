@@ -14,8 +14,10 @@
         <link rel="stylesheet" href="https://cdn.ons.gov.uk/sixteens/662bc97/css/main.css">
         <link rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
         <link rel="stylesheet" href="{{$rootPath}}assets/css/main.css">
+        {{ template "gtm-head" . }}
     </head>
     <body class="link-adjust sticky-footer">
+        {{ template "gtm-body" . }}
         <script>document.body.className = ((document.body.className) ? document.body.className + ' js' : 'js');</script>
         {{ template "cookies-banner" . }}
         {{ template "header" . }}
